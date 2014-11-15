@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Boyi Li</title>
+    <description>A simple, beautiful theme for Jekyll that emphasizes content rather than aesthetic fluff.</description>
+    <link>http://boylee1111.github.io/</link>
+    <atom:link href="http://boylee1111.github.io/feed.xml" rel="self" type="application/rss+xml" />
+    
+      <item>
+        <title>Test</title>
+        <description>&lt;p&gt;This is an empty post to test.&lt;/p&gt;
+</description>
+        <pubDate>Sat, 15 Nov 2014 12:21:29 +0100</pubDate>
+        <link>http://boylee1111.github.io/msc/2014/11/15/Test/</link>
+        <guid isPermaLink="true">http://boylee1111.github.io/msc/2014/11/15/Test/</guid>
+      </item>
+    
+  </channel>
+</rss>
