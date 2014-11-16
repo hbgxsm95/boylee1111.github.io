@@ -4,12 +4,6 @@
       <a class="fa fa-github" href="https://github.com/{{ site.github_username }}"></a>
     {% endif %}
     <a class="fa fa-rss" href="{{ "/feed.xml" | prepend: site.baseurl }}"></a>
-    {% if site.twitter_username %}
-      <a class="fa fa-twitter" href="https://twitter.com/{{ site.twitter_username }}"></a>
-    {% endif %}
-    {% if site.google_plus_id %}
-      <a class="fa fa-google-plus" href="https://plus.google.com/{{ site.google_plus_id }}/posts"></a>
-    {% endif %}
     {% if site.email %}
       <a class="fa fa-envelope" href="mailto:{{ site.email }}"></a>
     {% endif %}
@@ -18,6 +12,18 @@
     {% endif %}
   </div>
   <div class="right">
+    {% if site.facebook_username %}
+      <a class="fa fa-facebook-square", href="https://facebook.com/{{ site.facebook_username }}"></a>
+    {% endif %}
+    {% if site.twitter_username %}
+      <a class="fa fa-twitter" href="https://twitter.com/{{ site.twitter_username }}"></a>
+    {% endif %}
+    {% if site.instagram_username %}
+      <a class="fa fa-instagram" href="https://instagram.com/{{ site.instagram_username }}"></a>
+    {% endif %}
+    {% if site.google_plus_id %}
+      <a class="fa fa-google-plus" href="https://plus.google.com/{{ site.google_plus_id }}/posts"></a>
+    {% endif %}
     {% if site.bitcoin_url %}
       <a class="fa fa-bitcoin" href="{{ site.bitcoin_url }}"></a>
     {% endif %}

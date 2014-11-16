@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>[LeetCode] Candy &#8211; Boyi Li</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="分糖果问题，每个小孩有一个分数，要求对任意一个小孩，如果他的分数比相邻的小孩高，那么他必须分到比相邻小孩要多的糖果。并且每个小孩只要分到一个。">
+    <meta name="author" content="John Otander">
+    <meta name="keywords" content="development">
+    <link rel="canonical" href="http://boylee1111.github.io/development/2014/11/14/leetcode-candy-2/">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/pixyll.css" type="text/css">
+
+    <!-- Fonts -->
+    <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lato:900,300' rel='stylesheet' type='text/css'>
+    
+      <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="[LeetCode] Candy">
+    <meta property="og:description" content="A simple, beautiful theme for Jekyll that emphasizes content rather than aesthetic fluff.">
+    <meta property="og:url" content="http://boylee1111.github.io/development/2014/11/14/leetcode-candy-2/">
+    <meta property="og:site_name" content="Boyi Li">
+</head>
+
+<body class="animated fade-in-down">
+  <div class="site-wrap">
+    <header class="site-header px2 px-responsive">
+  <div class="mt2 wrap">
+    <div class="measure">
+      <a href="http://boylee1111.github.io" class="site-title">Boyi Li</a>
+      <nav class="site-nav right">
+        <a href="/categories/">Categories</a>
+<a href="/about/">About</a>
+<a href="/contact/">Contact</a>
+      </nav>
+      <div class="clearfix"></div>
+      
+        <div class="social-icons">
+  <div class="left">
+    
+      <a class="fa fa-github" href="https://github.com/boylee1111"></a>
+    
+    <a class="fa fa-rss" href="/feed.xml"></a>
+    
+      <a class="fa fa-envelope" href="mailto:boylee1111@gmail.com"></a>
+    
+    
+      <a class="fa fa-linkedin" href="https://www.linkedin.com/in/boylee"></a>
+    
+  </div>
+  <div class="right">
+    
+      <a class="fa fa-facebook-square", href="https://facebook.com/boylee1111"></a>
+    
+    
+      <a class="fa fa-twitter" href="https://twitter.com/boylee1111"></a>
+    
+    
+      <a class="fa fa-instagram" href="https://instagram.com/boylee1111"></a>
+    
+    
+    
+    
+    
+  </div>
+</div>
+<div class="clearfix"></div>
+
+      
+    </div>
+  </div>
+</header>
+
+
+    <div class="post p2 p-responsive wrap" role="main">
+      <div class="measure">
+        
+
+
+<div class="post-header mb2">
+  <h1>[LeetCode] Candy</h1>
+  <span class="post-meta">Nov 14, 2014</span><br>
+  
+  <span class="post-meta small">3 minute read</span>
+</div>
+
+<article class="post-content">
+  <h2><a href="https://oj.leetcode.com/problems/candy/">Candy</a></h2>
+
+<p>分糖果问题，每个小孩有一个分数，要求对任意一个小孩，如果他的分数比相邻的小孩高，那么他必须分到比相邻小孩要多的糖果。并且每个小孩只要分到一个。</p>
+
+<ul>
+<li>[latex]n[/latex]: 小孩的总数</li>
+<li>[latex]R[i][/latex]: 第 [latex]i[/latex] 个小孩的分数</li>
+<li>[latex]C[i][/latex]: 第 [latex]i[/latex] 个小孩分到的糖果</li>
+</ul>
+
+<p><strong>思路如下，两次分糖:</strong></p>
+
+<p>两次分糖都是贪心思路，每次尽量分最少的糖给每个小孩。</p>
+
+<p><strong>第一次分糖</strong></p>
+
+<p>从左到右，只考虑每个小孩的左邻居，如果左邻居的分数比自己低，那么就在左邻居的基础上多拿到一个糖，反之就拿一个。第一次遍历后，就保证对每一个小孩，如果左邻居分数比自己低，那么自己就可以拿到比左邻居多一个糖。换言之对 [latex]i &gt;= 2[/latex] ，如果 [latex]R[i] &gt; R[i - 1][/latex] ，那么 [latex]C[i] = C[i - 1] + 1[/latex] 。</p>
+
+<p><strong>第二次分糖</strong></p>
+
+<p>从右到左，只考虑每个小孩的右邻居，如果右邻居分数比自己低，那么应该比右邻居多拿一个糖。这样所得到的一组糖就满保证了对每一个小孩，如果右邻居分数比自己低，那么自己就可以比右邻居多拿一个糖。</p>
+
+<p>获得两次分糖的结果后，每个孩子手上就分到了两把糖，一把满足左侧邻居要求，一把满足右侧邻居要求，且糖的数量是最少的。如果要同时满足两边邻居的要求，就直接选择两把糖中较多的给孩子即可。</p>
+
+<p>实际实现时，可以在第二次分糖的同时统计总共分出去了多少糖。代码如下：</p>
+<div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="kt">int</span> <span class="n">candy</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">ratings</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="n">ratings</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">num</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+
+        <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">candies</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">ratings</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">ratings</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
+                <span class="n">candies</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">candies</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+
+        <span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="n">candies</span><span class="p">[</span><span class="n">num</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">num</span> <span class="o">-</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="o">--</span><span class="n">i</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">ratings</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">ratings</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
+                <span class="n">candies</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">candies</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">candies</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+            <span class="n">res</span> <span class="o">+=</span> <span class="n">candies</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>另一种方法是一次遍历即可计算出总共应该分出去多少糖。从左到右遍历，如果是递增序列，那么当前孩子每次比上一个孩子多分到一个糖；如果序列开始递减，纪录下开始递减的位置以及递减序列中第一个孩子分到的糖。在这个递减序列的计算中，首先给孩子一个糖，如果序列长度小于递减序列中第一个孩子的长度，那么条件依然满足，反之，给第一个孩子多给一个糖，同时更新这个递减序列中拿糖数量最多的孩子手上的糖。</p>
+
+<p>代码如下，maximumIndex代表递减序列第一个孩子的索引值，maximumCandy代表递减序列第一个孩子拿到糖的数量，curCandyNum代表为当前孩子分到糖的数量：</p>
+<div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="kt">int</span> <span class="n">candy</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">ratings</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="n">ratings</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">num</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+
+        <span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">maximumIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">curCandyNum</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">maximumCandy</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">ratings</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">ratings</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
+            <span class="p">{</span>
+                <span class="n">curCandyNum</span><span class="o">++</span><span class="p">;</span>
+                <span class="n">res</span> <span class="o">+=</span> <span class="n">curCandyNum</span><span class="p">;</span>
+                <span class="n">maximumIndex</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+                <span class="n">maximumCandy</span> <span class="o">=</span> <span class="n">curCandyNum</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">ratings</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">ratings</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
+            <span class="p">{</span>
+                <span class="n">curCandyNum</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="n">maximumIndex</span> <span class="o">&gt;</span> <span class="n">maximumCandy</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="n">res</span> <span class="o">+=</span> <span class="n">i</span> <span class="o">-</span> <span class="n">maximumIndex</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+                    <span class="n">maximumCandy</span><span class="o">++</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="k">else</span>
+                <span class="p">{</span>
+                    <span class="n">res</span> <span class="o">+=</span> <span class="n">i</span> <span class="o">-</span> <span class="n">maximumIndex</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="k">else</span>
+            <span class="p">{</span>
+                <span class="n">curCandyNum</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+                <span class="n">res</span> <span class="o">+=</span> <span class="n">curCandyNum</span><span class="p">;</span>
+                <span class="n">maximumIndex</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+                <span class="n">maximumCandy</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+</article>
+
+
+
+
+  <h3 class="related-post-title">Related Posts</h3>
+  
+    <div class="post ml2">
+      <a href="/development/2014/11/14/leetcode-reverse-nodes-in-k-group/" class="post-link">
+        <h4 class="post-title">[LeetCode] Reverse Nodes in k-Group</h4>
+        <p class="post-summary">Advance version of Reverse Linked List II.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/development/2014/11/14/leetcode-reverse-linked-list-ii/" class="post-link">
+        <h4 class="post-title">[LeetCode] Reverse Linked List II</h4>
+        <p class="post-summary">Reverse a linked list in a range. There are two steps to achieve this goal ...</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/development/2014/11/14/leetcode-restore-ip-addresses/" class="post-link">
+        <h4 class="post-title">[LeetCode] Restore IP Addresses</h4>
+        <p class="post-summary">恢复字符串所有可能的IP地址，可以回溯或者直接字符串处理。</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/development/2014/11/14/leetcode-evaluate-reverse-polish-notation/" class="post-link">
+        <h4 class="post-title">[LeetCode] Evaluate Reverse Polish Notation</h4>
+        <p class="post-summary">计算逆波兰表达式，比直接计算表达式还要简单，少了转化为逆波兰表达式的过程，也不需要handle表达式异常的情况。</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/development/2014/11/13/leetcode-partition-list/" class="post-link">
+        <h4 class="post-title">[LeetCode] Partition List</h4>
+        <p class="post-summary">分割链表，将比指定值小的都移动到链表前部分，大的移动到后部分。</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/development/2014/11/13/leetcode-rotate-list/" class="post-link">
+        <h4 class="post-title">[LeetCode] Rotate List</h4>
+        <p class="post-summary">右移给定链表k个位置。首先要找到移动的中枢，即移动为为头节点的位置。</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/development/2014/11/13/spiral-matrix-spiral-matrix-ii/" class="post-link">
+        <h4 class="post-title">[LeetCode] Spiral Matrix && Spiral Matrix II</h4>
+        <p class="post-summary">旋转矩阵，完全是找数学规律。从外到内按照top->right->bottom->left的顺序一圈一圈的遍历即可。用l, r, t, b分别表示左右上下的索引，l和r所在的列以及t和b所在的行即当前遍历的那一圈。</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/development/2014/11/13/leetcode-decode-ways/" class="post-link">
+        <h4 class="post-title">[LeetCode] Decode Ways</h4>
+        <p class="post-summary">Calculate all the ways of decoding. This problem is similar to ...</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/development/2014/11/13/leetcode-climbing-stairs/" class="post-link">
+        <h4 class="post-title">[LeetCode] Climbing Stairs</h4>
+        <p class="post-summary">Calculate the ways of climbing to the top. It's a simple and classical DP problem.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/development/2014/11/08/leetcode-reorder-list/" class="post-link">
+        <h4 class="post-title">[LeetCode] Reorder List</h4>
+        <p class="post-summary">思路分三步：Split->Reverse->Merge</p>
+      </a>
+    </div>
+  
+
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+  <div class="p2 wrap">
+    <div class="measure mt1 center">
+      <small>
+        Thanks to <a href="http://johnotander.com" target="_blank">John Otander</a> (<a href="https://twitter.com/4lpine" target="_blank">@4lpine</a>) and <a href="http://jekyllrb.com" target="_blank">Jekyll</a>.
+      </small>
+    </div>
+  </div>
+</footer>
+
+
+
+</body>
+</html>

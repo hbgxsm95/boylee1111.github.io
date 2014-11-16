@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Search Insert Position & Remove Element &#8211; Boyi Li</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="不用考虑，直接二分搜索，时间复杂度O(logn)。">
+    <meta name="author" content="John Otander">
+    <meta name="keywords" content="development">
+    <link rel="canonical" href="http://boylee1111.github.io/development/2014/09/23/search-insert-position-remove-element/">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/pixyll.css" type="text/css">
+
+    <!-- Fonts -->
+    <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lato:900,300' rel='stylesheet' type='text/css'>
+    
+      <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Search Insert Position & Remove Element">
+    <meta property="og:description" content="A simple, beautiful theme for Jekyll that emphasizes content rather than aesthetic fluff.">
+    <meta property="og:url" content="http://boylee1111.github.io/development/2014/09/23/search-insert-position-remove-element/">
+    <meta property="og:site_name" content="Boyi Li">
+</head>
+
+<body class="animated fade-in-down">
+  <div class="site-wrap">
+    <header class="site-header px2 px-responsive">
+  <div class="mt2 wrap">
+    <div class="measure">
+      <a href="http://boylee1111.github.io" class="site-title">Boyi Li</a>
+      <nav class="site-nav right">
+        <a href="/categories/">Categories</a>
+<a href="/about/">About</a>
+<a href="/contact/">Contact</a>
+      </nav>
+      <div class="clearfix"></div>
+      
+        <div class="social-icons">
+  <div class="left">
+    
+      <a class="fa fa-github" href="https://github.com/boylee1111"></a>
+    
+    <a class="fa fa-rss" href="/feed.xml"></a>
+    
+      <a class="fa fa-envelope" href="mailto:boylee1111@gmail.com"></a>
+    
+    
+      <a class="fa fa-linkedin" href="https://www.linkedin.com/in/boylee"></a>
+    
+  </div>
+  <div class="right">
+    
+      <a class="fa fa-facebook-square", href="https://facebook.com/boylee1111"></a>
+    
+    
+      <a class="fa fa-twitter" href="https://twitter.com/boylee1111"></a>
+    
+    
+      <a class="fa fa-instagram" href="https://instagram.com/boylee1111"></a>
+    
+    
+    
+    
+    
+  </div>
+</div>
+<div class="clearfix"></div>
+
+      
+    </div>
+  </div>
+</header>
+
+
+    <div class="post p2 p-responsive wrap" role="main">
+      <div class="measure">
+        
+
+
+<div class="post-header mb2">
+  <h1>Search Insert Position & Remove Element</h1>
+  <span class="post-meta">Sep 23, 2014</span><br>
+  
+  <span class="post-meta small">1 minute read</span>
+</div>
+
+<article class="post-content">
+  <h2><a href="https://oj.leetcode.com/problems/search-insert-position/">Search Insert Position</a></h2>
+
+<p>不用考虑，直接二分搜索，时间复杂度O(logn)。代码如下：</p>
+<div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="kt">int</span> <span class="n">searchInsert</span><span class="p">(</span><span class="kt">int</span> <span class="n">A</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">low</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">high</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+
+        <span class="k">while</span> <span class="p">(</span><span class="n">low</span> <span class="o">&lt;=</span> <span class="n">high</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">high</span> <span class="o">+</span> <span class="n">low</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">mid</span><span class="p">;</span>
+            <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">target</span><span class="p">)</span>
+                <span class="n">high</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="k">else</span>
+                <span class="n">low</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">low</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+<h2><a href="https://oj.leetcode.com/problems/remove-element/">Remove Element</a></h2>
+
+<p>我看到的思路是，从头开始找，如果发现相等的，那么从数组尾部取一个值移过来。</p>
+
+<p>因为结果不care数组的order，一方面减少了数组移动的麻烦，一方面使得在查找过程中数组长度一直在变小，所以循环次数相应减少。代码如下：</p>
+<div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="kt">int</span> <span class="n">removeElement</span><span class="p">(</span><span class="kt">int</span> <span class="n">A</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">elem</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">elem</span><span class="p">)</span>
+                <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="o">--</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">n</span><span class="o">--</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+            <span class="n">i</span><span class="o">++</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">n</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>另外看到了<a href="https://oj.leetcode.com/discuss/user/daxianji007">daxianji007</a>的很简洁的一段代码：</p>
+<div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="kt">int</span> <span class="nf">removeElement</span><span class="p">(</span><span class="kt">int</span> <span class="n">A</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">elem</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">begin</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="k">if</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">!=</span><span class="n">elem</span><span class="p">)</span> <span class="n">A</span><span class="p">[</span><span class="n">begin</span><span class="o">++</span><span class="p">]</span><span class="o">=</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="k">return</span> <span class="n">begin</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>不过这段代码在最差情况下，当第一个数就是被删除的数的话，那么之后就要不断移动元素，直到循环结束。</p>
+
+</article>
+
+
+
+
+  <h3 class="related-post-title">Related Posts</h3>
+  
+    <div class="post ml2">
+      <a href="/development/2014/11/14/leetcode-reverse-nodes-in-k-group/" class="post-link">
+        <h4 class="post-title">[LeetCode] Reverse Nodes in k-Group</h4>
+        <p class="post-summary">Advance version of Reverse Linked List II.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/development/2014/11/14/leetcode-reverse-linked-list-ii/" class="post-link">
+        <h4 class="post-title">[LeetCode] Reverse Linked List II</h4>
+        <p class="post-summary">Reverse a linked list in a range. There are two steps to achieve this goal ...</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/development/2014/11/14/leetcode-candy-2/" class="post-link">
+        <h4 class="post-title">[LeetCode] Candy</h4>
+        <p class="post-summary">分糖果问题，每个小孩有一个分数，要求对任意一个小孩，如果他的分数比相邻的小孩高，那么他必须分到比相邻小孩要多的糖果。并且每个小孩只要分到一个。</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/development/2014/11/14/leetcode-restore-ip-addresses/" class="post-link">
+        <h4 class="post-title">[LeetCode] Restore IP Addresses</h4>
+        <p class="post-summary">恢复字符串所有可能的IP地址，可以回溯或者直接字符串处理。</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/development/2014/11/14/leetcode-evaluate-reverse-polish-notation/" class="post-link">
+        <h4 class="post-title">[LeetCode] Evaluate Reverse Polish Notation</h4>
+        <p class="post-summary">计算逆波兰表达式，比直接计算表达式还要简单，少了转化为逆波兰表达式的过程，也不需要handle表达式异常的情况。</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/development/2014/11/13/leetcode-partition-list/" class="post-link">
+        <h4 class="post-title">[LeetCode] Partition List</h4>
+        <p class="post-summary">分割链表，将比指定值小的都移动到链表前部分，大的移动到后部分。</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/development/2014/11/13/leetcode-rotate-list/" class="post-link">
+        <h4 class="post-title">[LeetCode] Rotate List</h4>
+        <p class="post-summary">右移给定链表k个位置。首先要找到移动的中枢，即移动为为头节点的位置。</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/development/2014/11/13/spiral-matrix-spiral-matrix-ii/" class="post-link">
+        <h4 class="post-title">[LeetCode] Spiral Matrix && Spiral Matrix II</h4>
+        <p class="post-summary">旋转矩阵，完全是找数学规律。从外到内按照top->right->bottom->left的顺序一圈一圈的遍历即可。用l, r, t, b分别表示左右上下的索引，l和r所在的列以及t和b所在的行即当前遍历的那一圈。</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/development/2014/11/13/leetcode-decode-ways/" class="post-link">
+        <h4 class="post-title">[LeetCode] Decode Ways</h4>
+        <p class="post-summary">Calculate all the ways of decoding. This problem is similar to ...</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/development/2014/11/13/leetcode-climbing-stairs/" class="post-link">
+        <h4 class="post-title">[LeetCode] Climbing Stairs</h4>
+        <p class="post-summary">Calculate the ways of climbing to the top. It's a simple and classical DP problem.</p>
+      </a>
+    </div>
+  
+
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+  <div class="p2 wrap">
+    <div class="measure mt1 center">
+      <small>
+        Thanks to <a href="http://johnotander.com" target="_blank">John Otander</a> (<a href="https://twitter.com/4lpine" target="_blank">@4lpine</a>) and <a href="http://jekyllrb.com" target="_blank">Jekyll</a>.
+      </small>
+    </div>
+  </div>
+</footer>
+
+
+
+</body>
+</html>
