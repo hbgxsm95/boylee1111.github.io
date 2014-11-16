@@ -7,6 +7,26 @@
     <atom:link href="http://boylee1111.github.io/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>从WordPress到Github Pages</title>
+        <description>&lt;p&gt;因为买的Web Hosting要到期了，这才想起来赶紧把Blog移过来。花了些时间研究了下Jekyll怎么搞，找个了看着舒服的主题，也没有多少改动。不过这个事拖来拖去也总算完成了。还有一些To-Do在这里纪录一下吧：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Latex的支持，现在有些文章里面一堆[latex]标签，看着就乱；&lt;/li&gt;
+&lt;li&gt;Categories页面也有些问题，每个Category第一个不知道为啥是空的；&lt;/li&gt;
+&lt;li&gt;有些图片什么的都没了，之后补上；&lt;/li&gt;
+&lt;li&gt;添加Tag到页面；&lt;/li&gt;
+&lt;li&gt;用自己的域名；&lt;/li&gt;
+&lt;li&gt;做一个简单的Index页面，比一上来就是blog感觉好一些吧。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;不知道又得等到啥时候能完成这些任务。&lt;/p&gt;
+</description>
+        <pubDate>Sun, 16 Nov 2014 04:17:15 +0100</pubDate>
+        <link>http://boylee1111.github.io/miscellaneous/2014/11/16/%E4%BB%8EWordPress%E5%88%B0Github-Pages/</link>
+        <guid isPermaLink="true">http://boylee1111.github.io/miscellaneous/2014/11/16/%E4%BB%8EWordPress%E5%88%B0Github-Pages/</guid>
+      </item>
+    
+      <item>
         <title>[LeetCode] Reverse Nodes in k-Group</title>
         <description>&lt;h2&gt;&lt;a href=&quot;https://oj.leetcode.com/problems/reverse-nodes-in-k-group/&quot;&gt;Reverse Nodes in k-Group&lt;/a&gt;&lt;/h2&gt;
 
@@ -546,49 +566,6 @@
         <pubDate>Thu, 13 Nov 2014 04:15:33 +0100</pubDate>
         <link>http://boylee1111.github.io/development/2014/11/13/leetcode-decode-ways/</link>
         <guid isPermaLink="true">http://boylee1111.github.io/development/2014/11/13/leetcode-decode-ways/</guid>
-      </item>
-    
-      <item>
-        <title>[LeetCode] Climbing Stairs</title>
-        <description>&lt;h2&gt;&lt;a href=&quot;https://oj.leetcode.com/problems/climbing-stairs/&quot;&gt;Climbing Stairs&lt;/a&gt;&lt;/h2&gt;
-
-&lt;p&gt;Calculate the ways of climbing to the top. It&amp;#39;s a simple and classical DP problem.&lt;/p&gt;
-
-&lt;p&gt;Using [latex]N_i[/latex] to represent the ways of reaching level [latex]i[/latex].&lt;/p&gt;
-
-&lt;p&gt;For any [latex]i &amp;gt;= 2[/latex], there are two ways to reach to level [latex]i[/latex]:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;From the level [latex]i - 2[/latex], climbing two steps once to level [latex]i[/latex];&lt;/li&gt;
-&lt;li&gt;From the level [latex]i - 1[/latex], climbing one step to level [latex]i[/latex];&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Then the transformation equation is determined:&lt;/p&gt;
-
-&lt;p&gt;[latex]N&lt;em&gt;i = N&lt;/em&gt;{i - 2} + N_{i - 1}[/latex]&lt;/p&gt;
-
-&lt;p&gt;Specially, if [latex]i = 0[/latex] or [latex]i = 1[/latex], [latex]N_i = 1[/latex].&lt;/p&gt;
-
-&lt;p&gt;We can using constant space by only recording the previous two results of climbing.&lt;/p&gt;
-
-&lt;p&gt;Here is the code:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c++&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Solution&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;climbStairs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;w1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;w2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;w3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;w3&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;w2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;w2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;w1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;w2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;w1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;w3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;w2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
-        <pubDate>Thu, 13 Nov 2014 04:10:38 +0100</pubDate>
-        <link>http://boylee1111.github.io/development/2014/11/13/leetcode-climbing-stairs/</link>
-        <guid isPermaLink="true">http://boylee1111.github.io/development/2014/11/13/leetcode-climbing-stairs/</guid>
       </item>
     
   </channel>
