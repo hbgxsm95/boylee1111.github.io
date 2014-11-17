@@ -19,6 +19,22 @@
     
       <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: { inlineMath: [['$','$'], ['\\(','\\)'], ['[latex]','[/latex]']] },
+            menuSettings: {
+                zoom: "Double-Click",
+                zscale: "200%"
+            },
+            showProcessingMessages: false,
+            showMathMenu: false,
+            showMathMenuMSIE: false,
+            messageStyle: "none"
+        });
+    </script>
+    <script type="text/javascript"
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
 
     <!-- Open Graph -->
     <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
@@ -89,96 +105,100 @@
   <h1>Remove Duplicates from Sorted Array & Symmetric Tree</h1>
   <span class="post-meta">Sep 24, 2014</span><br>
   
-  <span class="post-meta small">3 minute read</span>
+  <span class="post-meta small">4 minute read</span>
 </div>
 
 <article class="post-content">
-  <h2><a href="https://oj.leetcode.com/problems/remove-duplicates-from-sorted-array/">Remove Duplicates from Sorted Array</a></h2>
+  <h2 id="remove-duplicates-from-sorted-arrayhttpsojleetcodecomproblemsremove-duplicates-from-sorted-array"><a href="https://oj.leetcode.com/problems/remove-duplicates-from-sorted-array/">Remove Duplicates from Sorted Array</a></h2>
 
 <p>删除有序数组中多余元素，数组长度小于2时即特殊情况，直接返回数组长度。</p>
 
 <p>对于剩余情况，索引i遍历数组，j用来表示循环过程中数组的长度，则有A[i]和A[j]不相等时，将A[i]给A[j]，否则继续遍历，这样就保证了A[0-j]这个数组是有序不重复的，即一个循环不变量。最终的数组就是没有重复元素的，数组即有j+1个元素。代码如下：</p>
-<div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
-<span class="k">public</span><span class="o">:</span>
-    <span class="kt">int</span> <span class="n">removeDuplicates</span><span class="p">(</span><span class="kt">int</span> <span class="n">A</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="n">n</span><span class="p">;</span>
-        <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
-                <span class="n">A</span><span class="p">[</span><span class="o">++</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-        <span class="k">return</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">};</span>
-</code></pre></div>
-<h2><a href="https://oj.leetcode.com/problems/symmetric-tree/">Symmetric Tree</a></h2>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="lineno"> 1</span> <span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="lineno"> 2</span> <span class="k">public</span><span class="o">:</span>
+<span class="lineno"> 3</span>     <span class="kt">int</span> <span class="n">removeDuplicates</span><span class="p">(</span><span class="kt">int</span> <span class="n">A</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno"> 4</span>         <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="n">n</span><span class="p">;</span>
+<span class="lineno"> 5</span>         <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="lineno"> 6</span>         <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+<span class="lineno"> 7</span>             <span class="k">if</span> <span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+<span class="lineno"> 8</span>                 <span class="n">A</span><span class="p">[</span><span class="o">++</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="lineno"> 9</span>         <span class="k">return</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+<span class="lineno">10</span>     <span class="p">}</span>
+<span class="lineno">11</span> <span class="p">};</span></code></pre></div>
+
+<h2 id="symmetric-treehttpsojleetcodecomproblemssymmetric-tree"><a href="https://oj.leetcode.com/problems/symmetric-tree/">Symmetric Tree</a></h2>
 
 <p>判断是否对称树，递归实现。三种情况：</p>
 
 <ul>
-<li>两个结点都空：真</li>
-<li>两个结点一空一非空：假</li>
-<li>两个结点都非空：值相等，并且左结点的左树和右结点的右树对称，左结点的右树和右结点的左树对称。</li>
+  <li>两个结点都空：真</li>
+  <li>两个结点一空一非空：假</li>
+  <li>两个结点都非空：值相等，并且左结点的左树和右结点的右树对称，左结点的右树和右结点的左树对称。</li>
 </ul>
-<div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="cm">/**</span>
-<span class="cm"> * Definition for binary tree</span>
-<span class="cm"> * struct TreeNode {</span>
-<span class="cm"> *     int val;</span>
-<span class="cm"> *     TreeNode *left;</span>
-<span class="cm"> *     TreeNode *right;</span>
-<span class="cm"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}</span>
-<span class="cm"> * };</span>
-<span class="cm"> */</span>
-<span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
-<span class="k">public</span><span class="o">:</span>
-    <span class="kt">bool</span> <span class="n">isSymmetric</span><span class="p">(</span><span class="n">TreeNode</span> <span class="o">*</span><span class="n">root</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">root</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
-        <span class="k">return</span> <span class="nf">isValueSame</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">,</span> <span class="n">root</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">);</span>
-    <span class="p">}</span>
 
-    <span class="kt">bool</span> <span class="n">isValueSame</span><span class="p">(</span><span class="n">TreeNode</span> <span class="o">*</span><span class="n">left</span><span class="p">,</span> <span class="n">TreeNode</span> <span class="o">*</span><span class="n">right</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">left</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="o">||</span> <span class="n">right</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="k">return</span> <span class="n">left</span> <span class="o">==</span> <span class="n">right</span><span class="p">;</span>
-        <span class="k">else</span> <span class="k">return</span> <span class="n">left</span><span class="o">-&gt;</span><span class="n">val</span> <span class="o">==</span> <span class="n">right</span><span class="o">-&gt;</span><span class="n">val</span> <span class="o">&amp;&amp;</span> <span class="n">isValueSame</span><span class="p">(</span><span class="n">left</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">isValueSame</span><span class="p">(</span><span class="n">left</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">,</span> <span class="n">right</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">};</span>
-</code></pre></div>
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="lineno"> 1</span> <span class="cm">/**</span>
+<span class="lineno"> 2</span> <span class="cm"> * Definition for binary tree</span>
+<span class="lineno"> 3</span> <span class="cm"> * struct TreeNode {</span>
+<span class="lineno"> 4</span> <span class="cm"> *     int val;</span>
+<span class="lineno"> 5</span> <span class="cm"> *     TreeNode *left;</span>
+<span class="lineno"> 6</span> <span class="cm"> *     TreeNode *right;</span>
+<span class="lineno"> 7</span> <span class="cm"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}</span>
+<span class="lineno"> 8</span> <span class="cm"> * };</span>
+<span class="lineno"> 9</span> <span class="cm"> */</span>
+<span class="lineno">10</span> <span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="lineno">11</span> <span class="k">public</span><span class="o">:</span>
+<span class="lineno">12</span>     <span class="kt">bool</span> <span class="n">isSymmetric</span><span class="p">(</span><span class="n">TreeNode</span> <span class="o">*</span><span class="n">root</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno">13</span>         <span class="k">if</span> <span class="p">(</span><span class="n">root</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="lineno">14</span>         <span class="k">return</span> <span class="nf">isValueSame</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">,</span> <span class="n">root</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">);</span>
+<span class="lineno">15</span>     <span class="p">}</span>
+<span class="lineno">16</span> 
+<span class="lineno">17</span>     <span class="kt">bool</span> <span class="n">isValueSame</span><span class="p">(</span><span class="n">TreeNode</span> <span class="o">*</span><span class="n">left</span><span class="p">,</span> <span class="n">TreeNode</span> <span class="o">*</span><span class="n">right</span><span class="p">)</span>
+<span class="lineno">18</span>     <span class="p">{</span>
+<span class="lineno">19</span>         <span class="k">if</span> <span class="p">(</span><span class="n">left</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="o">||</span> <span class="n">right</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="k">return</span> <span class="n">left</span> <span class="o">==</span> <span class="n">right</span><span class="p">;</span>
+<span class="lineno">20</span>         <span class="k">else</span> <span class="k">return</span> <span class="n">left</span><span class="o">-&gt;</span><span class="n">val</span> <span class="o">==</span> <span class="n">right</span><span class="o">-&gt;</span><span class="n">val</span> <span class="o">&amp;&amp;</span> <span class="n">isValueSame</span><span class="p">(</span><span class="n">left</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">isValueSame</span><span class="p">(</span><span class="n">left</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">,</span> <span class="n">right</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">);</span>
+<span class="lineno">21</span>     <span class="p">}</span>
+<span class="lineno">22</span> <span class="p">};</span></code></pre></div>
+
 <p>还有一种迭代的方法，<a href="https://oj.leetcode.com/discuss/user/xuanaux">xuanaux</a>，不过他本人用的是栈，我改成了队列。代码如下：</p>
-<div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="cm">/**</span>
-<span class="cm"> * Definition for binary tree</span>
-<span class="cm"> * struct TreeNode {</span>
-<span class="cm"> *     int val;</span>
-<span class="cm"> *     TreeNode *left;</span>
-<span class="cm"> *     TreeNode *right;</span>
-<span class="cm"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}</span>
-<span class="cm"> * };</span>
-<span class="cm"> */</span>
-<span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
-<span class="k">public</span><span class="o">:</span>
-    <span class="kt">bool</span> <span class="n">isSymmetric</span><span class="p">(</span><span class="n">TreeNode</span> <span class="o">*</span><span class="n">root</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">root</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
-        <span class="n">queue</span><span class="o">&lt;</span><span class="n">TreeNode</span> <span class="o">*&gt;</span> <span class="n">q1</span><span class="p">;</span>
-        <span class="n">queue</span><span class="o">&lt;</span><span class="n">TreeNode</span> <span class="o">*&gt;</span> <span class="n">q2</span><span class="p">;</span>
-        <span class="n">q1</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">);</span>
-        <span class="n">q2</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">);</span>
 
-        <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">q1</span><span class="p">.</span><span class="n">empty</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">q2</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span>
-        <span class="p">{</span>
-            <span class="n">TreeNode</span> <span class="o">*</span><span class="n">n1</span> <span class="o">=</span> <span class="n">q1</span><span class="p">.</span><span class="n">front</span><span class="p">();</span>
-            <span class="n">TreeNode</span> <span class="o">*</span><span class="n">n2</span> <span class="o">=</span> <span class="n">q2</span><span class="p">.</span><span class="n">front</span><span class="p">();</span>
-            <span class="n">q1</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
-            <span class="n">q2</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">n1</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="o">&amp;&amp;</span> <span class="n">n2</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">n1</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="o">||</span> <span class="n">n2</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">n1</span><span class="o">-&gt;</span><span class="n">val</span> <span class="o">!=</span> <span class="n">n2</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
-            <span class="n">q1</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">n1</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">);</span>
-            <span class="n">q2</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">n2</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">);</span>
-            <span class="n">q1</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">n1</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">);</span>
-            <span class="n">q2</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">n2</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">);</span>
-        <span class="p">}</span>
-       <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">};</span>
-</code></pre></div>
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="lineno"> 1</span> <span class="cm">/**</span>
+<span class="lineno"> 2</span> <span class="cm"> * Definition for binary tree</span>
+<span class="lineno"> 3</span> <span class="cm"> * struct TreeNode {</span>
+<span class="lineno"> 4</span> <span class="cm"> *     int val;</span>
+<span class="lineno"> 5</span> <span class="cm"> *     TreeNode *left;</span>
+<span class="lineno"> 6</span> <span class="cm"> *     TreeNode *right;</span>
+<span class="lineno"> 7</span> <span class="cm"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}</span>
+<span class="lineno"> 8</span> <span class="cm"> * };</span>
+<span class="lineno"> 9</span> <span class="cm"> */</span>
+<span class="lineno">10</span> <span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="lineno">11</span> <span class="k">public</span><span class="o">:</span>
+<span class="lineno">12</span>     <span class="kt">bool</span> <span class="n">isSymmetric</span><span class="p">(</span><span class="n">TreeNode</span> <span class="o">*</span><span class="n">root</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno">13</span>         <span class="k">if</span> <span class="p">(</span><span class="n">root</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="lineno">14</span>         <span class="n">queue</span><span class="o">&lt;</span><span class="n">TreeNode</span> <span class="o">*&gt;</span> <span class="n">q1</span><span class="p">;</span>
+<span class="lineno">15</span>         <span class="n">queue</span><span class="o">&lt;</span><span class="n">TreeNode</span> <span class="o">*&gt;</span> <span class="n">q2</span><span class="p">;</span>
+<span class="lineno">16</span>         <span class="n">q1</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">);</span>
+<span class="lineno">17</span>         <span class="n">q2</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">);</span>
+<span class="lineno">18</span> 
+<span class="lineno">19</span>         <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">q1</span><span class="p">.</span><span class="n">empty</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">q2</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span>
+<span class="lineno">20</span>         <span class="p">{</span>
+<span class="lineno">21</span>             <span class="n">TreeNode</span> <span class="o">*</span><span class="n">n1</span> <span class="o">=</span> <span class="n">q1</span><span class="p">.</span><span class="n">front</span><span class="p">();</span>
+<span class="lineno">22</span>             <span class="n">TreeNode</span> <span class="o">*</span><span class="n">n2</span> <span class="o">=</span> <span class="n">q2</span><span class="p">.</span><span class="n">front</span><span class="p">();</span>
+<span class="lineno">23</span>             <span class="n">q1</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+<span class="lineno">24</span>             <span class="n">q2</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+<span class="lineno">25</span>             <span class="k">if</span> <span class="p">(</span><span class="n">n1</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="o">&amp;&amp;</span> <span class="n">n2</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
+<span class="lineno">26</span>             <span class="k">if</span> <span class="p">(</span><span class="n">n1</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="o">||</span> <span class="n">n2</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+<span class="lineno">27</span>             <span class="k">if</span> <span class="p">(</span><span class="n">n1</span><span class="o">-&gt;</span><span class="n">val</span> <span class="o">!=</span> <span class="n">n2</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+<span class="lineno">28</span>             <span class="n">q1</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">n1</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">);</span>
+<span class="lineno">29</span>             <span class="n">q2</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">n2</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">);</span>
+<span class="lineno">30</span>             <span class="n">q1</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">n1</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">);</span>
+<span class="lineno">31</span>             <span class="n">q2</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">n2</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">);</span>
+<span class="lineno">32</span>         <span class="p">}</span>
+<span class="lineno">33</span>        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="lineno">34</span>     <span class="p">}</span>
+<span class="lineno">35</span> <span class="p">};</span></code></pre></div>
+
+
 </article>
 
 
@@ -208,7 +228,7 @@
     </div>
   
     <div class="post ml2">
-      <a href="/development/2014/11/14/leetcode-candy-2/" class="post-link">
+      <a href="/development/2014/11/14/leetcode-candy/" class="post-link">
         <h4 class="post-title">[LeetCode] Candy</h4>
         <p class="post-summary">分糖果问题，每个小孩有一个分数，要求对任意一个小孩，如果他的分数比相邻的小孩高，那么他必须分到比相邻小孩要多的糖果。并且每个小孩只要分到一个。</p>
       </a>

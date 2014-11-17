@@ -17,7 +17,7 @@ published: true
 
 买卖存货问题，因为是一次性获得最大利润，所以思路比较简单。代码如下：
 
-```c++
+{% highlight c++ linenos %}
 class Solution {
 public:
     int maxProfit(vector<int> &prices) {
@@ -32,7 +32,7 @@ public:
         return profit;
     }
 };
-```
+{% endhighlight %}
 
 
 
@@ -42,7 +42,7 @@ public:
 
 和上一问题唯一区别即可以进行多次买卖，并计算最大利润。实际要求的就是这个价格数组中所有的递增序列，而利润即每个递增序列头尾差之和。实现过程中用一个low变量标记每一个递增序列头的位置，代码如下：
 
-```c++
+{% highlight c++ linenos %}
 class Solution {
 public:
     int maxProfit(vector<int> &prices) {
@@ -62,11 +62,11 @@ public:
         return profit;
     }
 };
-```
+{% endhighlight %}
 
 之后看到[jyan](https://oj.leetcode.com/discuss/user/jyan)的代码如下：
 
-```c++
+{% highlight c++ linenos %}
 class Solution {
 public:
     int maxProfit(vector<int> &prices) {
@@ -79,6 +79,6 @@ public:
         return profit;
     }
 };
-```
+{% endhighlight %}
 
 的确实际在求解过程中不需要关注哪个序列是递增的，我们只要保证当天元素价格比前一天高就可以盈利，低就说明这个递增序列结束了。从代码角度讲，虽然违反了原题每天只能卖或买的规则，但代码只是计算结果，只要思路还是对就行。

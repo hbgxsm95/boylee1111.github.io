@@ -18,7 +18,7 @@ published: true
 
 旋转矩阵，完全是找数学规律。从外到内按照top->right->bottom->left的顺序一圈一圈的遍历即可。用l, r, t, b分别表示左右上下的索引，l和r所在的列以及t和b所在的行即当前遍历的那一圈。当行数大于列数并且行数为奇数，那么最后中间一列属于特殊情况，只需要遍历一遍；同样列数大于行数并且列数为奇数是亦然。代码如下：
 
-```c++
+{% highlight c++ linenos %}
 class Solution {
 public:
     vector<int> spiralOrder(vector<vector<int> > &matrix) {
@@ -46,13 +46,13 @@ public:
         return res;
     }
 };
-```
+{% endhighlight %}
 
 ## [Spiral Matrix II](https://oj.leetcode.com/problems/spiral-matrix-ii/)
 
 和上一个问题相比可以说简单了一些，因为行和列是相同的，所以最后的一圈特殊情况就不存在了。同样按照top->right->bottom->left的顺序遍历一遍，用一个count计数器不断赋值即可。代码如下：
 
-```c++
+{% highlight c++ linenos %}
 class Solution {
 public:
     vector<vector<int> > generateMatrix(int n) {
@@ -70,4 +70,4 @@ public:
         return res;
     }
 };
-```
+{% endhighlight %}

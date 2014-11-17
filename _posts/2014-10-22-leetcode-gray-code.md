@@ -26,7 +26,7 @@ published: true
 
 方法比较好理解，因为递归效率很低，当 [latex]n = 8[/latex] 的时候就开始吃不消了，跑OJ果断TLE了，也算一种思路，代码如下：
 
-```c++
+{% highlight c++ linenos %}
 class Solution {
 public:
     vector<int> grayCode(int n) {
@@ -65,11 +65,11 @@ public:
         return v == 1;
     }
 };
-```
+{% endhighlight %}
 
 然后尝试修改了一下代码，求出在n情况下所有格雷码组，效率当然更低了，因为几乎要尝试遍历每一种置换。[latex]n = 4[/latex] 的时候结果都已经5712个结果了。代码如下：
 
-```c++
+{% highlight c++ linenos %}
 class Solution {
 public:
     vector<vector<int> > grayCode(int n) {
@@ -110,14 +110,14 @@ public:
         return v == 1;
     }
 };
-```
+{% endhighlight %}
 
 
 
 
 回溯没法完美解决，Wiki上有生成Gray Code的公式[Converting to and from Gray Code](http://en.wikipedia.org/wiki/Gray_code#Converting_to_and_from_Gray_code)，用这个公式可以快速解决，时间复杂度只有 [latex]O(2^n)[/latex] ，代码如下：
 
-```c++
+{% highlight c++ linenos %}
 class Solution {
 public:
     vector<int> grayCode(int n) {
@@ -128,7 +128,7 @@ public:
         return res;
     }
 };
-```
+{% endhighlight %}
 
 [What if I have no knowledge over Gray Code before?](https://oj.leetcode.com/discuss/1525/what-if-i-have-no-knowledge-over-gray-code-before)
 
@@ -140,7 +140,7 @@ public:
 
 每次当n加增加一时，前一半为上一次的结果前面加0，后一半为上一次结果逆序并在前面加1。换句话说，新的结果除去最高位是对称的。那么从 [latex]n = 1[/latex]开始求解，每次在上一次结果后追加新的解，代码如下：
 
-```c++
+{% highlight c++ linenos %}
 class Solution {
 public:
     vector<int> grayCode(int n) {
@@ -157,4 +157,4 @@ public:
 
         return res;
     }
-};```
+};{% endhighlight %}

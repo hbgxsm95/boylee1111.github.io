@@ -25,7 +25,7 @@ Two pointers are used to reverse the list, **slow** pointer is set at the start 
 
 Here is the code:
 
-```cpp
+{% highlight c++ linenos %}
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -55,4 +55,4 @@ public:
         return dummyHead.next;
     }
 };
-```
+{% endhighlight %}

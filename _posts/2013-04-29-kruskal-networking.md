@@ -88,7 +88,7 @@ Sample Output
 
 Kruskal最小生成树。思路是首先各个点各自所属一个集合，然后按顺序排列权值，从最小的边开始，如果这条边连接的两个点不在一个集合，就取并，直至遍历了所有边。其中采用了并查集的方式，确定点是否在一个集合中。Kruskal算法同的Prim基本思想都是贪心，只不过Kruskal从边开始，Prim从点开始。对于本题，最开始一直是Rumtime Error，很郁闷，之后仔细看了下题，发现所给数据中可能有重复给两个点之间的权值，所以开的数组n有点小了，只有55，导致在运行时越界了，最后发现后将n数组大小改为10000然后AC了。代码如下：
 
-```c
+{% highlight c linenos %}
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -152,4 +152,4 @@ int main(int argc, const char * argv[])
     }
     return 0;
 }
-```
+{% endhighlight %}

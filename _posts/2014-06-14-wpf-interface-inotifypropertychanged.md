@@ -36,7 +36,7 @@ The most valuable and fancy thing WPF is **Data Binding**. There are two ways to
 
 This part is based on The MVVM Pattern. Most time I prefer implement a base ViewModel to implement  INotifyPropertyChanged interface, then other ViewModels inherit this base ViewModel will implement this interface as well:
 
-```c#
+{% highlight c# linenos %}
 public class ViewModelBase : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
@@ -49,11 +49,11 @@ public class ViewModelBase : INotifyPropertyChanged
             }
         }
     }
-```
+{% endhighlight %}
 
 For the properties that need to notify the object that binding them:
 
-```c#
+{% highlight c# linenos %}
 public class ViewModel : ViewModelBase
     {
         private int _myField;
@@ -67,7 +67,7 @@ public class ViewModel : ViewModelBase
             }
         }
     }
-```
+{% endhighlight %}
 
 This the most common approach. And the drawback is obvious, The name of property is the parameter of method OnPropertyChanged, then we hatch out the 'magic string'.
 
@@ -77,7 +77,7 @@ This the most common approach. And the drawback is obvious, The name of property
 
 If we use Lambda Expression to implement it, we need to add a method in ViewModelBase:
 
-```c#
+{% highlight c# linenos %}
 virtual internal protected void SetProperty<T>(ref T propField, T value, Expression<Func<T>> expr)
 {
     var bodyExpr = expr.Body as System.Linq.Expressions.MemberExpression;
@@ -94,11 +94,11 @@ virtual internal protected void SetProperty<T>(ref T propField, T value, Express
     propField = value;
     this.OnPropertyChanged(propName);
 }
-```
+{% endhighlight %}
 
 Then the setter of property can be modified like this:
 
-```c#
+{% highlight c# linenos %}
 private int _myField;
 
 public int MyProperty
@@ -106,7 +106,7 @@ public int MyProperty
     get { return _myField; }
     set { base.SetProperty(ref _myField, value, () => this.MyProperty); }
 }
-```
+{% endhighlight %}
 
 Obviously, the most benefit is the magic string that same as the property name is eliminated. But is will bring some other problems. This approach adopts the reflection mechanism in .Net Framwork, which is a luxury consume for system performance. There are some testing In this article([MVVM – Lambda vs INotifyPropertyChanged vs DependencyObject](http://blog.quantumbitdesigns.com/2010/01/26/mvvm-lambda-vs-inotifypropertychanged-vs-dependencyobject/)). According to the result, The timing consuming of lambda expr. is 3 times than common approach, and the memory consuming is nearly 8 times.
 

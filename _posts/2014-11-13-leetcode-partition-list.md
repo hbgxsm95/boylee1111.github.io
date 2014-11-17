@@ -21,7 +21,7 @@ published: true
 
 通过两个指针完成寻找和移动过程。首先一直向前找，直到找到比指定值大的第一个数停止。此时fast指针继续向前，slow指针停留在原地，当fast指针找到比指定值小的之后的时候，将其追加到slow指针的后面，slow指针前进一步；fast继续向前找直到尾部，这样所有值比指定值小的节点就移动到了链表的前端。通过添加dummyHead就可以简化对头部节点的处理。代码如下：
 
-```c++
+{% highlight c++ linenos %}
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -59,4 +59,4 @@ public:
         return dummyHead.next;
     }
 };
-```
+{% endhighlight %}

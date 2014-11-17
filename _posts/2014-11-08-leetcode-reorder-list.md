@@ -32,7 +32,7 @@ published: true
 
 代码如下：
 
-```c++
+{% highlight c++ linenos %}
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -78,4 +78,4 @@ public:
         }
     }
 };
-```
+{% endhighlight %}

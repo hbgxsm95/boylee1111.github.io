@@ -19,6 +19,22 @@
     
       <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: { inlineMath: [['$','$'], ['\\(','\\)'], ['[latex]','[/latex]']] },
+            menuSettings: {
+                zoom: "Double-Click",
+                zscale: "200%"
+            },
+            showProcessingMessages: false,
+            showMathMenu: false,
+            showMathMenuMSIE: false,
+            messageStyle: "none"
+        });
+    </script>
+    <script type="text/javascript"
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
 
     <!-- Open Graph -->
     <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
@@ -89,139 +105,143 @@
   <h1>[LeetCode] Gray Code</h1>
   <span class="post-meta">Oct 22, 2014</span><br>
   
-  <span class="post-meta small">5 minute read</span>
+  <span class="post-meta small">7 minute read</span>
 </div>
 
 <article class="post-content">
-  <h2><a href="https://oj.leetcode.com/problems/gray-code/">Gray Code</a></h2>
+  <h2 id="gray-codehttpsojleetcodecomproblemsgray-code"><a href="https://oj.leetcode.com/problems/gray-code/">Gray Code</a></h2>
 
 <p>求格雷码问题，看到标签之后想到回溯法。</p>
 
 <p>回溯思路如下：先塞一个0到结果数组里，用一个数组标记是否访问过此数，如果没有访问过就判断是否与结果数组最后一个是只相差一位的，不是就判断下一个数，如果是的话就标记此数被访问过，继续找下一个数。</p>
 
 <p>方法比较好理解，因为递归效率很低，当 [latex]n = 8[/latex] 的时候就开始吃不消了，跑OJ果断TLE了，也算一种思路，代码如下：</p>
-<div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
-<span class="k">public</span><span class="o">:</span>
-    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">grayCode</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kt">int</span> <span class="n">total</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">pow</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
-        <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">res</span><span class="p">;</span>
-        <span class="n">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span> <span class="n">visit</span><span class="p">(</span><span class="n">total</span><span class="p">,</span> <span class="nb">false</span><span class="p">);</span>
-        <span class="n">res</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-        <span class="n">visit</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
-        <span class="n">generateGrayCode</span><span class="p">(</span><span class="n">total</span><span class="p">,</span> <span class="n">visit</span><span class="p">,</span> <span class="n">res</span><span class="p">);</span>
-        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
-    <span class="p">}</span>
 
-    <span class="kt">void</span> <span class="n">generateGrayCode</span><span class="p">(</span><span class="kt">int</span><span class="o">&amp;</span> <span class="n">total</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;&amp;</span> <span class="n">visit</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">res</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">total</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
-            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">visit</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-            <span class="p">{</span>
-                <span class="kt">int</span> <span class="n">lastVal</span> <span class="o">=</span> <span class="n">res</span><span class="p">.</span><span class="n">back</span><span class="p">();</span>
-                <span class="k">if</span> <span class="p">(</span><span class="n">isSuccessive</span><span class="p">(</span><span class="n">lastVal</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span>
-                <span class="p">{</span>
-                    <span class="n">visit</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
-                    <span class="n">res</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
-                    <span class="n">generateGrayCode</span><span class="p">(</span><span class="n">total</span><span class="p">,</span> <span class="n">visit</span><span class="p">,</span> <span class="n">res</span><span class="p">);</span>
-                    <span class="k">if</span> <span class="p">(</span><span class="n">res</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="n">total</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
-                    <span class="n">visit</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
-                    <span class="n">res</span><span class="p">.</span><span class="n">pop_back</span><span class="p">();</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-    <span class="p">}</span>
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="lineno"> 1</span> <span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="lineno"> 2</span> <span class="k">public</span><span class="o">:</span>
+<span class="lineno"> 3</span>     <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">grayCode</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno"> 4</span>         <span class="kt">int</span> <span class="n">total</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">pow</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+<span class="lineno"> 5</span>         <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">res</span><span class="p">;</span>
+<span class="lineno"> 6</span>         <span class="n">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span> <span class="n">visit</span><span class="p">(</span><span class="n">total</span><span class="p">,</span> <span class="nb">false</span><span class="p">);</span>
+<span class="lineno"> 7</span>         <span class="n">res</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="lineno"> 8</span>         <span class="n">visit</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+<span class="lineno"> 9</span>         <span class="n">generateGrayCode</span><span class="p">(</span><span class="n">total</span><span class="p">,</span> <span class="n">visit</span><span class="p">,</span> <span class="n">res</span><span class="p">);</span>
+<span class="lineno">10</span>         <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+<span class="lineno">11</span>     <span class="p">}</span>
+<span class="lineno">12</span> 
+<span class="lineno">13</span>     <span class="kt">void</span> <span class="n">generateGrayCode</span><span class="p">(</span><span class="kt">int</span><span class="o">&amp;</span> <span class="n">total</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;&amp;</span> <span class="n">visit</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">res</span><span class="p">)</span>
+<span class="lineno">14</span>     <span class="p">{</span>
+<span class="lineno">15</span>         <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">total</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+<span class="lineno">16</span>             <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">visit</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="lineno">17</span>             <span class="p">{</span>
+<span class="lineno">18</span>                 <span class="kt">int</span> <span class="n">lastVal</span> <span class="o">=</span> <span class="n">res</span><span class="p">.</span><span class="n">back</span><span class="p">();</span>
+<span class="lineno">19</span>                 <span class="k">if</span> <span class="p">(</span><span class="n">isSuccessive</span><span class="p">(</span><span class="n">lastVal</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span>
+<span class="lineno">20</span>                 <span class="p">{</span>
+<span class="lineno">21</span>                     <span class="n">visit</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+<span class="lineno">22</span>                     <span class="n">res</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="lineno">23</span>                     <span class="n">generateGrayCode</span><span class="p">(</span><span class="n">total</span><span class="p">,</span> <span class="n">visit</span><span class="p">,</span> <span class="n">res</span><span class="p">);</span>
+<span class="lineno">24</span>                     <span class="k">if</span> <span class="p">(</span><span class="n">res</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="n">total</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+<span class="lineno">25</span>                     <span class="n">visit</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+<span class="lineno">26</span>                     <span class="n">res</span><span class="p">.</span><span class="n">pop_back</span><span class="p">();</span>
+<span class="lineno">27</span>                 <span class="p">}</span>
+<span class="lineno">28</span>             <span class="p">}</span>
+<span class="lineno">29</span>     <span class="p">}</span>
+<span class="lineno">30</span> 
+<span class="lineno">31</span>     <span class="kt">bool</span> <span class="n">isSuccessive</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span>
+<span class="lineno">32</span>     <span class="p">{</span>
+<span class="lineno">33</span>         <span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="n">a</span> <span class="o">^</span> <span class="n">b</span><span class="p">;</span>
+<span class="lineno">34</span>         <span class="k">while</span> <span class="p">((</span><span class="n">v</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="lineno">35</span>             <span class="n">v</span> <span class="o">=</span> <span class="n">v</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">;</span>
+<span class="lineno">36</span>         <span class="k">return</span> <span class="n">v</span> <span class="o">==</span> <span class="mi">1</span><span class="p">;</span>
+<span class="lineno">37</span>     <span class="p">}</span>
+<span class="lineno">38</span> <span class="p">};</span></code></pre></div>
 
-    <span class="kt">bool</span> <span class="n">isSuccessive</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="n">a</span> <span class="o">^</span> <span class="n">b</span><span class="p">;</span>
-        <span class="k">while</span> <span class="p">((</span><span class="n">v</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span>
-            <span class="n">v</span> <span class="o">=</span> <span class="n">v</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">;</span>
-        <span class="k">return</span> <span class="n">v</span> <span class="o">==</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">};</span>
-</code></pre></div>
 <p>然后尝试修改了一下代码，求出在n情况下所有格雷码组，效率当然更低了，因为几乎要尝试遍历每一种置换。[latex]n = 4[/latex] 的时候结果都已经5712个结果了。代码如下：</p>
-<div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
-<span class="k">public</span><span class="o">:</span>
-    <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">grayCode</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kt">int</span> <span class="n">total</span> <span class="o">=</span> <span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
-        <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">res</span><span class="p">;</span>
-        <span class="n">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span> <span class="n">visit</span><span class="p">(</span><span class="n">total</span><span class="p">,</span> <span class="nb">false</span><span class="p">);</span>
-        <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">solution</span><span class="p">;</span>
-        <span class="n">solution</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-        <span class="n">visit</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
-        <span class="n">generateGrayCode</span><span class="p">(</span><span class="n">total</span><span class="p">,</span> <span class="n">visit</span><span class="p">,</span> <span class="n">solution</span><span class="p">,</span> <span class="n">res</span><span class="p">);</span>
-        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
-    <span class="p">}</span>
 
-    <span class="kt">void</span> <span class="n">generateGrayCode</span><span class="p">(</span><span class="kt">int</span><span class="o">&amp;</span> <span class="n">total</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;&amp;</span> <span class="n">visit</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">solution</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;&amp;</span> <span class="n">res</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">solution</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="n">total</span><span class="p">)</span>
-            <span class="n">res</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">solution</span><span class="p">);</span>
-        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">total</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
-            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">visit</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-            <span class="p">{</span>
-                <span class="kt">int</span> <span class="n">lastVal</span> <span class="o">=</span> <span class="n">solution</span><span class="p">.</span><span class="n">back</span><span class="p">();</span>
-                <span class="k">if</span> <span class="p">(</span><span class="n">isSuccessive</span><span class="p">(</span><span class="n">lastVal</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span>
-                <span class="p">{</span>
-                    <span class="n">visit</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
-                    <span class="n">solution</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
-                    <span class="n">generateGrayCode</span><span class="p">(</span><span class="n">total</span><span class="p">,</span> <span class="n">visit</span><span class="p">,</span> <span class="n">solution</span><span class="p">,</span> <span class="n">res</span><span class="p">);</span>
-                    <span class="n">solution</span><span class="p">.</span><span class="n">pop_back</span><span class="p">();</span>
-                    <span class="n">visit</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-    <span class="p">}</span>
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="lineno"> 1</span> <span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="lineno"> 2</span> <span class="k">public</span><span class="o">:</span>
+<span class="lineno"> 3</span>     <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">grayCode</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno"> 4</span>         <span class="kt">int</span> <span class="n">total</span> <span class="o">=</span> <span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+<span class="lineno"> 5</span>         <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">res</span><span class="p">;</span>
+<span class="lineno"> 6</span>         <span class="n">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span> <span class="n">visit</span><span class="p">(</span><span class="n">total</span><span class="p">,</span> <span class="nb">false</span><span class="p">);</span>
+<span class="lineno"> 7</span>         <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">solution</span><span class="p">;</span>
+<span class="lineno"> 8</span>         <span class="n">solution</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="lineno"> 9</span>         <span class="n">visit</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+<span class="lineno">10</span>         <span class="n">generateGrayCode</span><span class="p">(</span><span class="n">total</span><span class="p">,</span> <span class="n">visit</span><span class="p">,</span> <span class="n">solution</span><span class="p">,</span> <span class="n">res</span><span class="p">);</span>
+<span class="lineno">11</span>         <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+<span class="lineno">12</span>     <span class="p">}</span>
+<span class="lineno">13</span> 
+<span class="lineno">14</span>     <span class="kt">void</span> <span class="n">generateGrayCode</span><span class="p">(</span><span class="kt">int</span><span class="o">&amp;</span> <span class="n">total</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;&amp;</span> <span class="n">visit</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">solution</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;&amp;</span> <span class="n">res</span><span class="p">)</span>
+<span class="lineno">15</span>     <span class="p">{</span>
+<span class="lineno">16</span>         <span class="k">if</span> <span class="p">(</span><span class="n">solution</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="n">total</span><span class="p">)</span>
+<span class="lineno">17</span>             <span class="n">res</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">solution</span><span class="p">);</span>
+<span class="lineno">18</span>         <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">total</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+<span class="lineno">19</span>             <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">visit</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="lineno">20</span>             <span class="p">{</span>
+<span class="lineno">21</span>                 <span class="kt">int</span> <span class="n">lastVal</span> <span class="o">=</span> <span class="n">solution</span><span class="p">.</span><span class="n">back</span><span class="p">();</span>
+<span class="lineno">22</span>                 <span class="k">if</span> <span class="p">(</span><span class="n">isSuccessive</span><span class="p">(</span><span class="n">lastVal</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span>
+<span class="lineno">23</span>                 <span class="p">{</span>
+<span class="lineno">24</span>                     <span class="n">visit</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+<span class="lineno">25</span>                     <span class="n">solution</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="lineno">26</span>                     <span class="n">generateGrayCode</span><span class="p">(</span><span class="n">total</span><span class="p">,</span> <span class="n">visit</span><span class="p">,</span> <span class="n">solution</span><span class="p">,</span> <span class="n">res</span><span class="p">);</span>
+<span class="lineno">27</span>                     <span class="n">solution</span><span class="p">.</span><span class="n">pop_back</span><span class="p">();</span>
+<span class="lineno">28</span>                     <span class="n">visit</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+<span class="lineno">29</span>                 <span class="p">}</span>
+<span class="lineno">30</span>             <span class="p">}</span>
+<span class="lineno">31</span>     <span class="p">}</span>
+<span class="lineno">32</span> 
+<span class="lineno">33</span>     <span class="kt">bool</span> <span class="n">isSuccessive</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span>
+<span class="lineno">34</span>     <span class="p">{</span>
+<span class="lineno">35</span>         <span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="n">a</span> <span class="o">^</span> <span class="n">b</span><span class="p">;</span>
+<span class="lineno">36</span>         <span class="k">while</span> <span class="p">((</span><span class="n">v</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="lineno">37</span>             <span class="n">v</span> <span class="o">=</span> <span class="n">v</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">;</span>
+<span class="lineno">38</span>         <span class="k">return</span> <span class="n">v</span> <span class="o">==</span> <span class="mi">1</span><span class="p">;</span>
+<span class="lineno">39</span>     <span class="p">}</span>
+<span class="lineno">40</span> <span class="p">};</span></code></pre></div>
 
-    <span class="kt">bool</span> <span class="n">isSuccessive</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="n">a</span> <span class="o">^</span> <span class="n">b</span><span class="p">;</span>
-        <span class="k">while</span> <span class="p">((</span><span class="n">v</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span>
-            <span class="n">v</span> <span class="o">=</span> <span class="n">v</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">;</span>
-        <span class="k">return</span> <span class="n">v</span> <span class="o">==</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">};</span>
-</code></pre></div>
 <p>回溯没法完美解决，Wiki上有生成Gray Code的公式<a href="http://en.wikipedia.org/wiki/Gray_code#Converting_to_and_from_Gray_code">Converting to and from Gray Code</a>，用这个公式可以快速解决，时间复杂度只有 [latex]O(2^n)[/latex] ，代码如下：</p>
-<div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
-<span class="k">public</span><span class="o">:</span>
-    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">grayCode</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kt">int</span> <span class="n">total</span> <span class="o">=</span> <span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
-        <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">res</span><span class="p">(</span><span class="n">total</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">total</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
-            <span class="n">res</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">^</span> <span class="n">i</span><span class="p">;</span>
-        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">};</span>
-</code></pre></div>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="lineno"> 1</span> <span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="lineno"> 2</span> <span class="k">public</span><span class="o">:</span>
+<span class="lineno"> 3</span>     <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">grayCode</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno"> 4</span>         <span class="kt">int</span> <span class="n">total</span> <span class="o">=</span> <span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+<span class="lineno"> 5</span>         <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">res</span><span class="p">(</span><span class="n">total</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="lineno"> 6</span>         <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">total</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+<span class="lineno"> 7</span>             <span class="n">res</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">^</span> <span class="n">i</span><span class="p">;</span>
+<span class="lineno"> 8</span>         <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+<span class="lineno"> 9</span>     <span class="p">}</span>
+<span class="lineno">10</span> <span class="p">};</span></code></pre></div>
+
 <p><a href="https://oj.leetcode.com/discuss/1525/what-if-i-have-no-knowledge-over-gray-code-before">What if I have no knowledge over Gray Code before?</a></p>
 
 <p>讨论区这个问题下有一个DP的解决思路，描述了一种格雷码的排列规律。</p>
 
 <ul>
-<li>当 [latex]n = 1[/latex] 时，排列为 [latex]0, 1[/latex]</li>
-<li>当 [latex]n = 2[/latex] 时，排列为 [latex]00, 01, 11, 10[/latex]</li>
-<li>当 [latex]n = 3[/latex] 时，排列为 [latex]000, 001, 011, 010, 110, 111, 101, 100[/latex]</li>
+  <li>当 [latex]n = 1[/latex] 时，排列为 [latex]0, 1[/latex]</li>
+  <li>当 [latex]n = 2[/latex] 时，排列为 [latex]00, 01, 11, 10[/latex]</li>
+  <li>当 [latex]n = 3[/latex] 时，排列为 [latex]000, 001, 011, 010, 110, 111, 101, 100[/latex]</li>
 </ul>
 
 <p>每次当n加增加一时，前一半为上一次的结果前面加0，后一半为上一次结果逆序并在前面加1。换句话说，新的结果除去最高位是对称的。那么从 [latex]n = 1[/latex]开始求解，每次在上一次结果后追加新的解，代码如下：</p>
-<div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
-<span class="k">public</span><span class="o">:</span>
-    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">grayCode</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kt">int</span> <span class="n">total</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">pow</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="n">number</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">prefix</span><span class="p">;</span>
-        <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">res</span><span class="p">(</span><span class="n">total</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
 
-        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="n">prefix</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">i</span><span class="p">;</span>
-            <span class="n">number</span> <span class="o">*=</span> <span class="mi">2</span><span class="p">;</span>
-            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">number</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">number</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>
-                <span class="n">res</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="n">number</span> <span class="o">-</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">prefix</span><span class="p">;</span>
-        <span class="p">}</span>
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="lineno"> 1</span> <span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="lineno"> 2</span> <span class="k">public</span><span class="o">:</span>
+<span class="lineno"> 3</span>     <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">grayCode</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno"> 4</span>         <span class="kt">int</span> <span class="n">total</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">pow</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="n">number</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">prefix</span><span class="p">;</span>
+<span class="lineno"> 5</span>         <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">res</span><span class="p">(</span><span class="n">total</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="lineno"> 6</span> 
+<span class="lineno"> 7</span>         <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+<span class="lineno"> 8</span>         <span class="p">{</span>
+<span class="lineno"> 9</span>             <span class="n">prefix</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">i</span><span class="p">;</span>
+<span class="lineno">10</span>             <span class="n">number</span> <span class="o">*=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="lineno">11</span>             <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">number</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">number</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>
+<span class="lineno">12</span>                 <span class="n">res</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="n">number</span> <span class="o">-</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">prefix</span><span class="p">;</span>
+<span class="lineno">13</span>         <span class="p">}</span>
+<span class="lineno">14</span> 
+<span class="lineno">15</span>         <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+<span class="lineno">16</span>     <span class="p">}</span>
+<span class="lineno">17</span> <span class="p">};</span></code></pre></div>
 
-        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">};</span><span class="err">```</span>
-</code></pre></div>
 </article>
 
 
@@ -251,7 +271,7 @@
     </div>
   
     <div class="post ml2">
-      <a href="/development/2014/11/14/leetcode-candy-2/" class="post-link">
+      <a href="/development/2014/11/14/leetcode-candy/" class="post-link">
         <h4 class="post-title">[LeetCode] Candy</h4>
         <p class="post-summary">分糖果问题，每个小孩有一个分数，要求对任意一个小孩，如果他的分数比相邻的小孩高，那么他必须分到比相邻小孩要多的糖果。并且每个小孩只要分到一个。</p>
       </a>

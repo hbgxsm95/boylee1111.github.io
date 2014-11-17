@@ -19,6 +19,22 @@
     
       <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: { inlineMath: [['$','$'], ['\\(','\\)'], ['[latex]','[/latex]']] },
+            menuSettings: {
+                zoom: "Double-Click",
+                zscale: "200%"
+            },
+            showProcessingMessages: false,
+            showMathMenu: false,
+            showMathMenuMSIE: false,
+            messageStyle: "none"
+        });
+    </script>
+    <script type="text/javascript"
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
 
     <!-- Open Graph -->
     <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
@@ -89,45 +105,46 @@
   <h1>[LeetCode] Decode Ways</h1>
   <span class="post-meta">Nov 13, 2014</span><br>
   
-  <span class="post-meta small">1 minute read</span>
+  <span class="post-meta small">2 minute read</span>
 </div>
 
 <article class="post-content">
-  <h2><a href="https://oj.leetcode.com/problems/decode-ways/">Decode Ways</a></h2>
+  <h2 id="decode-wayshttpsojleetcodecomproblemsdecode-ways"><a href="https://oj.leetcode.com/problems/decode-ways/">Decode Ways</a></h2>
 
 <p>Calculate all the ways of decoding. This problem is similar to <a href="/development/2014/11/13/leetcode-climbing-stairs/">Climbing Stairs</a>. The difference is that the validity of decoding needs to be checked.</p>
 
-<p>When the string is empty or the first digit is &#39;0&#39;, the number of decoding is 0. Otherwise, the first digit only has 1 way of decoding.</p>
+<p>When the string is empty or the first digit is ‘0’, the number of decoding is 0. Otherwise, the first digit only has 1 way of decoding.</p>
 
 <p>If length larger than 2, two steps for calculating the decode ways is mandatory:</p>
 
 <ol>
-<li>If current digit can be decoded individually, the ways of decoding is equal to the previous number of decoding ways. [latex]N<em>n = N</em>{n-1}[/latex]</li>
-<li>If current digit combined with previous digit, the ultimated number of decoding is current value plus the number before previous one. [latex]N<em>n = N</em>n + N_{n - 2}[/latex]</li>
+  <li>If current digit can be decoded individually, the ways of decoding is equal to the previous number of decoding ways. [latex]Nn = Nn + N_{n - 2}[/latex].</li>
+  <li>If current digit combined with previous digit, the ultimated number of decoding is current value plus the number before previous one. $N_n = N_n + N_{n - 2}$</li>
 </ol>
 
 <p>The array used to save all the decoding ways can be simplified. The space complixity can be reduced via only recording the previous two number of decoding way.</p>
 
 <p>Here is the code:</p>
-<div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
-<span class="k">public</span><span class="o">:</span>
-    <span class="kt">int</span> <span class="n">numDecodings</span><span class="p">(</span><span class="n">string</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">s</span> <span class="o">==</span> <span class="s">&quot;&quot;</span> <span class="o">||</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;0&#39;</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 
-        <span class="kt">int</span> <span class="n">pre1</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">pre2</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">cur</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">s</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="sc">&#39;0&#39;</span><span class="p">)</span> <span class="n">cur</span> <span class="o">=</span> <span class="n">pre1</span><span class="p">;</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;1&#39;</span> <span class="o">||</span> <span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;2&#39;</span> <span class="o">&amp;&amp;</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="sc">&#39;6&#39;</span><span class="p">))</span> <span class="n">cur</span> <span class="o">+=</span> <span class="n">pre2</span><span class="p">;</span>
-            <span class="n">pre2</span> <span class="o">=</span> <span class="n">pre1</span><span class="p">;</span>
-            <span class="n">pre1</span> <span class="o">=</span> <span class="n">cur</span><span class="p">;</span>
-            <span class="n">cur</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-        <span class="p">}</span>
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="lineno"> 1</span> <span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="lineno"> 2</span> <span class="k">public</span><span class="o">:</span>
+<span class="lineno"> 3</span>     <span class="kt">int</span> <span class="n">numDecodings</span><span class="p">(</span><span class="n">string</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno"> 4</span>         <span class="k">if</span> <span class="p">(</span><span class="n">s</span> <span class="o">==</span> <span class="s">&quot;&quot;</span> <span class="o">||</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;0&#39;</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="lineno"> 5</span> 
+<span class="lineno"> 6</span>         <span class="kt">int</span> <span class="n">pre1</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">pre2</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">cur</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="lineno"> 7</span>         <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">s</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+<span class="lineno"> 8</span>         <span class="p">{</span>
+<span class="lineno"> 9</span>             <span class="k">if</span> <span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="sc">&#39;0&#39;</span><span class="p">)</span> <span class="n">cur</span> <span class="o">=</span> <span class="n">pre1</span><span class="p">;</span>
+<span class="lineno">10</span>             <span class="k">if</span> <span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;1&#39;</span> <span class="o">||</span> <span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;2&#39;</span> <span class="o">&amp;&amp;</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="sc">&#39;6&#39;</span><span class="p">))</span> <span class="n">cur</span> <span class="o">+=</span> <span class="n">pre2</span><span class="p">;</span>
+<span class="lineno">11</span>             <span class="n">pre2</span> <span class="o">=</span> <span class="n">pre1</span><span class="p">;</span>
+<span class="lineno">12</span>             <span class="n">pre1</span> <span class="o">=</span> <span class="n">cur</span><span class="p">;</span>
+<span class="lineno">13</span>             <span class="n">cur</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="lineno">14</span>         <span class="p">}</span>
+<span class="lineno">15</span> 
+<span class="lineno">16</span>         <span class="k">return</span> <span class="n">pre1</span><span class="p">;</span>
+<span class="lineno">17</span>     <span class="p">}</span>
+<span class="lineno">18</span> <span class="p">};</span></code></pre></div>
 
-        <span class="k">return</span> <span class="n">pre1</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">};</span>
-</code></pre></div>
 </article>
 
 
@@ -157,7 +174,7 @@
     </div>
   
     <div class="post ml2">
-      <a href="/development/2014/11/14/leetcode-candy-2/" class="post-link">
+      <a href="/development/2014/11/14/leetcode-candy/" class="post-link">
         <h4 class="post-title">[LeetCode] Candy</h4>
         <p class="post-summary">分糖果问题，每个小孩有一个分数，要求对任意一个小孩，如果他的分数比相邻的小孩高，那么他必须分到比相邻小孩要多的糖果。并且每个小孩只要分到一个。</p>
       </a>

@@ -28,7 +28,7 @@ Summarily, there are three main steps to reverse list in k-group:
 
 Here is the code, **dummyHead** pointer is used to eliminate the particularity of head node:
 
-```cpp
+{% highlight c++ linenos %}
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -64,4 +64,4 @@ public:
         return dummyHead.next;
     }
 };
-```
+{% endhighlight %}

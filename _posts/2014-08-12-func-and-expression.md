@@ -22,9 +22,9 @@ When I used `Func<T>` or `Expression<Func<T>>` as parameter of function, I fou
 
 [Here](http://msdn.microsoft.com/en-us/library/bb534960.aspx) is MSDN official document. According to the definition, Func<T> is actually a simplified version of delegate.
 
-```c#
+{% highlight c# linenos %}
 public delegate TResult Func<out TResult>()
-```
+{% endhighlight %}
 
 `Func<TResult>`  assists developer to create delegate without explicit delegate declaration. The template T is the type of return value. In this way, the function can be assign to `Func<TResult>`  property and invoke directly. MS provides 17 delegate function, corresponding the count of parameters, the last template TResult is always type of return value.
 
@@ -40,11 +40,11 @@ Conceptually, it is just a data structure with all the information of lambda exp
 
 There are two approaches to form a expression tree, one is through expression syntax itself, another is using API. Two ways below are the same.
 
-```c#
+{% highlight c# linenos %}
 Expression<Func<int>> expr;
 expr = () => 10; // lambda expression syntax
 expr = Expression.Lambda<Func<int>>(Expression.Constant(10)); // API
-```
+{% endhighlight %}
 
 And `Expression<TDelegate>` provides the `Compile()`  method. Through this, lambda expression can be compile at the runtime, the type of return value is the delegate after compiling. Then this function can be invoked manually.
 

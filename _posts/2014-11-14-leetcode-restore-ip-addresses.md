@@ -22,7 +22,7 @@ published: true
 
 每次取分割出来最多三位进行判断，如果符合就继续分割剩余部分，最多分四次。思路比较简单，但是对点的处理导致有些烦，代码如下：
 
-```cpp
+{% highlight c++ linenos %}
 class Solution {
 public:
     string solution = "";
@@ -62,14 +62,14 @@ public:
         return false;
     }
 };
-```
+{% endhighlight %}
 
 
 **直接处理**
 
 遍历三个点所有可能的位置，并且判断产生的IP地址是否合理，三层循环解决，代码如下：
 
-```cpp
+{% highlight c++ linenos %}
 class Solution {
 public:
     vector<string> restoreIpAddresses(string s) {
@@ -102,4 +102,4 @@ public:
         return false;
     }
 };
-```
+{% endhighlight %}

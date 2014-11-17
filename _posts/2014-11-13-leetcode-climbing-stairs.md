@@ -28,15 +28,16 @@ For any [latex]i >= 2[/latex], there are two ways to reach to level [latex]i[/la
 
 Then the transformation equation is determined:
 
-[latex]N_i = N_{i - 2} + N_{i - 1}[/latex]
+{% raw %}$$N_i = \left\{ \begin{array}{ll}
+1 & i = 0, 1;\\
+N_{i - 2} + N_{i - 1} & else.\end{array} \right. $${% endraw %}
 
-Specially, if [latex]i = 0[/latex] or [latex]i = 1[/latex], [latex]N_i = 1[/latex].
 
 We can using constant space by only recording the previous two results of climbing.
 
 Here is the code:
 
-```c++
+{% highlight c++ linenos %}
 class Solution {
 public:
     int climbStairs(int n) {
@@ -50,4 +51,4 @@ public:
         return w2;
     }
 };
-```
+{% endhighlight %}

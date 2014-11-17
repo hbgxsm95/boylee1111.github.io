@@ -19,6 +19,22 @@
     
       <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: { inlineMath: [['$','$'], ['\\(','\\)'], ['[latex]','[/latex]']] },
+            menuSettings: {
+                zoom: "Double-Click",
+                zscale: "200%"
+            },
+            showProcessingMessages: false,
+            showMathMenu: false,
+            showMathMenuMSIE: false,
+            messageStyle: "none"
+        });
+    </script>
+    <script type="text/javascript"
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
 
     <!-- Open Graph -->
     <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
@@ -93,41 +109,42 @@
 </div>
 
 <article class="post-content">
-  <h2><a href="https://oj.leetcode.com/problems/insertion-sort-list/">Insertion Sort List</a></h2>
+  <h2 id="insertion-sort-listhttpsojleetcodecomproblemsinsertion-sort-list"><a href="https://oj.leetcode.com/problems/insertion-sort-list/">Insertion Sort List</a></h2>
 
 <p>使用插入排序方法对链表进行排序。</p>
 
 <p>思路如下：dummyHead用于纪录排序后的链表，left表示剩余还未操作的元素。每次从left里面取出第一个节点插入到现有的已经有序的dummyHead节点中，直至left为空。代码如下：</p>
-<div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="cm">/**</span>
-<span class="cm"> * Definition for singly-linked list.</span>
-<span class="cm"> * struct ListNode {</span>
-<span class="cm"> *     int val;</span>
-<span class="cm"> *     ListNode *next;</span>
-<span class="cm"> *     ListNode(int x) : val(x), next(NULL) {}</span>
-<span class="cm"> * };</span>
-<span class="cm"> */</span>
-<span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
-<span class="k">public</span><span class="o">:</span>
-    <span class="n">ListNode</span> <span class="o">*</span><span class="n">insertionSortList</span><span class="p">(</span><span class="n">ListNode</span> <span class="o">*</span><span class="n">head</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">ListNode</span> <span class="n">dummyHead</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-        <span class="n">dummyHead</span><span class="p">.</span><span class="n">next</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
 
-        <span class="n">ListNode</span> <span class="o">*</span><span class="n">cur</span><span class="p">,</span> <span class="o">*</span><span class="n">left</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
-        <span class="k">while</span> <span class="p">(</span><span class="n">left</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="n">cur</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">dummyHead</span><span class="p">;</span>
-            <span class="k">while</span> <span class="p">(</span><span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">!=</span> <span class="nb">NULL</span> <span class="o">&amp;&amp;</span> <span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">-&gt;</span><span class="n">val</span> <span class="o">&lt;</span> <span class="n">left</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">)</span>
-                <span class="n">cur</span> <span class="o">=</span> <span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
-            <span class="n">ListNode</span> <span class="o">*</span><span class="n">tmp</span> <span class="o">=</span> <span class="n">left</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
-            <span class="n">left</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
-            <span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">left</span><span class="p">;</span>
-            <span class="n">left</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">;</span>
-        <span class="p">}</span>
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="lineno"> 1</span> <span class="cm">/**</span>
+<span class="lineno"> 2</span> <span class="cm"> * Definition for singly-linked list.</span>
+<span class="lineno"> 3</span> <span class="cm"> * struct ListNode {</span>
+<span class="lineno"> 4</span> <span class="cm"> *     int val;</span>
+<span class="lineno"> 5</span> <span class="cm"> *     ListNode *next;</span>
+<span class="lineno"> 6</span> <span class="cm"> *     ListNode(int x) : val(x), next(NULL) {}</span>
+<span class="lineno"> 7</span> <span class="cm"> * };</span>
+<span class="lineno"> 8</span> <span class="cm"> */</span>
+<span class="lineno"> 9</span> <span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="lineno">10</span> <span class="k">public</span><span class="o">:</span>
+<span class="lineno">11</span>     <span class="n">ListNode</span> <span class="o">*</span><span class="n">insertionSortList</span><span class="p">(</span><span class="n">ListNode</span> <span class="o">*</span><span class="n">head</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno">12</span>         <span class="n">ListNode</span> <span class="n">dummyHead</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="lineno">13</span>         <span class="n">dummyHead</span><span class="p">.</span><span class="n">next</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+<span class="lineno">14</span> 
+<span class="lineno">15</span>         <span class="n">ListNode</span> <span class="o">*</span><span class="n">cur</span><span class="p">,</span> <span class="o">*</span><span class="n">left</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+<span class="lineno">16</span>         <span class="k">while</span> <span class="p">(</span><span class="n">left</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
+<span class="lineno">17</span>         <span class="p">{</span>
+<span class="lineno">18</span>             <span class="n">cur</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">dummyHead</span><span class="p">;</span>
+<span class="lineno">19</span>             <span class="k">while</span> <span class="p">(</span><span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">!=</span> <span class="nb">NULL</span> <span class="o">&amp;&amp;</span> <span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">-&gt;</span><span class="n">val</span> <span class="o">&lt;</span> <span class="n">left</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">)</span>
+<span class="lineno">20</span>                 <span class="n">cur</span> <span class="o">=</span> <span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+<span class="lineno">21</span>             <span class="n">ListNode</span> <span class="o">*</span><span class="n">tmp</span> <span class="o">=</span> <span class="n">left</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+<span class="lineno">22</span>             <span class="n">left</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+<span class="lineno">23</span>             <span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">left</span><span class="p">;</span>
+<span class="lineno">24</span>             <span class="n">left</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">;</span>
+<span class="lineno">25</span>         <span class="p">}</span>
+<span class="lineno">26</span> 
+<span class="lineno">27</span>         <span class="k">return</span> <span class="n">dummyHead</span><span class="p">.</span><span class="n">next</span><span class="p">;</span>
+<span class="lineno">28</span>     <span class="p">}</span>
+<span class="lineno">29</span> <span class="p">};</span></code></pre></div>
 
-        <span class="k">return</span> <span class="n">dummyHead</span><span class="p">.</span><span class="n">next</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">};</span>
-</code></pre></div>
 </article>
 
 
@@ -157,7 +174,7 @@
     </div>
   
     <div class="post ml2">
-      <a href="/development/2014/11/14/leetcode-candy-2/" class="post-link">
+      <a href="/development/2014/11/14/leetcode-candy/" class="post-link">
         <h4 class="post-title">[LeetCode] Candy</h4>
         <p class="post-summary">分糖果问题，每个小孩有一个分数，要求对任意一个小孩，如果他的分数比相邻的小孩高，那么他必须分到比相邻小孩要多的糖果。并且每个小孩只要分到一个。</p>
       </a>

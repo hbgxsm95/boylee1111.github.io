@@ -19,6 +19,22 @@
     
       <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: { inlineMath: [['$','$'], ['\\(','\\)'], ['[latex]','[/latex]']] },
+            menuSettings: {
+                zoom: "Double-Click",
+                zscale: "200%"
+            },
+            showProcessingMessages: false,
+            showMathMenu: false,
+            showMathMenuMSIE: false,
+            messageStyle: "none"
+        });
+    </script>
+    <script type="text/javascript"
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
 
     <!-- Open Graph -->
     <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
@@ -94,42 +110,43 @@
 
 <article class="post-content">
   <p>之前看到日本关于Chrome的广告非常棒（<a href="http://v.youku.com/v_show/id_XMjM0Mzk4MjU2.html">看广告点这里</a>），所以写了script玩玩。</p>
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
-<span class="nt">&lt;html&gt;</span>
-    <span class="nt">&lt;head&gt;</span>
-        <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;http://code.jquery.com/jquery-1.10.0.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
 
-        <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
-<span class="err">            </span><span class="kd">var</span> <span class="nx">max</span> <span class="o">=</span> <span class="mi">330</span><span class="p">;</span>
-<span class="err">            </span><span class="kd">function</span> <span class="nx">openTabs</span><span class="p">()</span> <span class="p">{</span>
-<span class="err">                </span><span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">max</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-<span class="err">                    </span><span class="nx">openURL</span><span class="p">(</span><span class="s2">&quot;http://www.google.co.jp/landing/motto/tabplay/&quot;</span> <span class="o">+</span> <span class="nx">i</span> <span class="o">+</span> <span class="s2">&quot;.jpg&quot;</span><span class="p">);</span>
-<span class="err">                </span><span class="p">}</span>
-<span class="err">                </span><span class="nb">window</span><span class="p">.</span><span class="nx">close</span><span class="p">();</span>
-<span class="err">            </span><span class="p">}</span>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="lineno"> 1</span> <span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="lineno"> 2</span> <span class="nt">&lt;html&gt;</span>
+<span class="lineno"> 3</span>     <span class="nt">&lt;head&gt;</span>
+<span class="lineno"> 4</span>         <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;http://code.jquery.com/jquery-1.10.0.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="lineno"> 5</span> 
+<span class="lineno"> 6</span>         <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
+<span class="lineno"> 7</span> <span class="err">            </span><span class="kd">var</span> <span class="nx">max</span> <span class="o">=</span> <span class="mi">330</span><span class="p">;</span>
+<span class="lineno"> 8</span> <span class="err">            </span><span class="kd">function</span> <span class="nx">openTabs</span><span class="p">()</span> <span class="p">{</span>
+<span class="lineno"> 9</span> <span class="err">                </span><span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">max</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno">10</span> <span class="err">                    </span><span class="nx">openURL</span><span class="p">(</span><span class="s2">&quot;http://www.google.co.jp/landing/motto/tabplay/&quot;</span> <span class="o">+</span> <span class="nx">i</span> <span class="o">+</span> <span class="s2">&quot;.jpg&quot;</span><span class="p">);</span>
+<span class="lineno">11</span> <span class="err">                </span><span class="p">}</span>
+<span class="lineno">12</span> <span class="err">                </span><span class="nb">window</span><span class="p">.</span><span class="nx">close</span><span class="p">();</span>
+<span class="lineno">13</span> <span class="err">            </span><span class="p">}</span>
+<span class="lineno">14</span> 
+<span class="lineno">15</span> <span class="err">            </span><span class="kd">function</span> <span class="nx">openURL</span><span class="p">(</span><span class="nx">URL</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno">16</span> <span class="err">                </span><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;[]()&#39;</span><span class="p">);</span>
+<span class="lineno">17</span> <span class="err">                </span><span class="kd">var</span> <span class="nx">evt</span><span class="p">;</span>
+<span class="lineno">18</span> <span class="err">                </span><span class="k">if</span> <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">createEvent</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno">19</span> <span class="err">                    </span><span class="nx">evt</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createEvent</span><span class="p">(</span><span class="s2">&quot;MouseEvents&quot;</span><span class="p">);</span>
+<span class="lineno">20</span> <span class="err">                    </span><span class="k">if</span> <span class="p">(</span><span class="nx">evt</span><span class="p">.</span><span class="nx">initMouseEvent</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno">21</span> <span class="err">                        </span><span class="nx">evt</span><span class="p">.</span><span class="nx">initMouseEvent</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="nb">window</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+<span class="lineno">22</span> <span class="err">                        </span><span class="nx">a</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">dispatchEvent</span><span class="p">(</span><span class="nx">evt</span><span class="p">);</span>
+<span class="lineno">23</span> <span class="err">                    </span><span class="p">}</span>
+<span class="lineno">24</span> <span class="err">                </span><span class="p">}</span>
+<span class="lineno">25</span> <span class="err">            </span><span class="p">}</span>
+<span class="lineno">26</span> <span class="err">        </span><span class="nt">&lt;/script&gt;</span>
+<span class="lineno">27</span> 
+<span class="lineno">28</span>         <span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">&quot;Content-Type&quot;</span> <span class="na">content=</span><span class="s">&quot;text/html&quot;</span> <span class="na">charset=</span><span class="s">&quot;utf-8&quot;</span> <span class="nt">/&gt;</span>
+<span class="lineno">29</span> 
+<span class="lineno">30</span>         <span class="nt">&lt;title&gt;</span>Chrome广告实现<span class="nt">&lt;/title&gt;</span>
+<span class="lineno">31</span>     <span class="nt">&lt;/head&gt;</span>
+<span class="lineno">32</span>     <span class="nt">&lt;body&gt;</span>
+<span class="lineno">33</span>         <span class="nt">&lt;button</span> <span class="na">onclick=</span><span class="s">&quot;openTabs();&quot;</span><span class="nt">&gt;</span>打开图片<span class="nt">&lt;/button&gt;</span>
+<span class="lineno">34</span>     <span class="nt">&lt;/body&gt;</span>
+<span class="lineno">35</span> <span class="nt">&lt;/htm&gt;</span></code></pre></div>
 
-<span class="err">            </span><span class="kd">function</span> <span class="nx">openURL</span><span class="p">(</span><span class="nx">URL</span><span class="p">)</span> <span class="p">{</span>
-<span class="err">                </span><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;[]()&#39;</span><span class="p">);</span>
-<span class="err">                </span><span class="kd">var</span> <span class="nx">evt</span><span class="p">;</span>
-<span class="err">                </span><span class="k">if</span> <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">createEvent</span><span class="p">)</span> <span class="p">{</span>
-<span class="err">                    </span><span class="nx">evt</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createEvent</span><span class="p">(</span><span class="s2">&quot;MouseEvents&quot;</span><span class="p">);</span>
-<span class="err">                    </span><span class="k">if</span> <span class="p">(</span><span class="nx">evt</span><span class="p">.</span><span class="nx">initMouseEvent</span><span class="p">)</span> <span class="p">{</span>
-<span class="err">                        </span><span class="nx">evt</span><span class="p">.</span><span class="nx">initMouseEvent</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="nb">window</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
-<span class="err">                        </span><span class="nx">a</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">dispatchEvent</span><span class="p">(</span><span class="nx">evt</span><span class="p">);</span>
-<span class="err">                    </span><span class="p">}</span>
-<span class="err">                </span><span class="p">}</span>
-<span class="err">            </span><span class="p">}</span>
-<span class="err">        </span><span class="nt">&lt;/script&gt;</span>
-
-        <span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">&quot;Content-Type&quot;</span> <span class="na">content=</span><span class="s">&quot;text/html&quot;</span> <span class="na">charset=</span><span class="s">&quot;utf-8&quot;</span> <span class="nt">/&gt;</span>
-
-        <span class="nt">&lt;title&gt;</span>Chrome广告实现<span class="nt">&lt;/title&gt;</span>
-    <span class="nt">&lt;/head&gt;</span>
-    <span class="nt">&lt;body&gt;</span>
-        <span class="nt">&lt;button</span> <span class="na">onclick=</span><span class="s">&quot;openTabs();&quot;</span><span class="nt">&gt;</span>打开图片<span class="nt">&lt;/button&gt;</span>
-    <span class="nt">&lt;/body&gt;</span>
-<span class="nt">&lt;/htm&gt;</span>
-</code></pre></div>
 <p>不得不说这个对性能要求挺高的，如果速度太慢就很难看到不错的效果。</p>
 
 </article>
@@ -161,7 +178,7 @@
     </div>
   
     <div class="post ml2">
-      <a href="/development/2014/11/14/leetcode-candy-2/" class="post-link">
+      <a href="/development/2014/11/14/leetcode-candy/" class="post-link">
         <h4 class="post-title">[LeetCode] Candy</h4>
         <p class="post-summary">分糖果问题，每个小孩有一个分数，要求对任意一个小孩，如果他的分数比相邻的小孩高，那么他必须分到比相邻小孩要多的糖果。并且每个小孩只要分到一个。</p>
       </a>

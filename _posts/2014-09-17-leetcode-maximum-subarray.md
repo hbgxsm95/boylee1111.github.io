@@ -30,7 +30,7 @@ published: true
 
 实际解题中，我们没有必要给数组B分配空间，因为我们所要的值只不过是B数组中最大的那一项。代码如下：
 
-```c++
+{% highlight c++ linenos %}
 class Solution {
 public:
     int maxSubArray(int A[], int n) {
@@ -43,6 +43,6 @@ public:
         return res;
     }
 };
-```
+{% endhighlight %}
 
 题目还有扩展，尝试用分治的思路解决，回头再说。

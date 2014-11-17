@@ -19,6 +19,22 @@
     
       <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: { inlineMath: [['$','$'], ['\\(','\\)'], ['[latex]','[/latex]']] },
+            menuSettings: {
+                zoom: "Double-Click",
+                zscale: "200%"
+            },
+            showProcessingMessages: false,
+            showMathMenu: false,
+            showMathMenuMSIE: false,
+            messageStyle: "none"
+        });
+    </script>
+    <script type="text/javascript"
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
 
     <!-- Open Graph -->
     <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
@@ -89,11 +105,11 @@
   <h1>Kruskal——Networking</h1>
   <span class="post-meta">Apr 29, 2013</span><br>
   
-  <span class="post-meta small">5 minute read</span>
+  <span class="post-meta small">6 minute read</span>
 </div>
 
 <article class="post-content">
-  <h3>Networking</h3>
+  <h3 id="networking">Networking</h3>
 
 <p><strong>Description</strong></p>
 
@@ -159,73 +175,74 @@
 
 <p>Sample Output</p>
 
-<p><code>0 17 16 26</code></p>
+<p><code>0 17 16 26 </code></p>
 
 <p>Kruskal最小生成树。思路是首先各个点各自所属一个集合，然后按顺序排列权值，从最小的边开始，如果这条边连接的两个点不在一个集合，就取并，直至遍历了所有边。其中采用了并查集的方式，确定点是否在一个集合中。Kruskal算法同的Prim基本思想都是贪心，只不过Kruskal从边开始，Prim从点开始。对于本题，最开始一直是Rumtime Error，很郁闷，之后仔细看了下题，发现所给数据中可能有重复给两个点之间的权值，所以开的数组n有点小了，只有55，导致在运行时越界了，最后发现后将n数组大小改为10000然后AC了。代码如下：</p>
-<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#include &lt;stdio.h&gt;</span>
-<span class="cp">#include &lt;stdlib.h&gt;</span>
-<span class="cp">#include &lt;string.h&gt;</span>
 
-<span class="c1">// Note: 题目中一对点可能有多组数据，所以数组尽量开大一些！！Runtime Error的原因。</span>
-<span class="kt">int</span> <span class="n">p</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">res</span><span class="p">;</span>
-<span class="kt">int</span> <span class="n">father</span><span class="p">[</span><span class="mi">10000</span><span class="p">];</span>
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="lineno"> 1</span> <span class="cp">#include &lt;stdio.h&gt;</span>
+<span class="lineno"> 2</span> <span class="cp">#include &lt;stdlib.h&gt;</span>
+<span class="lineno"> 3</span> <span class="cp">#include &lt;string.h&gt;</span>
+<span class="lineno"> 4</span> 
+<span class="lineno"> 5</span> <span class="c1">// Note: 题目中一对点可能有多组数据，所以数组尽量开大一些！！Runtime Error的原因。</span>
+<span class="lineno"> 6</span> <span class="kt">int</span> <span class="n">p</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">res</span><span class="p">;</span>
+<span class="lineno"> 7</span> <span class="kt">int</span> <span class="n">father</span><span class="p">[</span><span class="mi">10000</span><span class="p">];</span>
+<span class="lineno"> 8</span> 
+<span class="lineno"> 9</span> <span class="k">typedef</span> <span class="k">struct</span> <span class="n">node</span> <span class="p">{</span>
+<span class="lineno">10</span> <span class="err">    </span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">w</span><span class="p">;</span>
+<span class="lineno">11</span> <span class="p">}</span> <span class="n">Node</span><span class="p">;</span>
+<span class="lineno">12</span> 
+<span class="lineno">13</span> <span class="n">Node</span> <span class="n">n</span><span class="p">[</span><span class="mi">10000</span><span class="p">];</span>
+<span class="lineno">14</span> 
+<span class="lineno">15</span> <span class="kt">int</span> <span class="nf">getF</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">)</span>
+<span class="lineno">16</span> <span class="p">{</span>
+<span class="lineno">17</span> <span class="err">    </span><span class="k">if</span> <span class="p">(</span><span class="n">father</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">==</span> <span class="n">v</span><span class="p">)</span> <span class="k">return</span> <span class="n">v</span><span class="p">;</span>
+<span class="lineno">18</span> <span class="err">    </span><span class="k">else</span>
+<span class="lineno">19</span> <span class="err">    </span><span class="p">{</span>
+<span class="lineno">20</span> <span class="err">        </span><span class="n">father</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">getF</span><span class="p">(</span><span class="n">father</span><span class="p">[</span><span class="n">v</span><span class="p">]);</span>
+<span class="lineno">21</span> <span class="err">        </span><span class="k">return</span> <span class="n">father</span><span class="p">[</span><span class="n">v</span><span class="p">];</span>
+<span class="lineno">22</span> <span class="err">    </span><span class="p">}</span>
+<span class="lineno">23</span> <span class="p">}</span>
+<span class="lineno">24</span> 
+<span class="lineno">25</span> <span class="kt">int</span> <span class="nf">Union</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span>
+<span class="lineno">26</span> <span class="p">{</span>
+<span class="lineno">27</span> <span class="err">    </span><span class="kt">int</span> <span class="n">fa</span> <span class="o">=</span> <span class="n">getF</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+<span class="lineno">28</span> <span class="err">    </span><span class="kt">int</span> <span class="n">fb</span> <span class="o">=</span> <span class="n">getF</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>
+<span class="lineno">29</span> <span class="err">    </span><span class="k">if</span> <span class="p">(</span><span class="n">fa</span> <span class="o">!=</span> <span class="n">fb</span><span class="p">)</span>
+<span class="lineno">30</span> <span class="err">    </span><span class="p">{</span>
+<span class="lineno">31</span> <span class="err">        </span><span class="n">father</span><span class="p">[</span><span class="n">fa</span><span class="p">]</span> <span class="o">=</span> <span class="n">fb</span><span class="p">;</span>
+<span class="lineno">32</span> <span class="err">        </span><span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+<span class="lineno">33</span> <span class="err">    </span><span class="p">}</span>
+<span class="lineno">34</span> <span class="err">    </span><span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="lineno">35</span> <span class="p">}</span>
+<span class="lineno">36</span> 
+<span class="lineno">37</span> <span class="kt">int</span> <span class="nf">compare</span><span class="p">(</span><span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="n">b</span><span class="p">)</span>
+<span class="lineno">38</span> <span class="p">{</span>
+<span class="lineno">39</span> <span class="err">    </span><span class="n">Node</span> <span class="n">arg1</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="n">Node</span> <span class="o">*</span><span class="p">)(</span><span class="n">a</span><span class="p">);</span>
+<span class="lineno">40</span> <span class="err">    </span><span class="n">Node</span> <span class="n">arg2</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="n">Node</span> <span class="o">*</span><span class="p">)(</span><span class="n">b</span><span class="p">);</span>
+<span class="lineno">41</span> <span class="err">    </span><span class="k">if</span> <span class="p">(</span><span class="n">arg1</span><span class="p">.</span><span class="n">w</span> <span class="o">&gt;</span> <span class="n">arg2</span><span class="p">.</span><span class="n">w</span><span class="p">)</span> <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+<span class="lineno">42</span> <span class="err">    </span><span class="k">if</span> <span class="p">(</span><span class="n">arg1</span><span class="p">.</span><span class="n">w</span> <span class="o">&lt;</span> <span class="n">arg2</span><span class="p">.</span><span class="n">w</span><span class="p">)</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="lineno">43</span> <span class="err">    </span><span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="lineno">44</span> <span class="p">}</span>
+<span class="lineno">45</span> 
+<span class="lineno">46</span> <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
+<span class="lineno">47</span> <span class="p">{</span>
+<span class="lineno">48</span> <span class="err">    </span><span class="k">while</span> <span class="p">(</span><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">p</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno">49</span> <span class="err">        </span><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">r</span><span class="p">);</span>
+<span class="lineno">50</span> <span class="err">        </span><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">r</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="lineno">51</span> <span class="err">        </span><span class="p">{</span>
+<span class="lineno">52</span> <span class="err">            </span><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d%d%d&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">a</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">b</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">w</span><span class="p">);</span>
+<span class="lineno">53</span> <span class="err">            </span><span class="n">father</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+<span class="lineno">54</span> <span class="err">        </span><span class="p">}</span>
+<span class="lineno">55</span> <span class="err">        </span><span class="n">res</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="lineno">56</span> <span class="err">        </span><span class="n">qsort</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Node</span><span class="p">),</span> <span class="n">compare</span><span class="p">);</span> <span class="c1">// 权值递增</span>
+<span class="lineno">57</span> <span class="err">        </span><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">r</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="lineno">58</span> <span class="err">            </span><span class="k">if</span> <span class="p">(</span><span class="n">Union</span><span class="p">(</span><span class="n">n</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">a</span><span class="p">,</span> <span class="n">n</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">b</span><span class="p">))</span> <span class="c1">// 若a、b不在一个集合，连接</span>
+<span class="lineno">59</span> <span class="err">                </span><span class="n">res</span> <span class="o">+=</span> <span class="n">n</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">w</span><span class="p">;</span>
+<span class="lineno">60</span> <span class="err">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">res</span><span class="p">);</span>
+<span class="lineno">61</span> <span class="err">    </span><span class="p">}</span>
+<span class="lineno">62</span> <span class="err">    </span><span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="lineno">63</span> <span class="p">}</span></code></pre></div>
 
-<span class="k">typedef</span> <span class="k">struct</span> <span class="n">node</span> <span class="p">{</span>
-<span class="err">    </span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">w</span><span class="p">;</span>
-<span class="p">}</span> <span class="n">Node</span><span class="p">;</span>
-
-<span class="n">Node</span> <span class="n">n</span><span class="p">[</span><span class="mi">10000</span><span class="p">];</span>
-
-<span class="kt">int</span> <span class="nf">getF</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">)</span>
-<span class="p">{</span>
-<span class="err">    </span><span class="k">if</span> <span class="p">(</span><span class="n">father</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">==</span> <span class="n">v</span><span class="p">)</span> <span class="k">return</span> <span class="n">v</span><span class="p">;</span>
-<span class="err">    </span><span class="k">else</span>
-<span class="err">    </span><span class="p">{</span>
-<span class="err">        </span><span class="n">father</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">getF</span><span class="p">(</span><span class="n">father</span><span class="p">[</span><span class="n">v</span><span class="p">]);</span>
-<span class="err">        </span><span class="k">return</span> <span class="n">father</span><span class="p">[</span><span class="n">v</span><span class="p">];</span>
-<span class="err">    </span><span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kt">int</span> <span class="nf">Union</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span>
-<span class="p">{</span>
-<span class="err">    </span><span class="kt">int</span> <span class="n">fa</span> <span class="o">=</span> <span class="n">getF</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
-<span class="err">    </span><span class="kt">int</span> <span class="n">fb</span> <span class="o">=</span> <span class="n">getF</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>
-<span class="err">    </span><span class="k">if</span> <span class="p">(</span><span class="n">fa</span> <span class="o">!=</span> <span class="n">fb</span><span class="p">)</span>
-<span class="err">    </span><span class="p">{</span>
-<span class="err">        </span><span class="n">father</span><span class="p">[</span><span class="n">fa</span><span class="p">]</span> <span class="o">=</span> <span class="n">fb</span><span class="p">;</span>
-<span class="err">        </span><span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
-<span class="err">    </span><span class="p">}</span>
-<span class="err">    </span><span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kt">int</span> <span class="nf">compare</span><span class="p">(</span><span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="n">b</span><span class="p">)</span>
-<span class="p">{</span>
-<span class="err">    </span><span class="n">Node</span> <span class="n">arg1</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="n">Node</span> <span class="o">*</span><span class="p">)(</span><span class="n">a</span><span class="p">);</span>
-<span class="err">    </span><span class="n">Node</span> <span class="n">arg2</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="n">Node</span> <span class="o">*</span><span class="p">)(</span><span class="n">b</span><span class="p">);</span>
-<span class="err">    </span><span class="k">if</span> <span class="p">(</span><span class="n">arg1</span><span class="p">.</span><span class="n">w</span> <span class="o">&gt;</span> <span class="n">arg2</span><span class="p">.</span><span class="n">w</span><span class="p">)</span> <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
-<span class="err">    </span><span class="k">if</span> <span class="p">(</span><span class="n">arg1</span><span class="p">.</span><span class="n">w</span> <span class="o">&lt;</span> <span class="n">arg2</span><span class="p">.</span><span class="n">w</span><span class="p">)</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-<span class="err">    </span><span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
-<span class="p">{</span>
-<span class="err">    </span><span class="k">while</span> <span class="p">(</span><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">p</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span>
-<span class="err">        </span><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">r</span><span class="p">);</span>
-<span class="err">        </span><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">r</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-<span class="err">        </span><span class="p">{</span>
-<span class="err">            </span><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d%d%d&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">a</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">b</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">w</span><span class="p">);</span>
-<span class="err">            </span><span class="n">father</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
-<span class="err">        </span><span class="p">}</span>
-<span class="err">        </span><span class="n">res</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="err">        </span><span class="n">qsort</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Node</span><span class="p">),</span> <span class="n">compare</span><span class="p">);</span> <span class="c1">// 权值递增</span>
-<span class="err">        </span><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">r</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-<span class="err">            </span><span class="k">if</span> <span class="p">(</span><span class="n">Union</span><span class="p">(</span><span class="n">n</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">a</span><span class="p">,</span> <span class="n">n</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">b</span><span class="p">))</span> <span class="c1">// 若a、b不在一个集合，连接</span>
-<span class="err">                </span><span class="n">res</span> <span class="o">+=</span> <span class="n">n</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">w</span><span class="p">;</span>
-<span class="err">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">res</span><span class="p">);</span>
-<span class="err">    </span><span class="p">}</span>
-<span class="err">    </span><span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
 </article>
 
 
@@ -255,7 +272,7 @@
     </div>
   
     <div class="post ml2">
-      <a href="/development/2014/11/14/leetcode-candy-2/" class="post-link">
+      <a href="/development/2014/11/14/leetcode-candy/" class="post-link">
         <h4 class="post-title">[LeetCode] Candy</h4>
         <p class="post-summary">分糖果问题，每个小孩有一个分数，要求对任意一个小孩，如果他的分数比相邻的小孩高，那么他必须分到比相邻小孩要多的糖果。并且每个小孩只要分到一个。</p>
       </a>

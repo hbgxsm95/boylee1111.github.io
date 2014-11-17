@@ -24,7 +24,7 @@ published: true
 
 代码如下：
 
-```c++
+{% highlight c++ linenos %}
 class Solution {
 public:
     int singleNumber(int A[], int n) {
@@ -35,7 +35,7 @@ public:
         return result;
     }
 };
-```
+{% endhighlight %}
 
 
 
@@ -46,7 +46,7 @@ public:
 
 先是没优化的代码，分情况一步步来：
 
-```c++
+{% highlight c++ linenos %}
 /**
  * Definition for binary tree
  * struct TreeNode {
@@ -74,13 +74,13 @@ public:
         }
     }
 };
-```
+{% endhighlight %}
 
 实际上递归过程第一步就是判断根节点是否为NULL，所以前三种if情况实际是可以合为一种情况的。
 
 优化后代码如下：
 
-```c++
+{% highlight c++ linenos %}
 class Solution {
 public:
     int maxDepth(TreeNode *root) {
@@ -89,11 +89,11 @@ public:
             maxDepth(root->left) : maxDepth(root->right));
     }
 };
-```
+{% endhighlight %}
 
 这样实际有一个问题就是递归的时候如果编译器没有优化return部分的语句，每次递归过程都会被调用两次。所以最终改为如下代码：
 
-```c++
+{% highlight c++ linenos %}
 class Solution {
 public:
     int maxDepth(TreeNode *root) {
@@ -103,7 +103,7 @@ public:
         return 1 + (leftDepth > rightDepth ? leftDepth : rightDepth);
     }
 };
-```
+{% endhighlight %}
 
 
 leetcode先从最简单的两道题开始练练手。

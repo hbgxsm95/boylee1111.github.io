@@ -20,7 +20,7 @@ published: true
 
 因为运气比较好，想到之前在哪里看到有一个"龟兔算法"，思路是两个指针同时从头指针出发，一个每次走一步，一个每次走两步，如果走得快先走到底则没有环，如果两个指针相遇说明存在环。顺着这个思路尝试果然AC了。进一步了解之后才知道这个算法是Floyd发明的，想想看人家研究了10年出来的结果现在我们就可以直接使用也是蛮有趣的。
 
-```c++
+{% highlight c++ linenos %}
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -44,7 +44,7 @@ public:
         return false;
     }
 };
-```
+{% endhighlight %}
 
 扩展一下，如果有环想要知道环的长度，也很简单，让两个指针再跑一圈回来即可知道环有多大。
 
@@ -54,7 +54,7 @@ public:
 
 删除一个有序链表的重复元素。建一个指针从头开始，如果当前值和下一个节点值相等，则当前节点next指针指向后两个节点；如果不同，简单移动指针即可。代码如下：
 
-```c++
+{% highlight c++ linenos %}
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -76,4 +76,4 @@ public:
         return head;
     }
 };
-```
+{% endhighlight %}

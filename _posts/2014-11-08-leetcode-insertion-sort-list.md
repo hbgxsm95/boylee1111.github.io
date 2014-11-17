@@ -21,7 +21,7 @@ published: true
 
 思路如下：dummyHead用于纪录排序后的链表，left表示剩余还未操作的元素。每次从left里面取出第一个节点插入到现有的已经有序的dummyHead节点中，直至left为空。代码如下：
 
-```c++
+{% highlight c++ linenos %}
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -51,4 +51,4 @@ public:
         return dummyHead.next;
     }
 };
-```
+{% endhighlight %}

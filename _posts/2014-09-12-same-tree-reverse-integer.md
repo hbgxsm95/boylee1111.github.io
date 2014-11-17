@@ -18,7 +18,7 @@ published: true
 
 难度不大，递归，一个树相等的条件是结点同为空或结点值相同且左树右树相等。
 
-```c++
+{% highlight c++ linenos %}
 /**
  * Definition for binary tree
  * struct TreeNode {
@@ -37,7 +37,7 @@ public:
             return p->val == q->val && isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
     }
 };
-```
+{% endhighlight %}
 
 
 
@@ -46,7 +46,7 @@ public:
 
 之前做过，也没什么难度。无非从最后一位取，取出来每次扩大十倍。
 
-```c++
+{% highlight c++ linenos %}
 class Solution {
 public:
     int reverse(int x) {
@@ -59,7 +59,7 @@ public:
         return result;
     }
 };
-```
+{% endhighlight %}
 
 同时原题还提了几个issue
 

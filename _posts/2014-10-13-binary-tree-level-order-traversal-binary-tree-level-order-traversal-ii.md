@@ -16,7 +16,7 @@ published: true
 
 对于二叉树层序便利比较熟悉的就是BFS的方法了，用队列实现，实现时候遇到了一个问题是，如何判断这个结点是那一层的，想到一种方法是用两个队列，一个当前层，另一个是下一层。为了省空间每次都交换了一次两个队列，说实话每次交换这个步骤不是很喜欢，之后再修改一下。代码如下：
 
-```c++
+{% highlight c++ linenos %}
 /**
  * Definition for binary tree
  * struct TreeNode {
@@ -53,7 +53,7 @@ public:
         return res;
     }
 };
-```
+{% endhighlight %}
 
 
 
@@ -63,7 +63,7 @@ public:
 
 和上一个问题唯一区别是变成逆序结果，其实可以直接用上一个答案最后reverse一下数组就行，当然是很没有必要的。算法思路和上一个一样，用队列一层一层便利，只不过采用的递归的方法，每次递归之后在加入到结果vector中，这样就保证是逆序的了。代码如下：
 
-```c++
+{% highlight c++ linenos %}
 /**
  * Definition for binary tree
  * struct TreeNode {
@@ -103,6 +103,6 @@ public:
         res.push_back(vec);
     }
 };
-```
+{% endhighlight %}
 
 实际把`generateLevel(nextQueue, res);`和`res.push_back(vec);`交换一下就是一题的递归答案。

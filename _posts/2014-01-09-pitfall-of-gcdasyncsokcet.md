@@ -18,7 +18,7 @@ I use CocoaAsyncSocket, a 3rd lib that encapsulates the `CFNetwork` in iOS, to
 
 According to the documentation, the class that has achieved the `GCDAsyncSocketDelegate` is mandatory. Then I use singleton to decouple the view controller and command sender like this:
 
-```objective-c
+{% highlight objective-c linenos %}
 #import <Foundation/Foundation.h>
 #import "GCDAsyncSocket.h"
 
@@ -29,9 +29,9 @@ According to the documentation, the class that has achieved the `GCDAsyncSocket
 - (void)writeDataTest;
 
 @end
-```
+{% endhighlight %}
 
-```objective-c
+{% highlight objective-c linenos %}
 #import "CommandSender.h"
 
 #define LOCAL_IP_ADDRESS @"127.0.0.1"
@@ -97,13 +97,13 @@ According to the documentation, the class that has achieved the `GCDAsyncSocket
 {
     NSLog(@"Writing data successfully, Tag = %ld", tag);
 }
-```
+{% endhighlight %}
 
 I test it in `AppDelegate` like this:
 
-```objective-c
+{% highlight objective-c linenos %}
 [[CommandSender sharedSender] writeDataTest];
-```
+{% endhighlight %}
 
 There is no any logging messages neither failed nor succeed. Then I try to invoke the test function in view controller, problem solved. The singleton is out of work because the <span class="lang:objc decode:true  crayon-inline">AppDelegate</span> was released early, causing the socket to be released early as well. This should be the basic knowledge of GCD, but still need to be taken into account.
 

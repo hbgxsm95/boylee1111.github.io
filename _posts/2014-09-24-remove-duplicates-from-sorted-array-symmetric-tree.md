@@ -21,7 +21,7 @@ published: true
 对于剩余情况，索引i遍历数组，j用来表示循环过程中数组的长度，则有A[i]和A[j]不相等时，将A[i]给A[j]，否则继续遍历，这样就保证了A[0-j]这个数组是有序不重复的，即一个循环不变量。最终的数组就是没有重复元素的，数组即有j+1个元素。代码如下：
 
 
-```c++
+{% highlight c++ linenos %}
 class Solution {
 public:
     int removeDuplicates(int A[], int n) {
@@ -33,7 +33,7 @@ public:
         return j + 1;
     }
 };
-```
+{% endhighlight %}
 
 
 
@@ -46,7 +46,7 @@ public:
 - 两个结点一空一非空：假
 - 两个结点都非空：值相等，并且左结点的左树和右结点的右树对称，左结点的右树和右结点的左树对称。
 
-```c++
+{% highlight c++ linenos %}
 /**
  * Definition for binary tree
  * struct TreeNode {
@@ -69,11 +69,11 @@ public:
         else return left->val == right->val && isValueSame(left->left, right->right) && isValueSame(left->right, right->left);
     }
 };
-```
+{% endhighlight %}
 
 还有一种迭代的方法，[xuanaux](https://oj.leetcode.com/discuss/user/xuanaux)，不过他本人用的是栈，我改成了队列。代码如下：
 
-```c++
+{% highlight c++ linenos %}
 /**
  * Definition for binary tree
  * struct TreeNode {
@@ -109,4 +109,4 @@ public:
        return true;
     }
 };
-```
+{% endhighlight %}

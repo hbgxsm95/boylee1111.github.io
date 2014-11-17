@@ -19,6 +19,22 @@
     
       <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: { inlineMath: [['$','$'], ['\\(','\\)'], ['[latex]','[/latex]']] },
+            menuSettings: {
+                zoom: "Double-Click",
+                zscale: "200%"
+            },
+            showProcessingMessages: false,
+            showMathMenu: false,
+            showMathMenuMSIE: false,
+            messageStyle: "none"
+        });
+    </script>
+    <script type="text/javascript"
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
 
     <!-- Open Graph -->
     <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
@@ -89,89 +105,98 @@
   <h1>XPath Query Returns No Result Using <code>GDataXML</code></h1>
   <span class="post-meta">Mar 15, 2014</span><br>
   
-  <span class="post-meta small">3 minute read</span>
+  <span class="post-meta small">4 minute read</span>
 </div>
 
 <article class="post-content">
-  <p>Recently I&#39;m on a project covered SOAP, knows as &quot;Simple Object Access Protocol&quot;. SOAP is a simple, light protocol specification based on XML to exchange structured information in the implement of WebService. More information about SOAP is <a href="http://en.wikipedia.org/wiki/SOAP">Here</a>.</p>
+  <p>Recently I’m on a project covered SOAP, knows as “Simple Object Access Protocol”. SOAP is a simple, light protocol specification based on XML to exchange structured information in the implement of WebService. More information about SOAP is <a href="http://en.wikipedia.org/wiki/SOAP">Here</a>.</p>
 
 <p>I used <code>GDataXML-HTML</code>, a 3rd-lib of Obejective-C, to parse the XML data because of its simplicity and high efficiency. By the way, Choose a proper XML Parser is important, here is an article related this discussion:</p>
 
 <p><strong><a href="http://www.raywenderlich.com/553/xml-tutorial-for-ios-how-to-choose-the-best-xml-parser-for-your-iphone-project">XML Tutorial for iOS: How To Choose The Best XML Parser for Your iPhone Project</a></strong></p>
 
 <p>The XML to be parsed is like this:</p>
-<div class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
-<span class="nt">&lt;RequestResponse</span> <span class="na">xmlns=</span><span class="s">&quot;http://url/&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;Header</span> <span class="na">attribute=</span><span class="s">“xxx”</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;DomesticFlightRoute&gt;</span>
-        <span class="nt">&lt;RecordCount&gt;</span>112<span class="nt">&lt;/RecordCount&gt;</span>
-        <span class="nt">&lt;FlightsList&gt;</span>
-            <span class="nt">&lt;DomesticFlightData&gt;</span>
-                <span class="nt">&lt;DepartCityCode&gt;</span>*<span class="nt">&lt;/DepartCityCode&gt;</span>
-                <span class="nt">&lt;ArriveCityCode&gt;</span>*<span class="nt">&lt;/ArriveCityCode&gt;</span>
-                ……
-            <span class="nt">&lt;/DomesticFlightData&gt;</span>
-            <span class="nt">&lt;DomesticFlightData&gt;</span>
-                ……
-            <span class="nt">&lt;/DomesticFlightData&gt;</span>
-    <span class="nt">&lt;/DomesticFlightRoute&gt;</span>
-<span class="nt">&lt;/RequestResponse&gt;</span>
-</code></pre></div>
+
+<div class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="lineno"> 1</span> <span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span class="lineno"> 2</span> <span class="nt">&lt;RequestResponse</span> <span class="na">xmlns=</span><span class="s">&quot;http://url/&quot;</span><span class="nt">&gt;</span>
+<span class="lineno"> 3</span> 	<span class="nt">&lt;Header</span> <span class="na">attribute=</span><span class="s">“xxx”</span> <span class="nt">/&gt;</span>
+<span class="lineno"> 4</span> 	<span class="nt">&lt;DomesticFlightRoute&gt;</span>
+<span class="lineno"> 5</span> 		<span class="nt">&lt;RecordCount&gt;</span>112<span class="nt">&lt;/RecordCount&gt;</span>
+<span class="lineno"> 6</span> 		<span class="nt">&lt;FlightsList&gt;</span>
+<span class="lineno"> 7</span> 			<span class="nt">&lt;DomesticFlightData&gt;</span>
+<span class="lineno"> 8</span> 				<span class="nt">&lt;DepartCityCode&gt;</span>*<span class="nt">&lt;/DepartCityCode&gt;</span>
+<span class="lineno"> 9</span> 				<span class="nt">&lt;ArriveCityCode&gt;</span>*<span class="nt">&lt;/ArriveCityCode&gt;</span>
+<span class="lineno">10</span> 				……
+<span class="lineno">11</span> 			<span class="nt">&lt;/DomesticFlightData&gt;</span>
+<span class="lineno">12</span> 			<span class="nt">&lt;DomesticFlightData&gt;</span>
+<span class="lineno">13</span> 				……
+<span class="lineno">14</span> 			<span class="nt">&lt;/DomesticFlightData&gt;</span>
+<span class="lineno">15</span> 	<span class="nt">&lt;/DomesticFlightRoute&gt;</span>
+<span class="lineno">16</span> <span class="nt">&lt;/RequestResponse&gt;</span></code></pre></div>
+
 <p>I wanted to retrieve all the <code>&lt;DomesticFlightData&gt;</code> elements in the response using XPath. The code I wrote like this:</p>
-<div class="highlight"><pre><code class="language-objective-c" data-lang="objective-c"><span class="c1">// doc is an instance of GDataXMLDocument or GDataElement</span>
-<span class="bp">NSArray</span> <span class="o">*</span><span class="n">domesticFlights</span> <span class="o">=</span> <span class="p">[</span><span class="n">doc</span> <span class="nl">nodesForXPath</span><span class="p">:</span><span class="s">@&quot;//FlightList/DomesticFlightData&quot;</span>
-                                        <span class="nl">error</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
-<span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;flights count = %ld&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">domesticFlights</span> <span class="n">count</span><span class="p">]);</span>
-</code></pre></div>
+
+<div class="highlight"><pre><code class="language-objective-c" data-lang="objective-c"><span class="lineno">1</span> <span class="c1">// doc is an instance of GDataXMLDocument or GDataElement</span>
+<span class="lineno">2</span> <span class="bp">NSArray</span> <span class="o">*</span><span class="n">domesticFlights</span> <span class="o">=</span> <span class="p">[</span><span class="n">doc</span> <span class="nl">nodesForXPath</span><span class="p">:</span><span class="s">@&quot;//FlightList/DomesticFlightData&quot;</span>
+<span class="lineno">3</span>                                         <span class="nl">error</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
+<span class="lineno">4</span> <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;flights count = %ld&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">domesticFlights</span> <span class="n">count</span><span class="p">]);</span></code></pre></div>
+
 <p>But the Log result is always 0. This made me confusing. Then I tried several different XPath queries to retrieve the data and still no luck. There were neither results nor errors.</p>
 
-<p>Later, I knew the correct XML namespace is mandatory while using the XPath query. According to the response, I knew the namespace is <code>http://url/</code>, but the GData didn&#39;t know it at all. So I digged into the source code of GDataXML, and found this variable:</p>
-<div class="highlight"><pre><code class="language-objective-c" data-lang="objective-c"><span class="n">_EXTERN</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">kGDataXMLXPathDefaultNamespacePrefix</span> <span class="nf">_INITIALIZE_AS</span><span class="p">(</span><span class="s">&quot;_def_ns&quot;</span><span class="p">);</span>
-</code></pre></div>
+<p>Later, I knew the correct XML namespace is mandatory while using the XPath query. According to the response, I knew the namespace is <code>http://url/</code>, but the GData didn’t know it at all. So I digged into the source code of GDataXML, and found this variable:</p>
+
+<div class="highlight"><pre><code class="language-objective-c" data-lang="objective-c"><span class="lineno">1</span> <span class="n">_EXTERN</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">kGDataXMLXPathDefaultNamespacePrefix</span> <span class="nf">_INITIALIZE_AS</span><span class="p">(</span><span class="s">&quot;_def_ns&quot;</span><span class="p">);</span></code></pre></div>
+
 <p>I presumed this namespace will be added to the nodes without an explicit namespace. By searching this variable I found this:</p>
-<div class="highlight"><pre><code class="language-objective-c" data-lang="objective-c"><span class="c1">// step through the namespace, if any, and register each with the</span>
-<span class="c1">// xpath context</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">nsNodePtr</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">for</span> <span class="p">(</span><span class="n">xmlNsPtr</span> <span class="n">nsPtr</span> <span class="o">=</span> <span class="n">nsNodePtr</span><span class="o">-&gt;</span><span class="n">ns</span><span class="p">;</span> <span class="n">nsPtr</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">;</span> <span class="n">nsPtr</span> <span class="o">=</span> <span class="n">nsPtr</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">)</span> <span class="p">{</span>
 
-        <span class="c1">// default namespace is nil in the tree, but there&#39;s no way to</span>
-        <span class="c1">// register a default namespace, so we&#39;ll register a fake one,</span>
-        <span class="c1">// _def_ns</span>
-        <span class="k">const</span> <span class="n">xmlChar</span><span class="o">*</span> <span class="n">prefix</span> <span class="o">=</span> <span class="n">nsPtr</span><span class="o">-&gt;</span><span class="n">prefix</span><span class="p">;</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">prefix</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">prefix</span> <span class="o">=</span> <span class="p">(</span><span class="n">xmlChar</span><span class="o">*</span><span class="p">)</span> <span class="n">kGDataXMLXPathDefaultNamespacePrefix</span><span class="p">;</span>
-        <span class="p">}</span>
+<div class="highlight"><pre><code class="language-objective-c" data-lang="objective-c"><span class="lineno"> 1</span> <span class="c1">// step through the namespace, if any, and register each with the</span>
+<span class="lineno"> 2</span> <span class="c1">// xpath context</span>
+<span class="lineno"> 3</span> <span class="k">if</span> <span class="p">(</span><span class="n">nsNodePtr</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno"> 4</span>     <span class="k">for</span> <span class="p">(</span><span class="n">xmlNsPtr</span> <span class="n">nsPtr</span> <span class="o">=</span> <span class="n">nsNodePtr</span><span class="o">-&gt;</span><span class="n">ns</span><span class="p">;</span> <span class="n">nsPtr</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">;</span> <span class="n">nsPtr</span> <span class="o">=</span> <span class="n">nsPtr</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno"> 5</span> 
+<span class="lineno"> 6</span>         <span class="c1">// default namespace is nil in the tree, but there&#39;s no way to</span>
+<span class="lineno"> 7</span>         <span class="c1">// register a default namespace, so we&#39;ll register a fake one,</span>
+<span class="lineno"> 8</span>         <span class="c1">// _def_ns</span>
+<span class="lineno"> 9</span>         <span class="k">const</span> <span class="n">xmlChar</span><span class="o">*</span> <span class="n">prefix</span> <span class="o">=</span> <span class="n">nsPtr</span><span class="o">-&gt;</span><span class="n">prefix</span><span class="p">;</span>
+<span class="lineno">10</span>         <span class="k">if</span> <span class="p">(</span><span class="n">prefix</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno">11</span>             <span class="n">prefix</span> <span class="o">=</span> <span class="p">(</span><span class="n">xmlChar</span><span class="o">*</span><span class="p">)</span> <span class="n">kGDataXMLXPathDefaultNamespacePrefix</span><span class="p">;</span>
+<span class="lineno">12</span>         <span class="p">}</span>
+<span class="lineno">13</span> 
+<span class="lineno">14</span>         <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">xmlXPathRegisterNs</span><span class="p">(</span><span class="n">xpathCtx</span><span class="p">,</span> <span class="n">prefix</span><span class="p">,</span> <span class="n">nsPtr</span><span class="o">-&gt;</span><span class="n">href</span><span class="p">);</span>
+<span class="lineno">15</span>         <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno">16</span> <span class="cp">#if DEBUG</span>
+<span class="lineno">17</span>             <span class="n">NSCAssert1</span><span class="p">(</span><span class="n">result</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="s">@&quot;GDataXMLNode XPath namespace %s issue&quot;</span><span class="p">,</span>
+<span class="lineno">18</span>                                        <span class="n">prefix</span><span class="p">);</span>
+<span class="lineno">19</span> <span class="cp">#endif</span>
+<span class="lineno">20</span>         <span class="p">}</span>
+<span class="lineno">21</span>     <span class="p">}</span>
+<span class="lineno">22</span> <span class="p">}</span></code></pre></div>
 
-        <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">xmlXPathRegisterNs</span><span class="p">(</span><span class="n">xpathCtx</span><span class="p">,</span> <span class="n">prefix</span><span class="p">,</span> <span class="n">nsPtr</span><span class="o">-&gt;</span><span class="n">href</span><span class="p">);</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-<span class="cp">#if DEBUG</span>
-            <span class="n">NSCAssert1</span><span class="p">(</span><span class="n">result</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="s">@&quot;GDataXMLNode XPath namespace %s issue&quot;</span><span class="p">,</span>
-                                       <span class="n">prefix</span><span class="p">);</span>
-<span class="cp">#endif</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
 <p>Then I tried to retrieve data like this:</p>
-<div class="highlight"><pre><code class="language-objective-c" data-lang="objective-c"><span class="bp">NSArray</span> <span class="o">*</span><span class="n">domesticFlights</span> <span class="o">=</span> <span class="p">[</span><span class="n">doc</span> <span class="nl">nodesForXPath</span><span class="p">:</span><span class="s">@&quot;//_def_ns:FlightList/_def_ns:DomesticFlightData&quot;</span>
-                                        <span class="nl">error</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
-<span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;flights count = %ld&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">domesticFlights</span> <span class="n">count</span><span class="p">]);</span>
-</code></pre></div>
+
+<div class="highlight"><pre><code class="language-objective-c" data-lang="objective-c"><span class="lineno">1</span> <span class="bp">NSArray</span> <span class="o">*</span><span class="n">domesticFlights</span> <span class="o">=</span> <span class="p">[</span><span class="n">doc</span> <span class="nl">nodesForXPath</span><span class="p">:</span><span class="s">@&quot;//_def_ns:FlightList/_def_ns:DomesticFlightData&quot;</span>
+<span class="lineno">2</span>                                         <span class="nl">error</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
+<span class="lineno">3</span> <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;flights count = %ld&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">domesticFlights</span> <span class="n">count</span><span class="p">]);</span></code></pre></div>
+
 <p><strong>Excellent. Problem solved.</strong></p>
 
 <p>In addition, here is the approach to how to register namespaces via <code>GDataXML-HTML</code> manually.</p>
 
 <p>First, scanning all the namespaces like this:</p>
-<div class="highlight"><pre><code class="language-objective-c" data-lang="objective-c"><span class="bp">NSArray</span> <span class="o">*</span><span class="n">namespaceURIs</span> <span class="o">=</span> <span class="p">[</span><span class="n">doc</span><span class="p">.</span><span class="n">rootElement</span> <span class="n">namespaces</span><span class="p">];</span>
-</code></pre></div>
+
+<div class="highlight"><pre><code class="language-objective-c" data-lang="objective-c"><span class="lineno">1</span> <span class="bp">NSArray</span> <span class="o">*</span><span class="n">namespaceURIs</span> <span class="o">=</span> <span class="p">[</span><span class="n">doc</span><span class="p">.</span><span class="n">rootElement</span> <span class="n">namespaces</span><span class="p">];</span></code></pre></div>
+
 <p>Then creating a <code>NSDictionary</code> to save all namespaces:</p>
-<div class="highlight"><pre><code class="language-objective-c" data-lang="objective-c"><span class="bp">NSDictionary</span> <span class="o">*</span><span class="n">namespaces</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSDictionary</span> <span class="nl">dictionaryWithObjectsAndKeys</span><span class="p">:</span><span class="s">@&quot;http://url/&quot;</span><span class="p">,</span> <span class="s">@&quot;ns1&quot;</span><span class="p">,</span> <span class="nb">nil</span><span class="p">];</span>
-</code></pre></div>
+
+<div class="highlight"><pre><code class="language-objective-c" data-lang="objective-c"><span class="lineno">1</span> <span class="bp">NSDictionary</span> <span class="o">*</span><span class="n">namespaces</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSDictionary</span> <span class="nl">dictionaryWithObjectsAndKeys</span><span class="p">:</span><span class="s">@&quot;http://url/&quot;</span><span class="p">,</span> <span class="s">@&quot;ns1&quot;</span><span class="p">,</span> <span class="nb">nil</span><span class="p">];</span></code></pre></div>
+
 <p>Finally, Retrieving all data:</p>
-<div class="highlight"><pre><code class="language-objective-c" data-lang="objective-c"><span class="bp">NSArray</span> <span class="o">*</span><span class="n">domesticFlights</span> <span class="o">=</span> <span class="p">[</span><span class="n">doc</span> <span class="nl">nodesForXPath</span><span class="p">:</span><span class="s">@&quot;//ns1:FlightList/ns1:DomesticFlightData&quot;</span>
-                                   <span class="nl">namespaces</span><span class="p">:</span><span class="n">namespaces</span>
-                                        <span class="nl">error</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
-</code></pre></div>
+
+<div class="highlight"><pre><code class="language-objective-c" data-lang="objective-c"><span class="lineno">1</span> <span class="bp">NSArray</span> <span class="o">*</span><span class="n">domesticFlights</span> <span class="o">=</span> <span class="p">[</span><span class="n">doc</span> <span class="nl">nodesForXPath</span><span class="p">:</span><span class="s">@&quot;//ns1:FlightList/ns1:DomesticFlightData&quot;</span>
+<span class="lineno">2</span>                                    <span class="nl">namespaces</span><span class="p">:</span><span class="n">namespaces</span>
+<span class="lineno">3</span>                                         <span class="nl">error</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span></code></pre></div>
+
+
 </article>
 
 
@@ -201,7 +226,7 @@
     </div>
   
     <div class="post ml2">
-      <a href="/development/2014/11/14/leetcode-candy-2/" class="post-link">
+      <a href="/development/2014/11/14/leetcode-candy/" class="post-link">
         <h4 class="post-title">[LeetCode] Candy</h4>
         <p class="post-summary">分糖果问题，每个小孩有一个分数，要求对任意一个小孩，如果他的分数比相邻的小孩高，那么他必须分到比相邻小孩要多的糖果。并且每个小孩只要分到一个。</p>
       </a>

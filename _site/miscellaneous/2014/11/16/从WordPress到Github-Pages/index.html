@@ -19,6 +19,22 @@
     
       <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: { inlineMath: [['$','$'], ['\\(','\\)'], ['[latex]','[/latex]']] },
+            menuSettings: {
+                zoom: "Double-Click",
+                zscale: "200%"
+            },
+            showProcessingMessages: false,
+            showMathMenu: false,
+            showMathMenuMSIE: false,
+            messageStyle: "none"
+        });
+    </script>
+    <script type="text/javascript"
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
 
     <!-- Open Graph -->
     <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
@@ -97,14 +113,12 @@
 <article class="post-content">
   <p>因为买的Web Hosting要到期了，这才想起来赶紧把Blog移过来。花了些时间研究了下Jekyll怎么搞，找个了看着舒服的主题，也没有多少改动。不过这个事拖来拖去也总算完成了。还有一些To-Do在这里纪录一下吧：</p>
 
-<ol>
-<li>Latex的支持，现在有些文章里面一堆[latex]标签，看着就乱；</li>
-<li>Categories页面也有些问题，每个Category第一个不知道为啥是空的；</li>
-<li>有些图片什么的都没了，之后补上；</li>
-<li>添加Tag到页面；</li>
-<li>用自己的域名；</li>
-<li>做一个简单的Index页面，比一上来就是blog感觉好一些吧。</li>
-</ol>
+<p><del>1. Latex的支持，现在有些文章里面一堆[latex]标签，看着就乱；</del><br />
+2. Categories页面也有些问题，每个Category第一个不知道为啥是空的；<br />
+3. 有些图片什么的都没了，之后补上；<br />
+3. 添加Tag到页面；<br />
+4. 用自己的域名；<br />
+5. 做一个简单的Index页面，比一上来就是blog感觉好一些吧。</p>
 
 <p>不知道又得等到啥时候能完成这些任务。</p>
 
@@ -130,7 +144,7 @@
     </div>
   
     <div class="post ml2">
-      <a href="/development/2014/11/14/leetcode-candy-2/" class="post-link">
+      <a href="/development/2014/11/14/leetcode-candy/" class="post-link">
         <h4 class="post-title">[LeetCode] Candy</h4>
         <p class="post-summary">分糖果问题，每个小孩有一个分数，要求对任意一个小孩，如果他的分数比相邻的小孩高，那么他必须分到比相邻小孩要多的糖果。并且每个小孩只要分到一个。</p>
       </a>

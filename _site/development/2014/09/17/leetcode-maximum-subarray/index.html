@@ -8,7 +8,7 @@
     <meta name="description" content="最大子数组问题，给一个数组，求一个子数组保证相比其他子数组这个子数组内所有数之和最大。">
     <meta name="author" content="John Otander">
     <meta name="keywords" content="development">
-    <link rel="canonical" href="http://boylee1111.github.io/development/2014/09/17/climbing-stairs-maximum-subarray/">
+    <link rel="canonical" href="http://boylee1111.github.io/development/2014/09/17/leetcode-maximum-subarray/">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/pixyll.css" type="text/css">
@@ -19,6 +19,22 @@
     
       <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: { inlineMath: [['$','$'], ['\\(','\\)'], ['[latex]','[/latex]']] },
+            menuSettings: {
+                zoom: "Double-Click",
+                zscale: "200%"
+            },
+            showProcessingMessages: false,
+            showMathMenu: false,
+            showMathMenuMSIE: false,
+            messageStyle: "none"
+        });
+    </script>
+    <script type="text/javascript"
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
 
     <!-- Open Graph -->
     <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
@@ -26,7 +42,7 @@
     <meta property="og:type" content="article">
     <meta property="og:title" content="[LeetCode] Maximum Subarray">
     <meta property="og:description" content="A simple, beautiful theme for Jekyll that emphasizes content rather than aesthetic fluff.">
-    <meta property="og:url" content="http://boylee1111.github.io/development/2014/09/17/climbing-stairs-maximum-subarray/">
+    <meta property="og:url" content="http://boylee1111.github.io/development/2014/09/17/leetcode-maximum-subarray/">
     <meta property="og:site_name" content="Boyi Li">
 </head>
 
@@ -95,7 +111,7 @@
 </div>
 
 <article class="post-content">
-  <h2><a href="https://oj.leetcode.com/problems/maximum-subarray/">Maximum Subarray</a></h2>
+  <h2 id="maximum-subarrayhttpsojleetcodecomproblemsmaximum-subarray"><a href="https://oj.leetcode.com/problems/maximum-subarray/">Maximum Subarray</a></h2>
 
 <p>最大子数组问题，给一个数组，求一个子数组保证相比其他子数组这个子数组内所有数之和最大。</p>
 
@@ -108,19 +124,20 @@
 <p>通过这个思路我们可以构建出数组B，那么数组B中最大的元素值就是我们所要求的A的子数组和最大值。</p>
 
 <p>实际解题中，我们没有必要给数组B分配空间，因为我们所要的值只不过是B数组中最大的那一项。代码如下：</p>
-<div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
-<span class="k">public</span><span class="o">:</span>
-    <span class="kt">int</span> <span class="n">maxSubArray</span><span class="p">(</span><span class="kt">int</span> <span class="n">A</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">lastMax</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
-        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="n">lastMax</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">lastMax</span> <span class="o">+</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
-            <span class="n">res</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">lastMax</span><span class="p">);</span>
-        <span class="p">}</span>
-        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">};</span>
-</code></pre></div>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="lineno"> 1</span> <span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="lineno"> 2</span> <span class="k">public</span><span class="o">:</span>
+<span class="lineno"> 3</span>     <span class="kt">int</span> <span class="n">maxSubArray</span><span class="p">(</span><span class="kt">int</span> <span class="n">A</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno"> 4</span>         <span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">lastMax</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="lineno"> 5</span>         <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+<span class="lineno"> 6</span>         <span class="p">{</span>
+<span class="lineno"> 7</span>             <span class="n">lastMax</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">lastMax</span> <span class="o">+</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="lineno"> 8</span>             <span class="n">res</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">lastMax</span><span class="p">);</span>
+<span class="lineno"> 9</span>         <span class="p">}</span>
+<span class="lineno">10</span>         <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+<span class="lineno">11</span>     <span class="p">}</span>
+<span class="lineno">12</span> <span class="p">};</span></code></pre></div>
+
 <p>题目还有扩展，尝试用分治的思路解决，回头再说。</p>
 
 </article>
@@ -152,7 +169,7 @@
     </div>
   
     <div class="post ml2">
-      <a href="/development/2014/11/14/leetcode-candy-2/" class="post-link">
+      <a href="/development/2014/11/14/leetcode-candy/" class="post-link">
         <h4 class="post-title">[LeetCode] Candy</h4>
         <p class="post-summary">分糖果问题，每个小孩有一个分数，要求对任意一个小孩，如果他的分数比相邻的小孩高，那么他必须分到比相邻小孩要多的糖果。并且每个小孩只要分到一个。</p>
       </a>

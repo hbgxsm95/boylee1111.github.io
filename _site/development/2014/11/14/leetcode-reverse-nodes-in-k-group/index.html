@@ -19,6 +19,22 @@
     
       <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: { inlineMath: [['$','$'], ['\\(','\\)'], ['[latex]','[/latex]']] },
+            menuSettings: {
+                zoom: "Double-Click",
+                zscale: "200%"
+            },
+            showProcessingMessages: false,
+            showMathMenu: false,
+            showMathMenuMSIE: false,
+            messageStyle: "none"
+        });
+    </script>
+    <script type="text/javascript"
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
 
     <!-- Open Graph -->
     <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
@@ -93,57 +109,58 @@
 </div>
 
 <article class="post-content">
-  <h2><a href="https://oj.leetcode.com/problems/reverse-nodes-in-k-group/">Reverse Nodes in k-Group</a></h2>
+  <h2 id="reverse-nodes-in-k-grouphttpsojleetcodecomproblemsreverse-nodes-in-k-group"><a href="https://oj.leetcode.com/problems/reverse-nodes-in-k-group/">Reverse Nodes in k-Group</a></h2>
 
-<p>Advance version of <a href="/development/2014/11/14/leetcode-reverse-linked-list-ii/">Reverse Linked List II</a>. Reverse the nodes group whose length is k. It&#39;s easier to implement by iterate every k range.</p>
+<p>Advance version of <a href="/development/2014/11/14/leetcode-reverse-linked-list-ii/">Reverse Linked List II</a>. Reverse the nodes group whose length is k. It’s easier to implement by iterate every k range.</p>
 
-<p>Specially, there is a demand that &quot;If the number of nodes is not a multiple of <em>k</em> then left-out nodes in the end should remain as it is.&quot; To solve this problem, a <strong>pilot</strong> pointer could be used to explore in advance. If the length is enough then reverse, or the whole list has already reversed.</p>
+<p>Specially, there is a demand that “If the number of nodes is not a multiple of <em>k</em> then left-out nodes in the end should remain as it is.” To solve this problem, a <strong>pilot</strong> pointer could be used to explore in advance. If the length is enough then reverse, or the whole list has already reversed.</p>
 
 <p>Summarily, there are three main steps to reverse list in k-group:</p>
 
 <ol>
-<li> <strong>pilot</strong> pointer check whether next group is valid;</li>
-<li> If next group is valid, <strong>slow</strong> pointer is set at the start point of group; Otherwise, end the algorithm;</li>
-<li> <strong>fast</strong> pointer will traverse the every node in group, and concatenate each node as next node of <strong>slow</strong>.</li>
+  <li><strong>pilot</strong> pointer check whether next group is valid;</li>
+  <li>If next group is valid, <strong>slow</strong> pointer is set at the start point of group; Otherwise, end the algorithm;</li>
+  <li><strong>fast</strong> pointer will traverse the every node in group, and concatenate each node as next node of <strong>slow</strong>.</li>
 </ol>
 
 <p>Here is the code, <strong>dummyHead</strong> pointer is used to eliminate the particularity of head node:</p>
-<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="cm">/**</span>
-<span class="cm"> * Definition for singly-linked list.</span>
-<span class="cm"> * struct ListNode {</span>
-<span class="cm"> *     int val;</span>
-<span class="cm"> *     ListNode *next;</span>
-<span class="cm"> *     ListNode(int x) : val(x), next(NULL) {}</span>
-<span class="cm"> * };</span>
-<span class="cm"> */</span>
-<span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
-<span class="k">public</span><span class="o">:</span>
-    <span class="n">ListNode</span> <span class="o">*</span><span class="n">reverseKGroup</span><span class="p">(</span><span class="n">ListNode</span> <span class="o">*</span><span class="n">head</span><span class="p">,</span> <span class="kt">int</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">ListNode</span> <span class="n">dummyHead</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-        <span class="n">dummyHead</span><span class="p">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
 
-        <span class="n">ListNode</span> <span class="o">*</span><span class="n">slow</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">dummyHead</span><span class="p">,</span> <span class="o">*</span><span class="n">fast</span><span class="p">,</span> <span class="o">*</span><span class="n">pilot</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
-        <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="kt">int</span> <span class="n">rest</span> <span class="o">=</span> <span class="n">k</span><span class="p">;</span>
-            <span class="k">while</span> <span class="p">(</span><span class="n">pilot</span> <span class="o">!=</span> <span class="nb">NULL</span> <span class="o">&amp;&amp;</span> <span class="n">rest</span><span class="o">--</span><span class="p">)</span> <span class="n">pilot</span> <span class="o">=</span> <span class="n">pilot</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">pilot</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="o">&amp;&amp;</span> <span class="n">rest</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="lineno"> 1</span> <span class="cm">/**</span>
+<span class="lineno"> 2</span> <span class="cm"> * Definition for singly-linked list.</span>
+<span class="lineno"> 3</span> <span class="cm"> * struct ListNode {</span>
+<span class="lineno"> 4</span> <span class="cm"> *     int val;</span>
+<span class="lineno"> 5</span> <span class="cm"> *     ListNode *next;</span>
+<span class="lineno"> 6</span> <span class="cm"> *     ListNode(int x) : val(x), next(NULL) {}</span>
+<span class="lineno"> 7</span> <span class="cm"> * };</span>
+<span class="lineno"> 8</span> <span class="cm"> */</span>
+<span class="lineno"> 9</span> <span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="lineno">10</span> <span class="k">public</span><span class="o">:</span>
+<span class="lineno">11</span>     <span class="n">ListNode</span> <span class="o">*</span><span class="n">reverseKGroup</span><span class="p">(</span><span class="n">ListNode</span> <span class="o">*</span><span class="n">head</span><span class="p">,</span> <span class="kt">int</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno">12</span>         <span class="n">ListNode</span> <span class="n">dummyHead</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="lineno">13</span>         <span class="n">dummyHead</span><span class="p">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+<span class="lineno">14</span>         
+<span class="lineno">15</span>         <span class="n">ListNode</span> <span class="o">*</span><span class="n">slow</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">dummyHead</span><span class="p">,</span> <span class="o">*</span><span class="n">fast</span><span class="p">,</span> <span class="o">*</span><span class="n">pilot</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+<span class="lineno">16</span>         <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span>
+<span class="lineno">17</span>         <span class="p">{</span>
+<span class="lineno">18</span>             <span class="kt">int</span> <span class="n">rest</span> <span class="o">=</span> <span class="n">k</span><span class="p">;</span>
+<span class="lineno">19</span>             <span class="k">while</span> <span class="p">(</span><span class="n">pilot</span> <span class="o">!=</span> <span class="nb">NULL</span> <span class="o">&amp;&amp;</span> <span class="n">rest</span><span class="o">--</span><span class="p">)</span> <span class="n">pilot</span> <span class="o">=</span> <span class="n">pilot</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+<span class="lineno">20</span>             <span class="k">if</span> <span class="p">(</span><span class="n">pilot</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="o">&amp;&amp;</span> <span class="n">rest</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
+<span class="lineno">21</span> 
+<span class="lineno">22</span>             <span class="n">fast</span> <span class="o">=</span> <span class="n">slow</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+<span class="lineno">23</span>             <span class="k">while</span> <span class="p">(</span><span class="n">fast</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">!=</span> <span class="n">pilot</span><span class="p">)</span>
+<span class="lineno">24</span>             <span class="p">{</span>
+<span class="lineno">25</span>                 <span class="n">ListNode</span> <span class="o">*</span><span class="n">tmp</span> <span class="o">=</span> <span class="n">fast</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+<span class="lineno">26</span>                 <span class="n">fast</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">fast</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+<span class="lineno">27</span>                 <span class="n">tmp</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">slow</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+<span class="lineno">28</span>                 <span class="n">slow</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">;</span>
+<span class="lineno">29</span>             <span class="p">}</span>
+<span class="lineno">30</span>             <span class="n">slow</span> <span class="o">=</span> <span class="n">fast</span><span class="p">;</span>
+<span class="lineno">31</span>         <span class="p">}</span>
+<span class="lineno">32</span> 
+<span class="lineno">33</span>         <span class="k">return</span> <span class="n">dummyHead</span><span class="p">.</span><span class="n">next</span><span class="p">;</span>
+<span class="lineno">34</span>     <span class="p">}</span>
+<span class="lineno">35</span> <span class="p">};</span></code></pre></div>
 
-            <span class="n">fast</span> <span class="o">=</span> <span class="n">slow</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
-            <span class="k">while</span> <span class="p">(</span><span class="n">fast</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">!=</span> <span class="n">pilot</span><span class="p">)</span>
-            <span class="p">{</span>
-                <span class="n">ListNode</span> <span class="o">*</span><span class="n">tmp</span> <span class="o">=</span> <span class="n">fast</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
-                <span class="n">fast</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">fast</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
-                <span class="n">tmp</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">slow</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
-                <span class="n">slow</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">;</span>
-            <span class="p">}</span>
-            <span class="n">slow</span> <span class="o">=</span> <span class="n">fast</span><span class="p">;</span>
-        <span class="p">}</span>
-
-        <span class="k">return</span> <span class="n">dummyHead</span><span class="p">.</span><span class="n">next</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">};</span>
-</code></pre></div>
 </article>
 
 
@@ -166,7 +183,7 @@
     </div>
   
     <div class="post ml2">
-      <a href="/development/2014/11/14/leetcode-candy-2/" class="post-link">
+      <a href="/development/2014/11/14/leetcode-candy/" class="post-link">
         <h4 class="post-title">[LeetCode] Candy</h4>
         <p class="post-summary">分糖果问题，每个小孩有一个分数，要求对任意一个小孩，如果他的分数比相邻的小孩高，那么他必须分到比相邻小孩要多的糖果。并且每个小孩只要分到一个。</p>
       </a>

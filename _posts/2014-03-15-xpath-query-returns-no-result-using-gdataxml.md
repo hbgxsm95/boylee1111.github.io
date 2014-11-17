@@ -23,7 +23,7 @@ I used `GDataXML-HTML`, a 3rd-lib of Obejective-C, to parse the XML data becaus
 
 The XML to be parsed is like this:
 
-```xml
+{% highlight xml linenos %}
 <?xml version="1.0" encoding="utf-8"?>
 <RequestResponse xmlns="http://url/">
 	<Header attribute=“xxx” />
@@ -40,28 +40,28 @@ The XML to be parsed is like this:
 			</DomesticFlightData>
 	</DomesticFlightRoute>
 </RequestResponse>
-```
+{% endhighlight %}
 
 I wanted to retrieve all the `<DomesticFlightData>` elements in the response using XPath. The code I wrote like this:
 
-```objective-c
+{% highlight objective-c linenos %}
 // doc is an instance of GDataXMLDocument or GDataElement
 NSArray *domesticFlights = [doc nodesForXPath:@"//FlightList/DomesticFlightData"
                                         error:nil];
 NSLog(@"flights count = %ld", [domesticFlights count]);
-```
+{% endhighlight %}
 
 But the Log result is always 0. This made me confusing. Then I tried several different XPath queries to retrieve the data and still no luck. There were neither results nor errors.
 
 Later, I knew the correct XML namespace is mandatory while using the XPath query. According to the response, I knew the namespace is `http://url/`, but the GData didn't know it at all. So I digged into the source code of GDataXML, and found this variable:
 
-```objective-c
+{% highlight objective-c linenos %}
 _EXTERN const char* kGDataXMLXPathDefaultNamespacePrefix _INITIALIZE_AS("_def_ns");
-```
+{% endhighlight %}
 
 I presumed this namespace will be added to the nodes without an explicit namespace. By searching this variable I found this:
 
-```objective-c
+{% highlight objective-c linenos %}
 // step through the namespace, if any, and register each with the
 // xpath context
 if (nsNodePtr != NULL) {
@@ -84,15 +84,15 @@ if (nsNodePtr != NULL) {
         }
     }
 }
-```
+{% endhighlight %}
 
 Then I tried to retrieve data like this:
 
-```objective-c
+{% highlight objective-c linenos %}
 NSArray *domesticFlights = [doc nodesForXPath:@"//_def_ns:FlightList/_def_ns:DomesticFlightData"
                                         error:nil];
 NSLog(@"flights count = %ld", [domesticFlights count]);
-```
+{% endhighlight %}
 
 **Excellent. Problem solved.**
 
@@ -101,20 +101,20 @@ In addition, here is the approach to how to register namespaces via `GDataXML-HT
 
 First, scanning all the namespaces like this:
 
-```objective-c
+{% highlight objective-c linenos %}
 NSArray *namespaceURIs = [doc.rootElement namespaces];
-```
+{% endhighlight %}
 
 Then creating a `NSDictionary` to save all namespaces:
 
-```objective-c
+{% highlight objective-c linenos %}
 NSDictionary *namespaces = [NSDictionary dictionaryWithObjectsAndKeys:@"http://url/", @"ns1", nil];
-```
+{% endhighlight %}
 
 Finally, Retrieving all data:
 
-```objective-c
+{% highlight objective-c linenos %}
 NSArray *domesticFlights = [doc nodesForXPath:@"//ns1:FlightList/ns1:DomesticFlightData"
                                    namespaces:namespaces
                                         error:nil];
-```
+{% endhighlight %}

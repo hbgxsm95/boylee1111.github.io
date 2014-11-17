@@ -25,7 +25,7 @@ published: true
 
 知道中枢点后直接将链表尾部和头部相连，并将中枢点设置为新的头节点即可。代码如下：
 
-```c++
+{% highlight c++ linenos %}
 class Solution {
 public:
     ListNode *rotateRight(ListNode *head, int k) {
@@ -56,4 +56,4 @@ public:
         return head;
     }
 };
-```
+{% endhighlight %}

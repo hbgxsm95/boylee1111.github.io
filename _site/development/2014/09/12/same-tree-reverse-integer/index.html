@@ -19,6 +19,22 @@
     
       <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: { inlineMath: [['$','$'], ['\\(','\\)'], ['[latex]','[/latex]']] },
+            menuSettings: {
+                zoom: "Double-Click",
+                zscale: "200%"
+            },
+            showProcessingMessages: false,
+            showMathMenu: false,
+            showMathMenuMSIE: false,
+            messageStyle: "none"
+        });
+    </script>
+    <script type="text/javascript"
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
 
     <!-- Open Graph -->
     <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
@@ -93,49 +109,51 @@
 </div>
 
 <article class="post-content">
-  <h2><a href="https://oj.leetcode.com/problems/same-tree/">Same Tree</a></h2>
+  <h2 id="same-treehttpsojleetcodecomproblemssame-tree"><a href="https://oj.leetcode.com/problems/same-tree/">Same Tree</a></h2>
 
 <p>难度不大，递归，一个树相等的条件是结点同为空或结点值相同且左树右树相等。</p>
-<div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="cm">/**</span>
-<span class="cm"> * Definition for binary tree</span>
-<span class="cm"> * struct TreeNode {</span>
-<span class="cm"> *     int val;</span>
-<span class="cm"> *     TreeNode *left;</span>
-<span class="cm"> *     TreeNode *right;</span>
-<span class="cm"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}</span>
-<span class="cm"> * };</span>
-<span class="cm"> */</span>
-<span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
-<span class="k">public</span><span class="o">:</span>
-    <span class="kt">bool</span> <span class="n">isSameTree</span><span class="p">(</span><span class="n">TreeNode</span> <span class="o">*</span><span class="n">p</span><span class="p">,</span> <span class="n">TreeNode</span> <span class="o">*</span><span class="n">q</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">p</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="o">||</span> <span class="n">q</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">p</span> <span class="o">==</span> <span class="n">q</span><span class="p">;</span>
-        <span class="k">else</span>
-            <span class="k">return</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">val</span> <span class="o">==</span> <span class="n">q</span><span class="o">-&gt;</span><span class="n">val</span> <span class="o">&amp;&amp;</span> <span class="n">isSameTree</span><span class="p">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">,</span> <span class="n">q</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">isSameTree</span><span class="p">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">,</span> <span class="n">q</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">};</span>
-</code></pre></div>
-<h2><a href="https://oj.leetcode.com/problems/reverse-integer/">Reverse Integer</a></h2>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="lineno"> 1</span> <span class="cm">/**</span>
+<span class="lineno"> 2</span> <span class="cm"> * Definition for binary tree</span>
+<span class="lineno"> 3</span> <span class="cm"> * struct TreeNode {</span>
+<span class="lineno"> 4</span> <span class="cm"> *     int val;</span>
+<span class="lineno"> 5</span> <span class="cm"> *     TreeNode *left;</span>
+<span class="lineno"> 6</span> <span class="cm"> *     TreeNode *right;</span>
+<span class="lineno"> 7</span> <span class="cm"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}</span>
+<span class="lineno"> 8</span> <span class="cm"> * };</span>
+<span class="lineno"> 9</span> <span class="cm"> */</span>
+<span class="lineno">10</span> <span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="lineno">11</span> <span class="k">public</span><span class="o">:</span>
+<span class="lineno">12</span>     <span class="kt">bool</span> <span class="n">isSameTree</span><span class="p">(</span><span class="n">TreeNode</span> <span class="o">*</span><span class="n">p</span><span class="p">,</span> <span class="n">TreeNode</span> <span class="o">*</span><span class="n">q</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno">13</span>         <span class="k">if</span> <span class="p">(</span><span class="n">p</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="o">||</span> <span class="n">q</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+<span class="lineno">14</span>             <span class="k">return</span> <span class="n">p</span> <span class="o">==</span> <span class="n">q</span><span class="p">;</span>
+<span class="lineno">15</span>         <span class="k">else</span>
+<span class="lineno">16</span>             <span class="k">return</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">val</span> <span class="o">==</span> <span class="n">q</span><span class="o">-&gt;</span><span class="n">val</span> <span class="o">&amp;&amp;</span> <span class="n">isSameTree</span><span class="p">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">,</span> <span class="n">q</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">isSameTree</span><span class="p">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">,</span> <span class="n">q</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">);</span>
+<span class="lineno">17</span>     <span class="p">}</span>
+<span class="lineno">18</span> <span class="p">};</span></code></pre></div>
+
+<h2 id="reverse-integerhttpsojleetcodecomproblemsreverse-integer"><a href="https://oj.leetcode.com/problems/reverse-integer/">Reverse Integer</a></h2>
 
 <p>之前做过，也没什么难度。无非从最后一位取，取出来每次扩大十倍。</p>
-<div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
-<span class="k">public</span><span class="o">:</span>
-    <span class="kt">int</span> <span class="n">reverse</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-        <span class="k">while</span> <span class="p">(</span><span class="n">x</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="n">result</span> <span class="o">=</span> <span class="n">result</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">+</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">10</span><span class="p">;</span>
-            <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">/</span> <span class="mi">10</span><span class="p">;</span>
-        <span class="p">}</span>
-        <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">};</span>
-</code></pre></div>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="lineno"> 1</span> <span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="lineno"> 2</span> <span class="k">public</span><span class="o">:</span>
+<span class="lineno"> 3</span>     <span class="kt">int</span> <span class="n">reverse</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno"> 4</span>         <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="lineno"> 5</span>         <span class="k">while</span> <span class="p">(</span><span class="n">x</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="lineno"> 6</span>         <span class="p">{</span>
+<span class="lineno"> 7</span>             <span class="n">result</span> <span class="o">=</span> <span class="n">result</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">+</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">10</span><span class="p">;</span>
+<span class="lineno"> 8</span>             <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">/</span> <span class="mi">10</span><span class="p">;</span>
+<span class="lineno"> 9</span>         <span class="p">}</span>
+<span class="lineno">10</span>         <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+<span class="lineno">11</span>     <span class="p">}</span>
+<span class="lineno">12</span> <span class="p">};</span></code></pre></div>
+
 <p>同时原题还提了几个issue</p>
 
 <ul>
-<li>如果整数的最后一位或几位为0，输出结果为什么？比如10，100这样的数。</li>
-<li>逆序之后的整数可能溢出，如何解决这种情况？</li>
+  <li>如果整数的最后一位或几位为0，输出结果为什么？比如10，100这样的数。</li>
+  <li>逆序之后的整数可能溢出，如何解决这种情况？</li>
 </ul>
 
 <p>首先最后几位是0的情况想到了，介于提供的函数输入值为int，返回值也为int。那不就是意思最终只看数本身是否逆序了，如果100逆序非要是001的话不就是字符串的形式了，就似乎不符合题目提供的函数样板了。</p>
@@ -171,7 +189,7 @@
     </div>
   
     <div class="post ml2">
-      <a href="/development/2014/11/14/leetcode-candy-2/" class="post-link">
+      <a href="/development/2014/11/14/leetcode-candy/" class="post-link">
         <h4 class="post-title">[LeetCode] Candy</h4>
         <p class="post-summary">分糖果问题，每个小孩有一个分数，要求对任意一个小孩，如果他的分数比相邻的小孩高，那么他必须分到比相邻小孩要多的糖果。并且每个小孩只要分到一个。</p>
       </a>

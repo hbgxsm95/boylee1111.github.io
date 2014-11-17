@@ -24,11 +24,11 @@ published: true
 
 那么就可以推出递归公式为:
 
-[latex]C_n = \sum\limits_{i=0}^{n-1} C_i * C_{n-i-1}[/latex]
+$$C_n = \sum\limits_{i=0}^{n-1} C_i * C_{n-i-1}$$
 
 代码如下：
 
-```c++
+{% highlight c++ linenos %}
 class Solution {
 public:
     int numTrees(int n) {
@@ -40,7 +40,7 @@ public:
         return A[n];
     }
 };
-```
+{% endhighlight %}
 
 
 
@@ -52,7 +52,7 @@ public:
 
 代码如下：
 
-```c++
+{% highlight c++ linenos %}
 /**
  * Definition for binary tree with next pointer.
  * struct TreeLinkNode {
@@ -81,4 +81,4 @@ public:
         }
     }
 };
-```
+{% endhighlight %}

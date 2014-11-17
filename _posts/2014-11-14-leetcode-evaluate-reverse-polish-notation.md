@@ -20,7 +20,7 @@ published: true
 
 计算逆波兰表达式，比直接计算表达式还要简单，少了转化为逆波兰表达式的过程，也不需要handle表达式异常的情况。直接用栈即可，是数字就入栈，是符号就取栈顶两数字进行计算，计算结果再次入栈。代码如下：
 
-```c++
+{% highlight c++ linenos %}
 class Solution {
 public:
     int evalRPN(vector<string> &tokens) {
@@ -57,4 +57,4 @@ public:
         return s[0] == '-' ? -res : res;
     }
 };
-```
+{% endhighlight %}

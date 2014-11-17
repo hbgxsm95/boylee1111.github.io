@@ -19,6 +19,22 @@
     
       <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: { inlineMath: [['$','$'], ['\\(','\\)'], ['[latex]','[/latex]']] },
+            menuSettings: {
+                zoom: "Double-Click",
+                zscale: "200%"
+            },
+            showProcessingMessages: false,
+            showMathMenu: false,
+            showMathMenuMSIE: false,
+            messageStyle: "none"
+        });
+    </script>
+    <script type="text/javascript"
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
 
     <!-- Open Graph -->
     <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
@@ -93,65 +109,67 @@
 </div>
 
 <article class="post-content">
-  <h2><a href="https://oj.leetcode.com/problems/unique-binary-search-trees/">Unique Binary Search Trees</a></h2>
+  <h2 id="unique-binary-search-treeshttpsojleetcodecomproblemsunique-binary-search-trees"><a href="https://oj.leetcode.com/problems/unique-binary-search-trees/">Unique Binary Search Trees</a></h2>
 
-<p>给定结点数量，计算可以生成几种二叉搜索树。动态规划，给定值为0或1时，都只有一种，即空树和只有一个跟结点的树。记为[latex]C<em>0 = 0[/latex], [latex]C</em>1 = 0[/latex]。</p>
+<p>给定结点数量，计算可以生成几种二叉搜索树。动态规划，给定值为0或1时，都只有一种，即空树和只有一个跟结点的树。记为[latex]C_0 = 0[/latex], [latex]C_1 = 0[/latex]。</p>
 
-<p>当给定两个结点的时候，如果1当做根结点，那么有一种情况，左侧空树，右侧为2；如果2当做根结点，同样左侧为1，右侧为空树。那么有[latex]C<em>2 = C</em>0 * C<em>1 + C</em>1 * C_0[/latex]。</p>
+<p>当给定两个结点的时候，如果1当做根结点，那么有一种情况，左侧空树，右侧为2；如果2当做根结点，同样左侧为1，右侧为空树。那么有[latex]C_2 = C_0 * C_1 + C_1 * C_0[/latex]。</p>
 
-<p>当给定三个结点的时候，如果1当做根结点，那么有只能是左侧空树，右侧为有以1和2两个结点的子搜索树；如果2当做根结点，只能左侧一个以1为结点的子搜索树，右侧一个以2为结点的子搜索树；如果3当根结点，那么只能左侧有以1和2为两个结点的子搜索树，右侧为空树。那么有[latex]C<em>3 = C</em>0 * C<em>2 + C</em>1 * C<em>1 + C</em>2 * C_0[/latex]。</p>
+<p>当给定三个结点的时候，如果1当做根结点，那么有只能是左侧空树，右侧为有以1和2两个结点的子搜索树；如果2当做根结点，只能左侧一个以1为结点的子搜索树，右侧一个以2为结点的子搜索树；如果3当根结点，那么只能左侧有以1和2为两个结点的子搜索树，右侧为空树。那么有[latex]C_3 = C_0 * C_2 + C_1 * C_1 + C_2 * C_0[/latex]。</p>
 
 <p>那么就可以推出递归公式为:</p>
 
-<p>[latex]C<em>n = \sum\limits</em>{i=0}^{n-1} C<em>i * C</em>{n-i-1}[/latex]</p>
+<script type="math/tex; mode=display">C_n = \sum\limits_{i=0}^{n-1} C_i * C_{n-i-1}</script>
 
 <p>代码如下：</p>
-<div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
-<span class="k">public</span><span class="o">:</span>
-    <span class="kt">int</span> <span class="n">numTrees</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">A</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-        <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
-            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">i</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>
-                <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">*</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">j</span><span class="p">];</span>
-        <span class="k">return</span> <span class="n">A</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
-    <span class="p">}</span>
-<span class="p">};</span>
-</code></pre></div>
-<h2><a href="https://oj.leetcode.com/problems/populating-next-right-pointers-in-each-node/">Populating Next Right Pointers in Each Node</a></h2>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="lineno"> 1</span> <span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="lineno"> 2</span> <span class="k">public</span><span class="o">:</span>
+<span class="lineno"> 3</span>     <span class="kt">int</span> <span class="n">numTrees</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno"> 4</span>         <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">A</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="lineno"> 5</span>         <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="lineno"> 6</span>         <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+<span class="lineno"> 7</span>             <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">i</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>
+<span class="lineno"> 8</span>                 <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">*</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">j</span><span class="p">];</span>
+<span class="lineno"> 9</span>         <span class="k">return</span> <span class="n">A</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
+<span class="lineno">10</span>     <span class="p">}</span>
+<span class="lineno">11</span> <span class="p">};</span></code></pre></div>
+
+<h2 id="populating-next-right-pointers-in-each-nodehttpsojleetcodecomproblemspopulating-next-right-pointers-in-each-node"><a href="https://oj.leetcode.com/problems/populating-next-right-pointers-in-each-node/">Populating Next Right Pointers in Each Node</a></h2>
 
 <p>开一个pre结点，一个cur结点。pre结点代表连接某一层其上一层的头结点，cur则是从pre开始，从某一层左侧循环到右侧。连接逻辑即先连接左右子树，然后如果cur-next不为空，则连接右子树和下一个结点的做子树，如此循环。</p>
 
 <p>代码如下：</p>
-<div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="cm">/**</span>
-<span class="cm"> * Definition for binary tree with next pointer.</span>
-<span class="cm"> * struct TreeLinkNode {</span>
-<span class="cm"> *  int val;</span>
-<span class="cm"> *  TreeLinkNode *left, *right, *next;</span>
-<span class="cm"> *  TreeLinkNode(int x) : val(x), left(NULL), right(NULL), next(NULL) {}</span>
-<span class="cm"> * };</span>
-<span class="cm"> */</span>
-<span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
-<span class="k">public</span><span class="o">:</span>
-    <span class="kt">void</span> <span class="n">connect</span><span class="p">(</span><span class="n">TreeLinkNode</span> <span class="o">*</span><span class="n">root</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">root</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
-        <span class="n">TreeLinkNode</span> <span class="o">*</span><span class="n">pre</span> <span class="o">=</span> <span class="n">root</span><span class="p">,</span> <span class="o">*</span><span class="n">cur</span><span class="p">;</span>
 
-        <span class="k">while</span> <span class="p">(</span><span class="n">pre</span><span class="o">-&gt;</span><span class="n">left</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="n">cur</span> <span class="o">=</span> <span class="n">pre</span><span class="p">;</span>
-            <span class="k">while</span> <span class="p">(</span><span class="n">cur</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
-            <span class="p">{</span>
-                <span class="n">cur</span><span class="o">-&gt;</span><span class="n">left</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">cur</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">;</span>
-                <span class="k">if</span> <span class="p">(</span><span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
-                    <span class="n">cur</span><span class="o">-&gt;</span><span class="n">right</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">;</span>
-                <span class="n">cur</span> <span class="o">=</span> <span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
-            <span class="p">}</span>
-            <span class="n">pre</span> <span class="o">=</span> <span class="n">pre</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">};</span>
-</code></pre></div>
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="lineno"> 1</span> <span class="cm">/**</span>
+<span class="lineno"> 2</span> <span class="cm"> * Definition for binary tree with next pointer.</span>
+<span class="lineno"> 3</span> <span class="cm"> * struct TreeLinkNode {</span>
+<span class="lineno"> 4</span> <span class="cm"> *  int val;</span>
+<span class="lineno"> 5</span> <span class="cm"> *  TreeLinkNode *left, *right, *next;</span>
+<span class="lineno"> 6</span> <span class="cm"> *  TreeLinkNode(int x) : val(x), left(NULL), right(NULL), next(NULL) {}</span>
+<span class="lineno"> 7</span> <span class="cm"> * };</span>
+<span class="lineno"> 8</span> <span class="cm"> */</span>
+<span class="lineno"> 9</span> <span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="lineno">10</span> <span class="k">public</span><span class="o">:</span>
+<span class="lineno">11</span>     <span class="kt">void</span> <span class="n">connect</span><span class="p">(</span><span class="n">TreeLinkNode</span> <span class="o">*</span><span class="n">root</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno">12</span>         <span class="k">if</span> <span class="p">(</span><span class="n">root</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+<span class="lineno">13</span>         <span class="n">TreeLinkNode</span> <span class="o">*</span><span class="n">pre</span> <span class="o">=</span> <span class="n">root</span><span class="p">,</span> <span class="o">*</span><span class="n">cur</span><span class="p">;</span>
+<span class="lineno">14</span> 
+<span class="lineno">15</span>         <span class="k">while</span> <span class="p">(</span><span class="n">pre</span><span class="o">-&gt;</span><span class="n">left</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
+<span class="lineno">16</span>         <span class="p">{</span>
+<span class="lineno">17</span>             <span class="n">cur</span> <span class="o">=</span> <span class="n">pre</span><span class="p">;</span>
+<span class="lineno">18</span>             <span class="k">while</span> <span class="p">(</span><span class="n">cur</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
+<span class="lineno">19</span>             <span class="p">{</span>
+<span class="lineno">20</span>                 <span class="n">cur</span><span class="o">-&gt;</span><span class="n">left</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">cur</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">;</span>
+<span class="lineno">21</span>                 <span class="k">if</span> <span class="p">(</span><span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
+<span class="lineno">22</span>                     <span class="n">cur</span><span class="o">-&gt;</span><span class="n">right</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">;</span>
+<span class="lineno">23</span>                 <span class="n">cur</span> <span class="o">=</span> <span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+<span class="lineno">24</span>             <span class="p">}</span>
+<span class="lineno">25</span>             <span class="n">pre</span> <span class="o">=</span> <span class="n">pre</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">;</span>
+<span class="lineno">26</span>         <span class="p">}</span>
+<span class="lineno">27</span>     <span class="p">}</span>
+<span class="lineno">28</span> <span class="p">};</span></code></pre></div>
+
 </article>
 
 
@@ -181,7 +199,7 @@
     </div>
   
     <div class="post ml2">
-      <a href="/development/2014/11/14/leetcode-candy-2/" class="post-link">
+      <a href="/development/2014/11/14/leetcode-candy/" class="post-link">
         <h4 class="post-title">[LeetCode] Candy</h4>
         <p class="post-summary">分糖果问题，每个小孩有一个分数，要求对任意一个小孩，如果他的分数比相邻的小孩高，那么他必须分到比相邻小孩要多的糖果。并且每个小孩只要分到一个。</p>
       </a>

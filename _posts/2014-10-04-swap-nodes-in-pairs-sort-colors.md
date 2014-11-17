@@ -20,7 +20,7 @@ published: true
 
 实现过程可以先处理头结点特殊情况，也可以创建新的头结点消除原头结点的特殊情况，代码如下：
 
-```c++
+{% highlight c++ linenos %}
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -47,7 +47,7 @@ public:
         return start->next;
     }
 };
-```
+{% endhighlight %}
 
 
 
@@ -56,7 +56,7 @@ public:
 
 我也不知道怎么说，一上来就直接开两个int，分别计算红和白出现次数，然后再循环一次按出现次数赋值，直接就AC了。代码如下，if和switch这里是顺手用的：
 
-```c++
+{% highlight c++ linenos %}
 class Solution {
 public:
     void sortColors(int A[], int n) {
@@ -87,11 +87,11 @@ public:
         }
     }
 };
-```
+{% endhighlight %}
 
 还仔细琢磨为什么排序复杂度是[latex]O(n)[/latex]，比学过那么多排序都快，半天才意识到这个根本不是基于比较的排序。然后就进一步了解了一下计数排序，优化了一下代码，边计数边赋值。代码如下：
 
-```c++
+{% highlight c++ linenos %}
 class Solution {
 public:
     void sortColors(int A[], int n) {
@@ -110,4 +110,4 @@ public:
         }
     }
 };
-```
+{% endhighlight %}

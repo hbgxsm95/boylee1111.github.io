@@ -19,6 +19,22 @@
     
       <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: { inlineMath: [['$','$'], ['\\(','\\)'], ['[latex]','[/latex]']] },
+            menuSettings: {
+                zoom: "Double-Click",
+                zscale: "200%"
+            },
+            showProcessingMessages: false,
+            showMathMenu: false,
+            showMathMenuMSIE: false,
+            messageStyle: "none"
+        });
+    </script>
+    <script type="text/javascript"
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
 
     <!-- Open Graph -->
     <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
@@ -95,37 +111,43 @@
 <article class="post-content">
   <p>When I used <code>Func&lt;T&gt;</code> or <code>Expression&lt;Func&lt;T&gt;&gt;</code> as parameter of function, I found both are support <a href="http://msdn.microsoft.com/en-us/library/bb397687.aspx">lambda expression</a>, and most are literally the same. This made me think the difference between <code>Func&lt;T&gt;</code> and <code>Expression&lt;Func&lt;T&gt;&gt;</code>.</p>
 
-<h2>Func&lt;T&gt;</h2>
+<h2 id="funclttgt">Func&lt;T&gt;</h2>
 
-<p><a href="http://msdn.microsoft.com/en-us/library/bb534960.aspx">Here</a> is MSDN official document. According to the definition, Func<T> is actually a simplified version of delegate.</p>
-<div class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="k">public</span> <span class="k">delegate</span> <span class="n">TResult</span> <span class="n">Func</span><span class="p">&lt;</span><span class="k">out</span> <span class="n">TResult</span><span class="p">&gt;()</span>
-</code></pre></div>
+<p><a href="http://msdn.microsoft.com/en-us/library/bb534960.aspx">Here</a> is MSDN official document. According to the definition, Func<t> is actually a simplified version of delegate.</t></p>
+
+<div class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="lineno">1</span> <span class="k">public</span> <span class="k">delegate</span> <span class="n">TResult</span> <span class="n">Func</span><span class="p">&lt;</span><span class="k">out</span> <span class="n">TResult</span><span class="p">&gt;()</span></code></pre></div>
+
 <p><code>Func&lt;TResult&gt;</code>  assists developer to create delegate without explicit delegate declaration. The template T is the type of return value. In this way, the function can be assign to <code>Func&lt;TResult&gt;</code>  property and invoke directly. MS provides 17 delegate function, corresponding the count of parameters, the last template TResult is always type of return value.</p>
 
-<p>Similarly, MS also provides <code>Action&lt;T&gt;</code> as simplified version of delegate, the only difference is <code>Action&lt;T&gt;</code> doesn&#39;t support return value.</p>
+<p>Similarly, MS also provides <code>Action&lt;T&gt;</code> as simplified version of delegate, the only difference is <code>Action&lt;T&gt;</code> doesn’t support return value.</p>
 
-<h2>Expression&lt;Func&lt;T&gt;&gt;</h2>
+<h2 id="expressionltfunclttgtgt">Expression&lt;Func&lt;T&gt;&gt;</h2>
 
 <p><a href="http://msdn.microsoft.com/en-us/library/bb335710.aspx">Here</a> is MSDN official document. It accepts a delegate as template, generally is Func or Action. As MS describe, <code>Expression&lt;TDelegate&gt;</code> is a data structure in form of an expression tree, to represent a lambda expression.</p>
 
 <p>Conceptually, it is just a data structure with all the information of lambda expression, not a real anonymous function, cannot be execute immediately. In other words, Func or Action will generate IL while compiling, but Expression just generates a structure.</p>
 
 <p>There are two approaches to form a expression tree, one is through expression syntax itself, another is using API. Two ways below are the same.</p>
-<div class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="n">Expression</span><span class="p">&lt;</span><span class="n">Func</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;&gt;</span> <span class="n">expr</span><span class="p">;</span>
-<span class="n">expr</span> <span class="p">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="m">10</span><span class="p">;</span> <span class="c1">// lambda expression syntax</span>
-<span class="n">expr</span> <span class="p">=</span> <span class="n">Expression</span><span class="p">.</span><span class="n">Lambda</span><span class="p">&lt;</span><span class="n">Func</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;&gt;(</span><span class="n">Expression</span><span class="p">.</span><span class="n">Constant</span><span class="p">(</span><span class="m">10</span><span class="p">));</span> <span class="c1">// API</span>
-</code></pre></div>
+
+<div class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="lineno">1</span> <span class="n">Expression</span><span class="p">&lt;</span><span class="n">Func</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;&gt;</span> <span class="n">expr</span><span class="p">;</span>
+<span class="lineno">2</span> <span class="n">expr</span> <span class="p">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="m">10</span><span class="p">;</span> <span class="c1">// lambda expression syntax</span>
+<span class="lineno">3</span> <span class="n">expr</span> <span class="p">=</span> <span class="n">Expression</span><span class="p">.</span><span class="n">Lambda</span><span class="p">&lt;</span><span class="n">Func</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;&gt;(</span><span class="n">Expression</span><span class="p">.</span><span class="n">Constant</span><span class="p">(</span><span class="m">10</span><span class="p">));</span> <span class="c1">// API</span></code></pre></div>
+
 <p>And <code>Expression&lt;TDelegate&gt;</code> provides the <code>Compile()</code>  method. Through this, lambda expression can be compile at the runtime, the type of return value is the delegate after compiling. Then this function can be invoked manually.</p>
 
 <p>By the way, expression tree is also an interesting thing, and worth discussion.</p>
 
-<h2>Summary</h2>
+<h2 id="summary">Summary</h2>
 
 <p><code>Func&lt;TResult&gt;</code> and <code>Action&lt;T&gt;</code> is the another way to implement delegate, namely, like a function pointer. <code>Expression&lt;TDelegate&gt;</code> is a very interesting topic with many knowledge inside. Both bring many benefits for programming.</p>
 
 <ul>
-<li><p>One advantage of <code>Expression&lt;TDelegate&gt;</code> is that it contains many information of lambda expression. Through this, we can get some name as string format of property without &quot;magical string&quot;. <a href="http://blog.boylee.me/dev/wpf-interface-inotifypropertychanged/">Here</a> is an example. Nevertheless, this way will cost some performance of application.</p></li>
-<li><p>The most benefit thing of <code>Expression&lt;TDelegate&gt;</code> is applied in Entity Framework. <strong>IEnumerable works with Func and IQueryable works with Expression</strong>. What stores in IEnumerable is already localized, namely, store in memory. But IQueryable not, IQueryable take the feature of lambda expression, execute the code while localizing. So it will optimizes the lambda expression before compilation and execution. In this way, the database could get the efficient SQL operations.</p></li>
+  <li>
+    <p>One advantage of <code>Expression&lt;TDelegate&gt;</code> is that it contains many information of lambda expression. Through this, we can get some name as string format of property without “magical string”. <a href="http://blog.boylee.me/dev/wpf-interface-inotifypropertychanged/">Here</a> is an example. Nevertheless, this way will cost some performance of application.</p>
+  </li>
+  <li>
+    <p>The most benefit thing of <code>Expression&lt;TDelegate&gt;</code> is applied in Entity Framework. <strong>IEnumerable works with Func and IQueryable works with Expression</strong>. What stores in IEnumerable is already localized, namely, store in memory. But IQueryable not, IQueryable take the feature of lambda expression, execute the code while localizing. So it will optimizes the lambda expression before compilation and execution. In this way, the database could get the efficient SQL operations.</p>
+  </li>
 </ul>
 
 </article>
@@ -157,7 +179,7 @@
     </div>
   
     <div class="post ml2">
-      <a href="/development/2014/11/14/leetcode-candy-2/" class="post-link">
+      <a href="/development/2014/11/14/leetcode-candy/" class="post-link">
         <h4 class="post-title">[LeetCode] Candy</h4>
         <p class="post-summary">分糖果问题，每个小孩有一个分数，要求对任意一个小孩，如果他的分数比相邻的小孩高，那么他必须分到比相邻小孩要多的糖果。并且每个小孩只要分到一个。</p>
       </a>
