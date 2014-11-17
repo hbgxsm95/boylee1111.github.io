@@ -7,15 +7,47 @@
     <atom:link href="http://boylee1111.github.io/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Custom MathJax to Solve LaTeX Legacy Tag Problem</title>
+        <description>&lt;p&gt;After I migrated my blog from WordPress to Github Page, I chooose &lt;a href=&quot;http://www.mathjax.org&quot;&gt;MathJax&lt;/a&gt; as rendering engine.&lt;/p&gt;
+
+&lt;p&gt;Engine itself works fine. But I meet a tiresome problem. My WordPress use tag &lt;strong&gt;[latex]&lt;/strong&gt; and &lt;strong&gt;[/latex]&lt;/strong&gt; to indicate the formula. Unfortunately, MathJax cannot render these legacies staff directly.&lt;/p&gt;
+
+&lt;p&gt;Then a lot of codes like this appeared in my posts: &lt;code&gt;[latex]C_2 = C_0 \times C_1 + C_1 \times C_0[/latex]&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Of course, a simple script with Regex can solve this problem easily. But MathJax provides many options to custom engine itself. So I choose to define &lt;strong&gt;[latex]&lt;/strong&gt; and &lt;strong&gt;[/latex]&lt;/strong&gt; as my custom tags. I add code below to the place that is in the front of loading the engine.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;text/x-mathjax-config&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;MathJax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Hub&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;tex2jax&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;inlineMath&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;$&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;$&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;[latex]&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;[/latex]&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;&amp;lt;!-- Loading MathJax Engine --&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Not only solved legacy tag problem, but extended tag “&lt;strong&gt;$&lt;/strong&gt;”. Now I can work with using original LaTeX inline formula tag “&lt;strong&gt;$&lt;/strong&gt;”. Now, everything looks so pretty: [latex]C_2 = C_0 \times C_1 + C_1 \times C_0[/latex].&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://docs.mathjax.org/en/latest/options/hub.html&quot;&gt;Here&lt;/a&gt; is more configuration options of MathJax.&lt;/p&gt;
+
+&lt;p&gt;In addition, I disabled the contexual menu, which was lauched by right click. Also, showing loading and rendering message to visitor looks not cool.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 17 Nov 2014 20:38:18 +0100</pubDate>
+        <link>http://boylee1111.github.io/development/2014/11/17/Custom-MathJax-to-Solve-LaTeX-Legacy-Tag-Problem/</link>
+        <guid isPermaLink="true">http://boylee1111.github.io/development/2014/11/17/Custom-MathJax-to-Solve-LaTeX-Legacy-Tag-Problem/</guid>
+      </item>
+    
+      <item>
         <title>从WordPress到Github Pages</title>
         <description>&lt;p&gt;因为买的Web Hosting要到期了，这才想起来赶紧把Blog移过来。花了些时间研究了下Jekyll怎么搞，找个了看着舒服的主题，也没有多少改动。不过这个事拖来拖去也总算完成了。还有一些To-Do在这里纪录一下吧：&lt;/p&gt;
 
 &lt;p&gt;&lt;del&gt;1. Latex的支持，现在有些文章里面一堆[latex]标签，看着就乱；&lt;/del&gt;&lt;br /&gt;
 2. Categories页面也有些问题，每个Category第一个不知道为啥是空的；&lt;br /&gt;
-3. 有些图片什么的都没了，之后补上；&lt;br /&gt;
-3. 添加Tag到页面；&lt;br /&gt;
-4. 用自己的域名；&lt;br /&gt;
-5. 做一个简单的Index页面，比一上来就是blog感觉好一些吧。&lt;/p&gt;
+3. 用自己的域名；&lt;br /&gt;
+4. 添加Tag到页面；&lt;br /&gt;
+5. 有些图片什么的都没了，之后补上；&lt;br /&gt;
+6. 做一个简单的Index页面，比一上来就是blog感觉好一些吧。&lt;/p&gt;
 
 &lt;p&gt;不知道又得等到啥时候能完成这些任务。&lt;/p&gt;
 </description>
@@ -151,7 +183,7 @@
 
 &lt;p&gt;&lt;strong&gt;第一次分糖&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;从左到右，只考虑每个小孩的左邻居，如果左邻居的分数比自己低，那么就在左邻居的基础上多拿到一个糖，反之就拿一个。第一次遍历后，就保证对每一个小孩，如果左邻居分数比自己低，那么自己就可以拿到比左邻居多一个糖。换言之对$i &amp;gt;= 2$，如果$R[i] &amp;gt; R[i - 1]$，那么$C[i] = C[i - 1] + 1$。&lt;/p&gt;
+&lt;p&gt;从左到右，只考虑每个小孩的左邻居，如果左邻居的分数比自己低，那么就在左邻居的基础上多拿到一个糖，反之就拿一个。第一次遍历后，就保证对每一个小孩，如果左邻居分数比自己低，那么自己就可以拿到比左邻居多一个糖。换言之对$i &amp;gt;= 2$，如果$R[i] &amp;gt; R[i -1]$，那么$C[i] = C[i - 1] + 1$。&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;第二次分糖&lt;/strong&gt;&lt;/p&gt;
 
@@ -533,49 +565,6 @@
         <pubDate>Thu, 13 Nov 2014 04:26:03 +0100</pubDate>
         <link>http://boylee1111.github.io/development/2014/11/13/spiral-matrix-spiral-matrix-ii/</link>
         <guid isPermaLink="true">http://boylee1111.github.io/development/2014/11/13/spiral-matrix-spiral-matrix-ii/</guid>
-      </item>
-    
-      <item>
-        <title>[LeetCode] Decode Ways</title>
-        <description>&lt;h2 id=&quot;decode-wayshttpsojleetcodecomproblemsdecode-ways&quot;&gt;&lt;a href=&quot;https://oj.leetcode.com/problems/decode-ways/&quot;&gt;Decode Ways&lt;/a&gt;&lt;/h2&gt;
-
-&lt;p&gt;Calculate all the ways of decoding. This problem is similar to &lt;a href=&quot;/development/2014/11/13/leetcode-climbing-stairs/&quot;&gt;Climbing Stairs&lt;/a&gt;. The difference is that the validity of decoding needs to be checked.&lt;/p&gt;
-
-&lt;p&gt;When the string is empty or the first digit is ‘0’, the number of decoding is 0. Otherwise, the first digit only has 1 way of decoding.&lt;/p&gt;
-
-&lt;p&gt;If length larger than 2, two steps for calculating the decode ways is mandatory:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;If current digit can be decoded individually, the ways of decoding is equal to the previous number of decoding ways. [latex]Nn = Nn + N_{n - 2}[/latex].&lt;/li&gt;
-  &lt;li&gt;If current digit combined with previous digit, the ultimated number of decoding is current value plus the number before previous one. $N_n = N_n + N_{n - 2}$&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;The array used to save all the decoding ways can be simplified. The space complixity can be reduced via only recording the previous two number of decoding way.&lt;/p&gt;
-
-&lt;p&gt;Here is the code:&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;lineno&quot;&gt; 1&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Solution&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 2&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 3&lt;/span&gt;     &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numDecodings&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 4&lt;/span&gt;         &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;sc&quot;&gt;&amp;#39;0&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 5&lt;/span&gt; 
-&lt;span class=&quot;lineno&quot;&gt; 6&lt;/span&gt;         &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pre1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pre2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cur&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 7&lt;/span&gt;         &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 8&lt;/span&gt;         &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 9&lt;/span&gt;             &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;sc&quot;&gt;&amp;#39;0&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cur&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pre1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;10&lt;/span&gt;             &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;sc&quot;&gt;&amp;#39;1&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;sc&quot;&gt;&amp;#39;2&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;sc&quot;&gt;&amp;#39;6&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cur&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pre2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;11&lt;/span&gt;             &lt;span class=&quot;n&quot;&gt;pre2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pre1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;12&lt;/span&gt;             &lt;span class=&quot;n&quot;&gt;pre1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cur&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;13&lt;/span&gt;             &lt;span class=&quot;n&quot;&gt;cur&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;14&lt;/span&gt;         &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;15&lt;/span&gt; 
-&lt;span class=&quot;lineno&quot;&gt;16&lt;/span&gt;         &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pre1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;17&lt;/span&gt;     &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;18&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-</description>
-        <pubDate>Thu, 13 Nov 2014 04:15:33 +0100</pubDate>
-        <link>http://boylee1111.github.io/development/2014/11/13/leetcode-decode-ways/</link>
-        <guid isPermaLink="true">http://boylee1111.github.io/development/2014/11/13/leetcode-decode-ways/</guid>
       </item>
     
   </channel>

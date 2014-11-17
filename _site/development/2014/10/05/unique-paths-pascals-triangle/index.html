@@ -133,7 +133,7 @@ C_{i-1, j} + C_{i, j - 1} & else.\end{array} \right.  %]]></script>
 <span class="lineno">10</span>     <span class="p">}</span>
 <span class="lineno">11</span> <span class="p">};</span></code></pre></div>
 
-<p><strong>方法二</strong>：换个角度思考，机器人只能向右向下，如果格子是[latex]m * n[/latex]的，那么要走到右下角需要的步数为[latex]m + n - 2[/latex]，但对于这[latex]m + n - 2[/latex]步，必须有[latex]m - 1[/latex]步是向下的或者[latex]n-1[/latex]步是向右的。那么就到达方法数就相当于从[latex]m + n - 2[/latex]步中选[latex]m - 1[/latex]步或[latex]n - 1[/latex]步。即得出公式[latex]{m + n - 2 \choose m - 1}[/latex]或[latex]{m + n - 2 \choose n - 1}[/latex]，时间复杂度为[latex]O(m)[/latex]或[latex]O(n)[/latex]，代码如下：</p>
+<p><strong>方法二</strong>：换个角度思考，机器人只能向右向下，如果格子是[latex]m \times n[/latex]的，那么要走到右下角需要的步数为[latex]m + n - 2[/latex]，但对于这[latex]m + n - 2[/latex]步，必须有[latex]m - 1[/latex]步是向下的或者[latex]n-1[/latex]步是向右的。那么就到达方法数就相当于从[latex]m + n - 2[/latex]步中选[latex]m - 1[/latex]步或[latex]n - 1[/latex]步。即得出公式[latex]{m + n - 2 \choose m - 1}[/latex]或[latex]{m + n - 2 \choose n - 1}[/latex]，时间复杂度为[latex]O(m)[/latex]或[latex]O(n)[/latex]，代码如下：</p>
 
 <div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="lineno"> 1</span> <span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
 <span class="lineno"> 2</span> <span class="k">public</span><span class="o">:</span>
@@ -210,6 +210,13 @@ C_{i-1, j} + C_{i, j - 1} & else.\end{array} \right.  %]]></script>
   <h3 class="related-post-title">Related Posts</h3>
   
     <div class="post ml2">
+      <a href="/development/2014/11/17/Custom-MathJax-to-Solve-LaTeX-Legacy-Tag-Problem/" class="post-link">
+        <h4 class="post-title">Custom MathJax to Solve LaTeX Legacy Tag Problem</h4>
+        <p class="post-summary">After I migrated my blog from WordPress to Github Page, I chooose MathJax as rendering engine.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
       <a href="/miscellaneous/2014/11/16/%E4%BB%8EWordPress%E5%88%B0Github-Pages/" class="post-link">
         <h4 class="post-title">从WordPress到Github Pages</h4>
         <p class="post-summary">因为买的Web Hosting要到期了，这才想起来赶紧把Blog移过来。花了些时间研究了下Jekyll怎么搞，找个了看着舒服的主题，也没有多少改动。</p>
@@ -269,13 +276,6 @@ C_{i-1, j} + C_{i, j - 1} & else.\end{array} \right.  %]]></script>
       <a href="/development/2014/11/13/spiral-matrix-spiral-matrix-ii/" class="post-link">
         <h4 class="post-title">[LeetCode] Spiral Matrix && Spiral Matrix II</h4>
         <p class="post-summary">旋转矩阵，完全是找数学规律。从外到内按照top->right->bottom->left的顺序一圈一圈的遍历即可。用l, r, t, b分别表示左右上下的索引，l和r所在的列以及t和b所在的行即当前遍历的那一圈。</p>
-      </a>
-    </div>
-  
-    <div class="post ml2">
-      <a href="/development/2014/11/13/leetcode-decode-ways/" class="post-link">
-        <h4 class="post-title">[LeetCode] Decode Ways</h4>
-        <p class="post-summary">Calculate all the ways of decoding. This problem is similar to ...</p>
       </a>
     </div>
   

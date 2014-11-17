@@ -38,7 +38,7 @@ public:
 };
 {% endhighlight %}
 
-**方法二**：换个角度思考，机器人只能向右向下，如果格子是[latex]m * n[/latex]的，那么要走到右下角需要的步数为[latex]m + n - 2[/latex]，但对于这[latex]m + n - 2[/latex]步，必须有[latex]m - 1[/latex]步是向下的或者[latex]n-1[/latex]步是向右的。那么就到达方法数就相当于从[latex]m + n - 2[/latex]步中选[latex]m - 1[/latex]步或[latex]n - 1[/latex]步。即得出公式[latex]{m + n - 2 \choose m - 1}[/latex]或[latex]{m + n - 2 \choose n - 1}[/latex]，时间复杂度为[latex]O(m)[/latex]或[latex]O(n)[/latex]，代码如下：
+**方法二**：换个角度思考，机器人只能向右向下，如果格子是[latex]m \times n[/latex]的，那么要走到右下角需要的步数为[latex]m + n - 2[/latex]，但对于这[latex]m + n - 2[/latex]步，必须有[latex]m - 1[/latex]步是向下的或者[latex]n-1[/latex]步是向右的。那么就到达方法数就相当于从[latex]m + n - 2[/latex]步中选[latex]m - 1[/latex]步或[latex]n - 1[/latex]步。即得出公式[latex]{m + n - 2 \choose m - 1}[/latex]或[latex]{m + n - 2 \choose n - 1}[/latex]，时间复杂度为[latex]O(m)[/latex]或[latex]O(n)[/latex]，代码如下：
 
 {% highlight c++ linenos %}
 class Solution {
