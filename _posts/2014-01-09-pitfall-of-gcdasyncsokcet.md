@@ -8,6 +8,9 @@ categories:
 tags:
 - GCD
 - iOS
+- 3rd-lib
+- socket
+- objective-c
 status: publish
 type: post
 published: true

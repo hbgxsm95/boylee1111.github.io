@@ -6,8 +6,10 @@ summary: "merge两个有序链表，思路如下，先通过判断l1和l2的头�
 categories:
 - Development
 tags:
-- c
 - LeetCode
+- linked list
+- array
+- two point
 status: publish
 type: post
 published: true

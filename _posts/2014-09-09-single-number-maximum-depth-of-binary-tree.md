@@ -6,7 +6,7 @@ summary: "起初看错题，以为是一个数组中有一个数重复出现两�
 categories:
 - Development
 tags:
-- c
+- bit
 - LeetCode
 status: publish
 type: post

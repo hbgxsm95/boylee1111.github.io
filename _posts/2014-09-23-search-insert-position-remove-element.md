@@ -6,8 +6,10 @@ summary: "不用考虑，直接二分搜索，时间复杂度O(logn)。"
 categories:
 - Development
 tags:
-- c
 - LeetCode
+- array
+- binary search
+- two point
 status: publish
 type: post
 published: true

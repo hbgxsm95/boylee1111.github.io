@@ -6,8 +6,11 @@ summary: "给定结点数量，计算可以生成几种二叉搜索树。动态�
 categories:
 - Development
 tags:
-- c
 - LeetCode
+- tree
+- DFS
+- DP
+- dynamic programming
 status: publish
 type: post
 published: true

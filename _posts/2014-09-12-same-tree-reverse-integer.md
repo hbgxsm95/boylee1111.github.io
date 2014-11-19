@@ -6,8 +6,10 @@ summary: "难度不大，递归，一个树相等的条件是结点同为空或�
 categories:
 - Development
 tags:
-- c
+- tree
+- DFS
 - LeetCode
+- math
 status: publish
 type: post
 published: true

@@ -4,6 +4,11 @@
 
 /* global */
 
+.bl-separator {
+	margin: 20px 0 20px 0;
+	border-bottom: thin solid #f3f3f3;
+}
+
 .bl-tag {
 	display: inline-block;
 	background-color: #4CAFD6;
@@ -11,7 +16,7 @@
 	font-size: 14px;
 	border-radius: 12px;
 	padding: 2px 10px 2px 10px;
-	margin: 0 0 20px 5px;
+	margin: 0 0 20px 0;
 }
 
 /* post */
@@ -45,4 +50,11 @@ a.header-link {
 
 h3:hover a {
 	opacity: 1;
-};
+}
+
+/* tag */
+
+.bl-tags-tags .bl-tag {
+	/*font-size: 14px;*/
+	margin: 0 0 5px 2px;
+}

@@ -7,6 +7,10 @@ categories:
 - Development
 tags:
 - LeetCode
+- DP
+- dynamic programming
+- array
+- greedy
 status: publish
 type: post
 published: true

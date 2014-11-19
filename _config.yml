@@ -1,13 +1,13 @@
 # Site settings
 title:       Boyi Li
-email:       boylee1111@gmail.com
+email:       It's My Fucking Email! ^_^
 author:      John Otander
 description: "A simple, beautiful theme for Jekyll that emphasizes content rather than aesthetic fluff."
 baseurl:     ""
 url:         "http://boylee1111.github.io"
 
 # Google analytics
-google_analytics:
+google_analytics: true
 
 # Optional features
 animated:           true

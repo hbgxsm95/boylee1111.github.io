@@ -6,10 +6,11 @@ summary: "The most valuable and fancy thing WPF is <strong>Data Binding</strong>
 categories:
 - Development
 tags:
-- c
+- c#
 - mvvm
 - wpf
 - xaml
+- .net
 status: publish
 type: post
 published: true

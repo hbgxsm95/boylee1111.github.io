@@ -8,6 +8,7 @@ categories:
 tags:
 - DP
 - dynamic programming
+- array
 - LeetCode
 status: publish
 type: post

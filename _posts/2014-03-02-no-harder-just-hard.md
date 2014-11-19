@@ -5,7 +5,8 @@ date: 2014-03-02 20:15:58.000000000 +01:00
 summary: "昨天睡得早，一直不知道云南的事情，今天大清早起来才看到，不得不承认让我心头一怔，瞬间毫无睡意。爬起来就感到心情不咋地，到校园里面乱逛。"
 categories:
 - Miscellaneous
-tags: []
+tags:
+- mis
 status: publish
 type: post
 published: true

@@ -1,0 +1,57 @@
+---
+layout: page
+title: Tags
+permalink: /tags/
+---
+
+<di>
+  <div class="bl-tags-tags">
+  {% assign tags_max = 0 %}
+  {% for tag in site.tags %}
+    {% if tag[1].size > tags_max %}
+      {% assign tags_max = tag[1].size %}
+    {% endif %}
+  {% endfor %}
+
+  {% for i in (1..tags_max) reversed %}
+    {% for tag in site.tags %}
+      {% if tag[1].size == i %}
+        <a href="{{ page.url }}#{{ tag[0] }}" class="bl-tag">{{ tag[0] }}<sup> {{ tag[1].size }}</sup></a>
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
+  </div>
+  <div class="bl-separator"></div>
+  <div class="bl-tags-posts">
+  {% for i in (1..tags_max) reversed %}
+    {% for tag in site.tags %}
+      {% if tag[1].size == i %}
+        <h3 id="{{ tag | first }}" class="tag_name">
+          {{ tag | first }}
+          <a href="#{{ page.title }}" class="header-link">
+            <i class="fa fa-chevron-up"></i>
+          </a>
+        </h3>
+        {% for posts in tag %}
+          {% for post in posts %}
+            {% if post.url %}
+              <li>
+                <a href="{{ post.url }}">{{ post.title }}</a> <small class="category_list_post_date">{{ post.date | date: "%b %-d, %Y" }}</small>
+              </li>
+            {% endif %}
+          {% endfor %}
+        {% endfor %}
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
+ <!--  {% for tag in site.tags %}
+  <ul>
+    {% for posts in tag %}
+      {% for post in posts %}
+        {% if post.url %}<li><a href="{{ post.url }}">{{ post.title }}</a> <small class="category_list_post_date">{{ post.date | date: "%b %-d, %Y" }}</small> </li>{% endif %}
+      {% endfor %}
+    {% endfor %}
+    </ul>
+    {% endfor %} -->
+  </div>
+</div>

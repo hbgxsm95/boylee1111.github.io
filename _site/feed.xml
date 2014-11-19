@@ -44,9 +44,9 @@
 
 &lt;ol&gt;
   &lt;li&gt;&lt;del&gt;Latex的支持，现在有些文章里面一堆[latex]标签，看着就乱；&lt;/del&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;del&gt;Categories页面也有些问题，每个Category第一个不知道为啥是空的；&lt;/del&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;del&gt;添加Category的页面；&lt;/del&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;del&gt;添加Tag的页面；&lt;/del&gt;&lt;/li&gt;
   &lt;li&gt;用自己的域名；&lt;/li&gt;
-  &lt;li&gt;添加Tag到页面；&lt;/li&gt;
   &lt;li&gt;有些图片什么的都没了，之后补上；&lt;/li&gt;
   &lt;li&gt;做一个简单的Index页面，比一上来就是blog感觉好一些吧。&lt;/li&gt;
 &lt;/ol&gt;

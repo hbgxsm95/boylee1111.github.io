@@ -9,7 +9,6 @@ tags:
 - backtracking
 - DP
 - dynamic programming
-- Gray Code
 - LeetCode
 status: publish
 type: post

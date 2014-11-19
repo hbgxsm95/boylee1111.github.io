@@ -9,12 +9,17 @@ layout: default
 
 <div class="post-header mb2">
   <h1>{{ page.title }}</h1>
-  <span class="post-meta">{{ page.date | date: "%b %-d, %Y" }}</span><br>
-  {% if page.update_date %}
-    <span class="post-meta">Updated: {{ page.update_date | date: "%b %-d, %Y" }}</span><br>
-  {% endif %}
-  <span class="post-meta small">{{ minutes }} minute read</span>
+  <div>
+    <span class="post-meta">{{ page.date | date: "%b %-d, %Y" }}</span><br>
+    {% if page.update_date %}
+      <span class="post-meta">Updated: {{ page.update_date | date: "%b %-d, %Y" }}</span>
+      <br>
+    {% endif %}
+    <span class="post-meta small">{{ minutes }} minute read</span>
+  </div>
 </div>
+
+<div class="bl-separator"></div>
 
 <article class="post-content">
   {{ content }}
@@ -26,7 +31,9 @@ layout: default
 
 <div class="bl-post-tags">
   {% for tag in page.tags %}
-    <small><span class="bl-tag">{{ tag }}</span></small>
+    <a href="{{ base.url }}/tags/#{{ tag }}">
+      <small><span class="bl-tag">{{ tag }}</span></small>
+    </a>
   {% endfor %}
 </div>
 

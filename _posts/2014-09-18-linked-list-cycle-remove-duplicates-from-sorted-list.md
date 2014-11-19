@@ -6,8 +6,9 @@ summary: "检查链表是否有环的题，最基本的思路比较简单，遍�
 categories:
 - Development
 tags:
-- c
 - LeetCode
+- two point
+- linked list
 status: publish
 type: post
 published: true

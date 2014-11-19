@@ -6,8 +6,11 @@ summary: "删除有序数组中多余元素，数组长度小于2时即特殊情
 categories:
 - Development
 tags:
-- c
 - LeetCode
+- array
+- two point
+- tree
+- DFS
 status: publish
 type: post
 published: true

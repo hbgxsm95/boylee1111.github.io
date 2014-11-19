@@ -6,8 +6,8 @@ summary: "When I used <code>Func&lt;T&gt;</code>&nbsp;or <code>Expression&lt;Fun
 categories:
 - Development
 tags:
-- c
-- LeetCode
+- c#
+- .Net
 status: publish
 type: post
 published: true

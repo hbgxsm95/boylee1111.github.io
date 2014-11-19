@@ -5,7 +5,11 @@ date: 2014-10-05 02:45:58.000000000 +02:00
 summary: "<strong>方法一</strong>：最先想到的DP思路。"
 categories:
 - Development
-tags: []
+tags:
+- array
+- DP
+- dynamic programming
+- math
 status: publish
 type: post
 published: true

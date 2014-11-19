@@ -5,7 +5,9 @@ date: 2014-10-13 00:25:34.000000000 +02:00
 summary: "对于二叉树层序便利比较熟悉的就是BFS的方法了，用队列实现，实现时候遇到了一个问题是，如何判断这个结点是那一层的，想到一种方法是用两个队列，一个当前层，另一个是下一层。"
 categories:
 - Development
-tags: []
+tags: 
+- LeetCode
+- BFS
 status: publish
 type: post
 published: true

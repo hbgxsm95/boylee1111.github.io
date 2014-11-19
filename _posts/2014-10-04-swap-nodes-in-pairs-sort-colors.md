@@ -5,7 +5,12 @@ date: 2014-10-04 02:12:26.000000000 +02:00
 summary: "交换相邻结点，用两个指针，交换逻辑如下图：..."
 categories:
 - Development
-tags: []
+tags: 
+- LeetCode
+- linked list
+- array
+- two point
+- sort
 status: publish
 type: post
 published: true
