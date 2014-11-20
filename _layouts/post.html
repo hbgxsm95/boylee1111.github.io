@@ -30,10 +30,21 @@ layout: default
 {% endif %}
 
 <div class="bl-post-tags">
-  {% for tag in page.tags %}
-    <a href="{{ base.url }}/tags/#{{ tag }}">
-      <small><span class="bl-tag">{{ tag }}</span></small>
-    </a>
+  {% capture tags %}
+    {% for tag in page.tags %}
+      {{ tag | downcase | replace:' ','*' }}
+    {% endfor %}
+  {% endcapture %}
+  {% assign sorted_post_tags = tags | split:' ' | sort %}
+  {% for sorted_tag in sorted_post_tags %}
+    {% for tag in page.tags %}
+      {% assign downcase_tag = tag | downcase | replace:' ','*' %}
+      {% if downcase_tag == sorted_tag %}
+        <a href="{{ site.baseurl }}/tags/#{{ tag }}" class="bl-tag">
+         {{ tag }}
+        </a>
+      {% endif %}
+      {% endfor %}
   {% endfor %}
 </div>
 
