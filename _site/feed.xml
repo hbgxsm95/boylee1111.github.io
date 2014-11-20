@@ -16,7 +16,7 @@
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;Of course, a simple script with Regex can solve this problem easily. But MathJax provides many options to custom engine itself. So I choose to define &lt;strong&gt;[latex]&lt;/strong&gt; and &lt;strong&gt;[/latex]&lt;/strong&gt; as my custom tags. I add code below to the place that is in the front of loading the engine.&lt;/p&gt;
+&lt;p&gt;Of course, a simple script with Regex can solve this problem easily. But MathJax provides many options to custom engine itself. So I choose to define &lt;strong&gt;[latex]&lt;/strong&gt; and &lt;strong&gt;[/latex]&lt;/strong&gt; as my custom tags. I add code below before loading the engine.&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;text/x-mathjax-config&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
     &lt;span class=&quot;nx&quot;&gt;MathJax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Hub&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
@@ -25,7 +25,7 @@
 &lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
 &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- Loading MathJax Engine --&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;Not only solved legacy tag problem, but extended tag “&lt;strong&gt;$&lt;/strong&gt;”. Now I can work with using original LaTeX inline formula tag “&lt;strong&gt;$&lt;/strong&gt;”. Now, everything looks so pretty: [latex]C_2 = C_0 \times C_1 + C_1 \times C_0[/latex].&lt;/p&gt;
+&lt;p&gt;Not only solved legacy tag problem, but extended tag “&lt;strong&gt;$&lt;/strong&gt;”. Now I can work with using original LaTeX inline formula tag “&lt;strong&gt;$&lt;/strong&gt;”. And everything looks so pretty: [latex]C_2 = C_0 \times C_1 + C_1 \times C_0[/latex].&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -565,8 +565,8 @@
 &lt;span class=&quot;lineno&quot;&gt;17&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 </description>
         <pubDate>Thu, 13 Nov 2014 04:26:03 +0100</pubDate>
-        <link>http://boylee1111.github.io/development/2014/11/13/spiral-matrix-spiral-matrix-ii/</link>
-        <guid isPermaLink="true">http://boylee1111.github.io/development/2014/11/13/spiral-matrix-spiral-matrix-ii/</guid>
+        <link>http://boylee1111.github.io/development/2014/11/13/leetcode-spiral-matrix-spiral-matrix-ii/</link>
+        <guid isPermaLink="true">http://boylee1111.github.io/development/2014/11/13/leetcode-spiral-matrix-spiral-matrix-ii/</guid>
       </item>
     
   </channel>
