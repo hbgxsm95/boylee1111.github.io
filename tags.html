@@ -16,7 +16,9 @@ permalink: /tags/
   {% for i in (1..tags_max) reversed %}
     {% for tag in site.tags %}
       {% if tag[1].size == i %}
-        <a href="{{ page.url }}#{{ tag[0] }}" class="bl-tag">{{ tag[0] }}<sup> {{ tag[1].size }}</sup></a>
+        <a href="{{ page.url }}#{{ tag[0] }}" class="bl-tag">
+          {{ tag[0] }}<sup> {{ tag[1].size }}</sup>
+        </a>
       {% endif %}
     {% endfor %}
   {% endfor %}

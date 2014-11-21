@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>[LeetCode] Sort Colors &#8211; Boyi Li</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="看到题之后，一上来就直接开两个int，分别计算红和白出现次数，然后再循环一次按出现次数赋值，直接就AC了。">
+    <meta name="author" content="John Otander">
+    <meta name="keywords" content="development">
+    <link rel="canonical" href="http://boylee1111.github.io/development/2014/10/04/leetcode-sort-colors/">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/pixyll.css" type="text/css">
+
+    <!-- Fonts -->
+    <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lato:900,300' rel='stylesheet' type='text/css'>
+    
+      <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    
+
+    <link rel="stylesheet" href="/css/boylee.css" type="text/css">
+
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: { inlineMath: [['$','$'], ['\\(','\\)'], ['[latex]','[/latex]']] },
+            menuSettings: {
+                zoom: "Double-Click",
+                zscale: "200%"
+            },
+            showProcessingMessages: false,
+            showMathMenu: false,
+            showMathMenuMSIE: false,
+            messageStyle: "none"
+        });
+    </script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript" src="/javascripts/main.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="[LeetCode] Sort Colors">
+    <meta property="og:description" content="A simple, beautiful theme for Jekyll that emphasizes content rather than aesthetic fluff.">
+    <meta property="og:url" content="http://boylee1111.github.io/development/2014/10/04/leetcode-sort-colors/">
+    <meta property="og:site_name" content="Boyi Li">
+</head>
+
+<body class="animated fade-in-down">
+  <div class="site-wrap">
+    <header class="site-header px2 px-responsive">
+  <div class="mt2 wrap">
+    <div class="measure">
+      <a href="http://boylee1111.github.io" class="site-title">Boyi Li</a>
+      <nav class="site-nav right">
+        <a href="/categories/">Categories</a>
+<a href="/tags/">Tags</a>
+<a href="/about/">About</a>
+
+      </nav>
+      <div class="clearfix"></div>
+      
+        <div class="social-icons">
+  <div class="left">
+    
+      <a class="fa fa-github" href="https://github.com/boylee1111"></a>
+    
+    <a class="fa fa-rss" href="/feed.xml"></a>
+    
+      <a class="fa fa-envelope mailTo" href="#It's My Fucking Email!^_^"></a>
+    
+    
+      <a class="fa fa-linkedin" href="https://www.linkedin.com/in/boylee"></a>
+    
+  </div>
+  <div class="right">
+    
+      <a class="fa fa-facebook-square", href="https://facebook.com/boylee1111"></a>
+    
+    
+      <a class="fa fa-twitter" href="https://twitter.com/boylee1111"></a>
+    
+    
+      <a class="fa fa-instagram" href="https://instagram.com/boylee1111"></a>
+    
+    
+    
+    
+    
+  </div>
+</div>
+<div class="clearfix"></div>
+
+      
+    </div>
+  </div>
+</header>
+
+
+    <div class="post p2 p-responsive wrap" role="main">
+      <div class="measure">
+        
+
+
+<div class="post-header mb2">
+  <h1>[LeetCode] Sort Colors</h1>
+  <div>
+    <span class="post-meta">Oct 4, 2014</span><br>
+    
+    <span class="post-meta small">2 minute read</span>
+  </div>
+</div>
+
+<div class="bl-separator"></div>
+
+<article class="post-content">
+  <h2 id="sort-colorshttpsojleetcodecomproblemssort-colors"><a href="https://oj.leetcode.com/problems/sort-colors/">Sort Colors</a></h2>
+
+<p>看到题之后，一上来就直接开两个int，分别计算红和白出现次数，然后再循环一次按出现次数赋值，直接就AC了。代码如下，if和switch这里是顺手用的：</p>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="lineno"> 1</span> <span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="lineno"> 2</span> <span class="k">public</span><span class="o">:</span>
+<span class="lineno"> 3</span>     <span class="kt">void</span> <span class="n">sortColors</span><span class="p">(</span><span class="kt">int</span> <span class="n">A</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno"> 4</span>         <span class="kt">int</span> <span class="n">r</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="lineno"> 5</span>         <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+<span class="lineno"> 6</span>         <span class="p">{</span>
+<span class="lineno"> 7</span>             <span class="k">switch</span> <span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="lineno"> 8</span>             <span class="p">{</span>
+<span class="lineno"> 9</span>                 <span class="k">case</span> <span class="mi">0</span><span class="o">:</span>
+<span class="lineno">10</span>                     <span class="n">r</span><span class="o">++</span><span class="p">;</span>
+<span class="lineno">11</span>                     <span class="k">break</span><span class="p">;</span>
+<span class="lineno">12</span>                 <span class="k">case</span> <span class="mi">1</span><span class="o">:</span>
+<span class="lineno">13</span>                     <span class="n">w</span><span class="o">++</span><span class="p">;</span>
+<span class="lineno">14</span>                     <span class="k">break</span><span class="p">;</span>
+<span class="lineno">15</span>                 <span class="k">default</span><span class="o">:</span>
+<span class="lineno">16</span>                     <span class="k">break</span><span class="p">;</span>
+<span class="lineno">17</span>             <span class="p">}</span>
+<span class="lineno">18</span>         <span class="p">}</span>
+<span class="lineno">19</span>         
+<span class="lineno">20</span>         <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+<span class="lineno">21</span>         <span class="p">{</span>
+<span class="lineno">22</span>             <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">r</span><span class="p">)</span>
+<span class="lineno">23</span>                 <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="lineno">24</span>             <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">r</span> <span class="o">+</span> <span class="n">w</span><span class="p">)</span>
+<span class="lineno">25</span>                 <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="lineno">26</span>             <span class="k">else</span> 
+<span class="lineno">27</span>                 <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="lineno">28</span>         <span class="p">}</span>
+<span class="lineno">29</span>     <span class="p">}</span>
+<span class="lineno">30</span> <span class="p">};</span></code></pre></div>
+
+<p>还仔细琢磨为什么排序复杂度是$O(n)$，比学过那么多排序都快，半天才意识到这个根本不是基于比较的排序。然后就进一步了解了一下计数排序，优化了一下代码，边计数边赋值。代码如下：</p>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="lineno"> 1</span> <span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="lineno"> 2</span> <span class="k">public</span><span class="o">:</span>
+<span class="lineno"> 3</span>     <span class="kt">void</span> <span class="n">sortColors</span><span class="p">(</span><span class="kt">int</span> <span class="n">A</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno"> 4</span>         <span class="kt">int</span> <span class="n">r</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="lineno"> 5</span>         <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+<span class="lineno"> 6</span>         <span class="p">{</span>
+<span class="lineno"> 7</span>             <span class="kt">int</span> <span class="n">t</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="lineno"> 8</span>             <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="lineno"> 9</span>             <span class="k">if</span> <span class="p">(</span><span class="n">t</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+<span class="lineno">10</span>             <span class="p">{</span>
+<span class="lineno">11</span>                 <span class="n">A</span><span class="p">[</span><span class="n">w</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="lineno">12</span>                 <span class="n">A</span><span class="p">[</span><span class="n">r</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="lineno">13</span>             <span class="p">}</span>
+<span class="lineno">14</span>             <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">t</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+<span class="lineno">15</span>             <span class="p">{</span>
+<span class="lineno">16</span>                 <span class="n">A</span><span class="p">[</span><span class="n">w</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="lineno">17</span>             <span class="p">}</span>
+<span class="lineno">18</span>         <span class="p">}</span>
+<span class="lineno">19</span>     <span class="p">}</span>
+<span class="lineno">20</span> <span class="p">};</span></code></pre></div>
+
+</article>
+
+
+
+<div class="bl-post-tags">
+  
+  
+  
+    
+      
+      
+        <a href="/tags/#LeetCode" class="bl-tag">
+         LeetCode
+        </a>
+      
+      
+      
+      
+      
+  
+    
+      
+      
+      
+      
+      
+        <a href="/tags/#linked list" class="bl-tag">
+         linked list
+        </a>
+      
+      
+  
+</div>
+
+<h3 class="comments-title">Comments</h3>
+<div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'boylee1111githubio'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+
+  <h3 class="related-post-title">Related Posts</h3>
+  
+    <div class="post ml2">
+      <a href="/development/2014/11/17/Custom-MathJax-to-Solve-LaTeX-Legacy-Tag-Problem/" class="post-link">
+        <h4 class="post-title">Custom MathJax to Solve LaTeX Legacy Tag Problem</h4>
+        <p class="post-summary">After I migrated my blog from WordPress to Github Page, I chooose MathJax as rendering engine.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/miscellaneous/2014/11/16/%E4%BB%8EWordPress%E5%88%B0Github-Pages/" class="post-link">
+        <h4 class="post-title">从WordPress到Github Pages</h4>
+        <p class="post-summary">因为买的Web Hosting要到期了，这才想起来赶紧把Blog移过来。花了些时间研究了下Jekyll怎么搞，找个了看着舒服的主题，也没有多少改动。</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/development/2014/11/14/leetcode-reverse-nodes-in-k-group/" class="post-link">
+        <h4 class="post-title">[LeetCode] Reverse Nodes in k-Group</h4>
+        <p class="post-summary">Advance version of Reverse Linked List II.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/development/2014/11/14/leetcode-reverse-linked-list-ii/" class="post-link">
+        <h4 class="post-title">[LeetCode] Reverse Linked List II</h4>
+        <p class="post-summary">Reverse a linked list in a range. There are two steps to achieve this goal ...</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/development/2014/11/14/leetcode-candy/" class="post-link">
+        <h4 class="post-title">[LeetCode] Candy</h4>
+        <p class="post-summary">分糖果问题，每个小孩有一个分数，要求对任意一个小孩，如果他的分数比相邻的小孩高，那么他必须分到比相邻小孩要多的糖果。并且每个小孩只要分到一个。</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/development/2014/11/14/leetcode-restore-ip-addresses/" class="post-link">
+        <h4 class="post-title">[LeetCode] Restore IP Addresses</h4>
+        <p class="post-summary">恢复字符串所有可能的IP地址，可以回溯或者直接字符串处理。</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/development/2014/11/14/leetcode-evaluate-reverse-polish-notation/" class="post-link">
+        <h4 class="post-title">[LeetCode] Evaluate Reverse Polish Notation</h4>
+        <p class="post-summary">计算逆波兰表达式，比直接计算表达式还要简单，少了转化为逆波兰表达式的过程，也不需要handle表达式异常的情况。</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/development/2014/11/13/leetcode-partition-list/" class="post-link">
+        <h4 class="post-title">[LeetCode] Partition List</h4>
+        <p class="post-summary">分割链表，将比指定值小的都移动到链表前部分，大的移动到后部分。</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/development/2014/11/13/leetcode-rotate-list/" class="post-link">
+        <h4 class="post-title">[LeetCode] Rotate List</h4>
+        <p class="post-summary">右移给定链表k个位置。首先要找到移动的中枢，即移动为为头节点的位置。</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/development/2014/11/13/leetcode-spiral-matrix-spiral-matrix-ii/" class="post-link">
+        <h4 class="post-title">[LeetCode] Spiral Matrix && Spiral Matrix II</h4>
+        <p class="post-summary">旋转矩阵，完全是找数学规律。从外到内按照top->right->bottom->left的顺序一圈一圈的遍历即可。用l, r, t, b分别表示左右上下的索引，l和r所在的列以及t和b所在的行即当前遍历的那一圈。</p>
+      </a>
+    </div>
+  
+
+        
+      </div>
+    </div>    
+  </div>
+  <footer class="footer">
+  <div class="p2 wrap">
+    <div class="measure mt1 center">
+      <small>
+        Thanks to <a href="http://johnotander.com" target="_blank">John Otander</a> (<a href="https://twitter.com/4lpine" target="_blank">@4lpine</a>) and <a href="http://jekyllrb.com" target="_blank">Jekyll</a>.
+      </small>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
+</body>
+</html>

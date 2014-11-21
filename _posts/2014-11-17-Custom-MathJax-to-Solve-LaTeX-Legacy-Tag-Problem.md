@@ -24,7 +24,7 @@ Then a lot of codes like this appeared in my posts: `[latex]C_2 = C_0 \times C_1
 
 <br/>
 
-Of course, a simple script with Regex can solve this problem easily. But MathJax provides many options to custom engine itself. So I choose to define **[latex]** and **[/latex]** as my custom tags. I add code below to the place that is in the front of loading the engine.
+Of course, a simple script with Regex can solve this problem easily. But MathJax provides many options to custom engine itself. So I choose to define **[latex]** and **[/latex]** as my custom tags. I add code below before loading the engine.
 
 {% highlight html %}
 <script type="text/x-mathjax-config">
@@ -35,7 +35,7 @@ Of course, a simple script with Regex can solve this problem easily. But MathJax
 <!-- Loading MathJax Engine -->
 {% endhighlight %}
 
-Not only solved legacy tag problem, but extended tag "**$**". Now I can work with using original LaTeX inline formula tag "**$**". Now, everything looks so pretty: [latex]C_2 = C_0 \times C_1 + C_1 \times C_0[/latex].
+Not only solved legacy tag problem, but extended tag "**$**". Now I can work with using original LaTeX inline formula tag "**$**". And everything looks so pretty: [latex]C_2 = C_0 \times C_1 + C_1 \times C_0[/latex].
 
 <br/>
 
