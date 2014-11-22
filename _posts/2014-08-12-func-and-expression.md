@@ -7,7 +7,7 @@ categories:
 - Development
 tags:
 - c#
-- .Net
+- .NET
 status: publish
 type: post
 published: true

@@ -10,7 +10,7 @@ tags:
 - mvvm
 - wpf
 - xaml
-- .net
+- .NET
 status: publish
 type: post
 published: true
