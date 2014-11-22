@@ -25,6 +25,7 @@ I was stuck because liquid filter doesn't provide function that sort all element
 Here are the solutions for these two requirements:
 
 - Three steps for sorting tags by count is mandatory:
+
     1. Create an variable to store the appearance times of the most popular tag. The variable is called **max_tag_count**;
     2. The first loop is from **max_tag_count** to **1**, which is used to list all the possible count number. The value is called **i**;
     3. The second loop traveses all tags of site. For every tag, if the count is equal to **i**, which is value of first loop, then this tag is chose.
@@ -50,12 +51,14 @@ Here are the solutions for these two requirements:
 {% endhighlight %}
     
 - Sort tags alphabetically there is a common solution. First connect all the tag with separator ' '(space), which cannot be avoided or changed while connecting. Then split it as array with ' '(space) and sort the array. It's very simple, but there are two reasons why I don't apply it to my site:
+
     1. The comparison for sorting string is the ASCII of first character. In this way, the tag starts with uppercase is always show first, like the 'WordPress' is before 'c++', which I'm not content with.
     2. If tag contain any ' '(space), the original tag will be changed while splitting. For example, I use _GitHub Page_ as a tag. It will be separated as two tags, which is _GitHub_ and _Page_. This is unacceptable.
     
     Using lowercase version of tag can solve these problems easily. But sometimes it changes some original noun. There are always people prefer _GitHub_ or _OS X_ rather than _github_ or _os x_.
     
     I use this approach to solve these problem:
+    
     1. First step is the same as the common idea that create the string separated by ' '(space). But before concatenating the tag, I use lowercase and replace all ' '(space) in tag with other character that never used in my tags. I choose '\*' as the substitute.
     2. Then splitting the string with character ' '(space), the array is called **sorted_post_tags**. There is no loss for tag information, only tiny change, like _GitHub Page_ now is stored as _github*page_.
     3. First loop traverse **sorted_post_tags** array, the value is called **sorted_tag**.

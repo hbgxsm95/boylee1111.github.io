@@ -132,7 +132,9 @@
 <p>Here are the solutions for these two requirements:</p>
 
 <ul>
-  <li>Three steps for sorting tags by count is mandatory:
+  <li>
+    <p>Three steps for sorting tags by count is mandatory:</p>
+
     <ol>
       <li>Create an variable to store the appearance times of the most popular tag. The variable is called <strong>max_tag_count</strong>;</li>
       <li>The first loop is from <strong>max_tag_count</strong> to <strong>1</strong>, which is used to list all the possible count number. The value is called <strong>i</strong>;</li>
@@ -158,7 +160,9 @@
 <span class="lineno">13</span> <span class="p">{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">%}</span></code></pre></div>
 
 <ul>
-  <li>Sort tags alphabetically there is a common solution. First connect all the tag with separator ‘ ‘(space), which cannot be avoided or changed while connecting. Then split it as array with ‘ ‘(space) and sort the array. It’s very simple, but there are two reasons why I don’t apply it to my site:
+  <li>
+    <p>Sort tags alphabetically there is a common solution. First connect all the tag with separator ‘ ‘(space), which cannot be avoided or changed while connecting. Then split it as array with ‘ ‘(space) and sort the array. It’s very simple, but there are two reasons why I don’t apply it to my site:</p>
+
     <ol>
       <li>The comparison for sorting string is the ASCII of first character. In this way, the tag starts with uppercase is always show first, like the ‘WordPress’ is before ‘c++’, which I’m not content with.</li>
       <li>If tag contain any ‘ ‘(space), the original tag will be changed while splitting. For example, I use <em>GitHub Page</em> as a tag. It will be separated as two tags, which is <em>GitHub</em> and <em>Page</em>. This is unacceptable.</li>
@@ -166,11 +170,14 @@
 
     <p>Using lowercase version of tag can solve these problems easily. But sometimes it changes some original noun. There are always people prefer <em>GitHub</em> or <em>OS X</em> rather than <em>github</em> or <em>os x</em>.</p>
 
-    <p>I use this approach to solve these problem:<br />
-  1. First step is the same as the common idea that create the string separated by ‘ ‘(space). But before concatenating the tag, I use lowercase and replace all ‘ ‘(space) in tag with other character that never used in my tags. I choose ‘*’ as the substitute.<br />
-  2. Then splitting the string with character ‘ ‘(space), the array is called <strong>sorted_post_tags</strong>. There is no loss for tag information, only tiny change, like <em>GitHub Page</em> now is stored as <em>github*page</em>.<br />
-  3. First loop traverse <strong>sorted_post_tags</strong> array, the value is called <strong>sorted_tag</strong>.<br />
-  4. Inner loop traverses all the original post tags. For every element, which is called <strong>tag</strong>, first transfering it as lowercase and replace ‘ ‘(space) with ‘*’, which is called <strong>downcase_tag</strong>. If <strong>downcase_tag</strong> is equal to the <strong>sorted_tag</strong>, then <strong>tag</strong> will be chose.</p>
+    <p>I use this approach to solve these problem:</p>
+
+    <ol>
+      <li>First step is the same as the common idea that create the string separated by ‘ ‘(space). But before concatenating the tag, I use lowercase and replace all ‘ ‘(space) in tag with other character that never used in my tags. I choose ‘*’ as the substitute.</li>
+      <li>Then splitting the string with character ‘ ‘(space), the array is called <strong>sorted_post_tags</strong>. There is no loss for tag information, only tiny change, like <em>GitHub Page</em> now is stored as <em>github*page</em>.</li>
+      <li>First loop traverse <strong>sorted_post_tags</strong> array, the value is called <strong>sorted_tag</strong>.</li>
+      <li>Inner loop traverses all the original post tags. For every element, which is called <strong>tag</strong>, first transfering it as lowercase and replace ‘ ‘(space) with ‘*’, which is called <strong>downcase_tag</strong>. If <strong>downcase_tag</strong> is equal to the <strong>sorted_tag</strong>, then <strong>tag</strong> will be chose.</li>
+    </ol>
 
     <p>Inside the loop we can manipulate the tag chosen. Here is the liquid code:</p>
   </li>
