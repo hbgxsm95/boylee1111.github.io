@@ -1,17 +1,20 @@
 <div class="social-icons">
   <div class="left">
     {% if site.github_username %}
-      <a class="fa fa-github" href="https://github.com/{{ site.github_username }}"></a>
+      <a class="fa fa-github-alt" href="https://github.com/{{ site.github_username }}"></a>
     {% endif %}
     <a class="fa fa-rss" href="{{ "/feed.xml" | prepend: site.baseurl }}"></a>
     {% if site.email %}
       <a class="fa fa-envelope mailTo" href="#{{ site.email }}"></a>
     {% endif %}
     {% if site.linkedin_username %}
-      <a class="fa fa-linkedin" href="https://www.linkedin.com/in/{{ site.linkedin_username }}"></a>
+      <a class="fa fa-linkedin-square" href="https://www.linkedin.com/in/{{ site.linkedin_username }}"></a>
     {% endif %}
   </div>
   <div class="right">
+    {% if site.weibo_id %}
+      <a class="fa fa fa-weibo", href="http://www.weibo.com/{{ site.weibo_id }}"></a>
+    {% endif %}
     {% if site.facebook_username %}
       <a class="fa fa-facebook-square", href="https://facebook.com/{{ site.facebook_username }}"></a>
     {% endif %}
