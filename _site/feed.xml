@@ -3,8 +3,8 @@
   <channel>
     <title>Boyi Li</title>
     <description>A simple, beautiful theme for Jekyll that emphasizes content rather than aesthetic fluff.</description>
-    <link>http://boylee1111.github.io/</link>
-    <atom:link href="http://boylee1111.github.io/feed.xml" rel="self" type="application/rss+xml" />
+    <link>http://boylee.me/</link>
+    <atom:link href="http://boylee.me/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
         <title>Tips For Sorting Tags In GitHub Page With Jekyll</title>
@@ -83,8 +83,8 @@
 Though the number of syntax and filters of liquid is limited under GitHub Page with jekyll, it can implement plenty of fantastic staff. And &lt;a href=&quot;https://github.com/Shopify/liquid/wiki/Liquid-for-Designers&quot;&gt;here&lt;/a&gt; is official document of liquid for designers.&lt;/p&gt;
 </description>
         <pubDate>Thu, 20 Nov 2014 21:18:18 +0100</pubDate>
-        <link>http://boylee1111.github.io/development/2014/11/20/Tips-For-Sorting-Tags-In-GitHub-Page-With-Jekyll/</link>
-        <guid isPermaLink="true">http://boylee1111.github.io/development/2014/11/20/Tips-For-Sorting-Tags-In-GitHub-Page-With-Jekyll/</guid>
+        <link>http://boylee.me/development/2014/11/20/Tips-For-Sorting-Tags-In-GitHub-Page-With-Jekyll/</link>
+        <guid isPermaLink="true">http://boylee.me/development/2014/11/20/Tips-For-Sorting-Tags-In-GitHub-Page-With-Jekyll/</guid>
       </item>
     
       <item>
@@ -115,8 +115,8 @@ Though the number of syntax and filters of liquid is limited under GitHub Page w
 &lt;p&gt;In addition, I disabled the contexual menu, which was lauched by right click. Also, showing loading and rendering message to visitor looks not cool.&lt;/p&gt;
 </description>
         <pubDate>Mon, 17 Nov 2014 20:38:18 +0100</pubDate>
-        <link>http://boylee1111.github.io/development/2014/11/17/Custom-MathJax-to-Solve-LaTeX-Legacy-Tag-Problem/</link>
-        <guid isPermaLink="true">http://boylee1111.github.io/development/2014/11/17/Custom-MathJax-to-Solve-LaTeX-Legacy-Tag-Problem/</guid>
+        <link>http://boylee.me/development/2014/11/17/Custom-MathJax-to-Solve-LaTeX-Legacy-Tag-Problem/</link>
+        <guid isPermaLink="true">http://boylee.me/development/2014/11/17/Custom-MathJax-to-Solve-LaTeX-Legacy-Tag-Problem/</guid>
       </item>
     
       <item>
@@ -138,8 +138,8 @@ Though the number of syntax and filters of liquid is limited under GitHub Page w
 &lt;p&gt;不知道又得等到啥时候能完成这些任务。&lt;/p&gt;
 </description>
         <pubDate>Sun, 16 Nov 2014 04:17:15 +0100</pubDate>
-        <link>http://boylee1111.github.io/miscellaneous/2014/11/16/%E4%BB%8EWordPress%E5%88%B0Github-Pages/</link>
-        <guid isPermaLink="true">http://boylee1111.github.io/miscellaneous/2014/11/16/%E4%BB%8EWordPress%E5%88%B0Github-Pages/</guid>
+        <link>http://boylee.me/miscellaneous/2014/11/16/%E4%BB%8EWordPress%E5%88%B0Github-Pages/</link>
+        <guid isPermaLink="true">http://boylee.me/miscellaneous/2014/11/16/%E4%BB%8EWordPress%E5%88%B0Github-Pages/</guid>
       </item>
     
       <item>
@@ -197,8 +197,8 @@ Though the number of syntax and filters of liquid is limited under GitHub Page w
 &lt;span class=&quot;lineno&quot;&gt;35&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 </description>
         <pubDate>Fri, 14 Nov 2014 04:31:16 +0100</pubDate>
-        <link>http://boylee1111.github.io/development/2014/11/14/leetcode-reverse-nodes-in-k-group/</link>
-        <guid isPermaLink="true">http://boylee1111.github.io/development/2014/11/14/leetcode-reverse-nodes-in-k-group/</guid>
+        <link>http://boylee.me/development/2014/11/14/leetcode-reverse-nodes-in-k-group/</link>
+        <guid isPermaLink="true">http://boylee.me/development/2014/11/14/leetcode-reverse-nodes-in-k-group/</guid>
       </item>
     
       <item>
@@ -247,8 +247,8 @@ Though the number of syntax and filters of liquid is limited under GitHub Page w
 &lt;span class=&quot;lineno&quot;&gt;29&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 </description>
         <pubDate>Fri, 14 Nov 2014 04:05:11 +0100</pubDate>
-        <link>http://boylee1111.github.io/development/2014/11/14/leetcode-reverse-linked-list-ii/</link>
-        <guid isPermaLink="true">http://boylee1111.github.io/development/2014/11/14/leetcode-reverse-linked-list-ii/</guid>
+        <link>http://boylee.me/development/2014/11/14/leetcode-reverse-linked-list-ii/</link>
+        <guid isPermaLink="true">http://boylee.me/development/2014/11/14/leetcode-reverse-linked-list-ii/</guid>
       </item>
     
       <item>
@@ -349,8 +349,8 @@ Though the number of syntax and filters of liquid is limited under GitHub Page w
 &lt;span class=&quot;lineno&quot;&gt;40&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 </description>
         <pubDate>Fri, 14 Nov 2014 03:38:48 +0100</pubDate>
-        <link>http://boylee1111.github.io/development/2014/11/14/leetcode-candy/</link>
-        <guid isPermaLink="true">http://boylee1111.github.io/development/2014/11/14/leetcode-candy/</guid>
+        <link>http://boylee.me/development/2014/11/14/leetcode-candy/</link>
+        <guid isPermaLink="true">http://boylee.me/development/2014/11/14/leetcode-candy/</guid>
       </item>
     
       <item>
@@ -441,8 +441,8 @@ Though the number of syntax and filters of liquid is limited under GitHub Page w
 &lt;span class=&quot;lineno&quot;&gt;32&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 </description>
         <pubDate>Fri, 14 Nov 2014 02:20:21 +0100</pubDate>
-        <link>http://boylee1111.github.io/development/2014/11/14/leetcode-restore-ip-addresses/</link>
-        <guid isPermaLink="true">http://boylee1111.github.io/development/2014/11/14/leetcode-restore-ip-addresses/</guid>
+        <link>http://boylee.me/development/2014/11/14/leetcode-restore-ip-addresses/</link>
+        <guid isPermaLink="true">http://boylee.me/development/2014/11/14/leetcode-restore-ip-addresses/</guid>
       </item>
     
       <item>
@@ -489,8 +489,8 @@ Though the number of syntax and filters of liquid is limited under GitHub Page w
 &lt;span class=&quot;lineno&quot;&gt;36&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 </description>
         <pubDate>Fri, 14 Nov 2014 02:14:30 +0100</pubDate>
-        <link>http://boylee1111.github.io/development/2014/11/14/leetcode-evaluate-reverse-polish-notation/</link>
-        <guid isPermaLink="true">http://boylee1111.github.io/development/2014/11/14/leetcode-evaluate-reverse-polish-notation/</guid>
+        <link>http://boylee.me/development/2014/11/14/leetcode-evaluate-reverse-polish-notation/</link>
+        <guid isPermaLink="true">http://boylee.me/development/2014/11/14/leetcode-evaluate-reverse-polish-notation/</guid>
       </item>
     
       <item>
@@ -540,8 +540,8 @@ Though the number of syntax and filters of liquid is limited under GitHub Page w
 &lt;span class=&quot;lineno&quot;&gt;37&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 </description>
         <pubDate>Thu, 13 Nov 2014 04:40:16 +0100</pubDate>
-        <link>http://boylee1111.github.io/development/2014/11/13/leetcode-partition-list/</link>
-        <guid isPermaLink="true">http://boylee1111.github.io/development/2014/11/13/leetcode-partition-list/</guid>
+        <link>http://boylee.me/development/2014/11/13/leetcode-partition-list/</link>
+        <guid isPermaLink="true">http://boylee.me/development/2014/11/13/leetcode-partition-list/</guid>
       </item>
     
       <item>
@@ -588,8 +588,8 @@ Though the number of syntax and filters of liquid is limited under GitHub Page w
 &lt;span class=&quot;lineno&quot;&gt;30&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 </description>
         <pubDate>Thu, 13 Nov 2014 04:33:56 +0100</pubDate>
-        <link>http://boylee1111.github.io/development/2014/11/13/leetcode-rotate-list/</link>
-        <guid isPermaLink="true">http://boylee1111.github.io/development/2014/11/13/leetcode-rotate-list/</guid>
+        <link>http://boylee.me/development/2014/11/13/leetcode-rotate-list/</link>
+        <guid isPermaLink="true">http://boylee.me/development/2014/11/13/leetcode-rotate-list/</guid>
       </item>
     
   </channel>

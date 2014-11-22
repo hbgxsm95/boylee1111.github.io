@@ -4,7 +4,7 @@ email:       It's My Fucking Email!^_^
 author:      John Otander
 description: "A simple, beautiful theme for Jekyll that emphasizes content rather than aesthetic fluff."
 baseurl:     ""
-url:         "http://boylee1111.github.io"
+url:         "http://boylee.me"
 
 # Google analytics
 google_analytics: true
