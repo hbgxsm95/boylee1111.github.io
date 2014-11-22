@@ -121,13 +121,16 @@ Though the number of syntax and filters of liquid is limited under GitHub Page w
     
       <item>
         <title>从WordPress到Github Pages</title>
-        <description>&lt;p&gt;因为买的Web Hosting要到期了，这才想起来赶紧把Blog移过来。花了些时间研究了下Jekyll怎么搞，找个了非常简约的主题，没有支持Category以及Tag，主要冲着看着舒服来的。不过这个事拖来拖去也总算完成了。还有一些To-Do在这里纪录一下吧：&lt;/p&gt;
+        <description>&lt;p&gt;因为买的Web Hosting要到期了，这才想起来赶紧把Blog移过来。先看了下GitHub Page Blog支持的引擎有&lt;a href=&quot;http://jekyllrb.com&quot;&gt;jekyll&lt;/a&gt;, &lt;a href=&quot;http://hexo.io&quot;&gt;HEXO&lt;/a&gt;, &lt;a href=&quot;https://ghost.org&quot;&gt;ghost&lt;/a&gt;, &lt;a href=&quot;http://octopress.org&quot;&gt;OCTORPRESS&lt;/a&gt;等等。懒得折腾，看GitHub推荐用jekyll也就没多看其他的。&lt;/p&gt;
+
+&lt;p&gt;花了些时间研究了下Jekyll怎么搞，找个了非常简约的主题，没有支持Category以及Tag，主要冲着看着舒服来的。不过这个事拖来拖去也总算完成了。还有一些To-Do在这里纪录一下吧：&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;del&gt;Latex的支持，现在有些文章里面一堆[latex]标签，看着就乱；&lt;/del&gt;&lt;/li&gt;
   &lt;li&gt;&lt;del&gt;添加Category的页面；&lt;/del&gt;&lt;/li&gt;
   &lt;li&gt;&lt;del&gt;添加Tag的页面；&lt;/del&gt;&lt;/li&gt;
   &lt;li&gt;&lt;del&gt;用自己的域名&lt;/del&gt;；&lt;/li&gt;
+  &lt;li&gt;添加Share功能；&lt;/li&gt;
   &lt;li&gt;有些图片什么的都没了，之后补上；&lt;/li&gt;
   &lt;li&gt;做一个简单的Index页面，比一上来就是blog感觉好一些吧。&lt;/li&gt;
 &lt;/ol&gt;

@@ -2,7 +2,7 @@
 layout: post
 title: 'Tips For Sorting Tags In GitHub Page With Jekyll'
 date: 2014-11-20 21:18:18.000000000 +01:00
-summary: "While adding <strong>Tags</strong> pages, I was stuck owing to the order of tags."
+summary: "While adding <strong>Tags</strong> pages, I was stuck owing to the order of tags. Here are two different approaching of how to sort tags..."
 categories:
 - Development
 tags:
