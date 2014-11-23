@@ -7,6 +7,186 @@
     <atom:link href="http://boylee.me/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>.NET -- Choose A Right Generic Collection</title>
+        <description>&lt;p&gt;Recently, we discussed some collections of .NET Framework in our Conding Convention meeting. Though some details are explained, there are still some questions stay in my mind. With the open source(&lt;a href=&quot;http://referencesource.microsoft.com/license.html&quot;&gt;MS-RSL&lt;/a&gt;) of .NET, I have dived into the difference among generic collections. Most of them are in &lt;a href=&quot;http://msdn.microsoft.com/en-us/library/system.collections.generic(v=vs.110).aspx&quot;&gt;System.Collections.Generic&lt;/a&gt; and &lt;a href=&quot;http://msdn.microsoft.com/en-us/library/system.collections.objectmodel(v=vs.110).aspx&quot;&gt;System.Collections.ObjectModel&lt;/a&gt; namespaces.&lt;/p&gt;
+
+&lt;p&gt;With different situation, choosing a correct collection type will bring many benefits for other developers who maintain the code and performance of application. &lt;a href=&quot;http://msdn.microsoft.com/en-us/library/6tc79sx1(v=vs.110).aspx&quot;&gt;Selecting a Collection Class&lt;/a&gt; is the official document that illustractes how to select a collection. But it tell developers how but not why, and here are details of the implementation of different collections, which give developers enough reasons that why we choose this collection.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;listthttpmsdnmicrosoftcomen-uslibrary6sh2ey19vvs110aspx&quot;&gt;&lt;a href=&quot;http://msdn.microsoft.com/en-us/library/6sh2ey19(v=vs.110).aspx&quot;&gt;&lt;code&gt;List&amp;lt;T&amp;gt;&lt;/code&gt;&lt;/a&gt;&lt;/h4&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Represents a strongly typed list of objects that can be accessed by index. Provides methods to search, sort, and manipulate lists.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Basically, &lt;code&gt;List&amp;lt;T&amp;gt;&lt;/code&gt; implement &lt;code&gt;IList&amp;lt;T&amp;gt;&lt;/code&gt; interface via maintaining an inside array. This means that &lt;code&gt;List&amp;lt;T&amp;gt;&lt;/code&gt; is &lt;strong&gt;contiguous storage&lt;/strong&gt; in memory.&lt;/p&gt;
+
+&lt;p&gt;Interiting the advantages of array, &lt;code&gt;List&amp;lt;T&amp;gt;&lt;/code&gt; allows &lt;strong&gt;direct access via index&lt;/strong&gt; for element, which takes $O(1)$ time. For searching via value(&lt;code&gt;IndexOf&lt;/code&gt;), it needs $O(n)$ time, which is totaly the same as array.&lt;/p&gt;
+
+&lt;p&gt;For different operations like &lt;code&gt;Insert&lt;/code&gt;, &lt;code&gt;Remove&lt;/code&gt;, &lt;code&gt;RemoveAt&lt;/code&gt;, and so on, $O(n)$ time is mandatory. Because elements in array needs to be moved while inserting or removing. And if capacity of array cannot be satisfied while inserting a new element, a new array with twice capacity as before will be allocated, which is a typical example that saving time by consuming space.&lt;/p&gt;
+
+&lt;p&gt;Generally, &lt;code&gt;List&amp;lt;T&amp;gt;&lt;/code&gt; is an array with a gorgeous coating. Plenty of methods are provided for the manipulation of list. And it’s restrictive that no virtual method. So it’s &lt;strong&gt;best for smaller lists where direct access are required and sorting are secondary, and use it hot without any inheritant&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;stackthttpmsdnmicrosoftcomen-uslibrary3278tedwvvs110aspx&quot;&gt;&lt;a href=&quot;http://msdn.microsoft.com/en-us/library/3278tedw(v=vs.110).aspx&quot;&gt;&lt;code&gt;Stack&amp;lt;T&amp;gt;&lt;/code&gt;&lt;/a&gt;&lt;/h4&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Represents a variable size last-in-first-out (LIFO) collection of instances of the same specified type.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;code&gt;Stack&amp;lt;T&amp;gt;&lt;/code&gt;, as a classic data structure, has almost the same implementation strategy as &lt;code&gt;List&amp;lt;T&amp;gt;&lt;/code&gt;, which both maintain an array inside. But &lt;code&gt;Stack&amp;lt;T&amp;gt;&lt;/code&gt; is much more lighter than &lt;code&gt;List&amp;lt;T&amp;gt;&lt;/code&gt; with less methods exposed. So &lt;code&gt;Stack&amp;lt;T&amp;gt;&lt;/code&gt; is &lt;strong&gt;essentially the same as &lt;code&gt;List&amp;lt;T&amp;gt;&lt;/code&gt; except only process as LIFO&lt;/strong&gt;. There is no better choice than &lt;code&gt;Stack&amp;lt;T&amp;gt;&lt;/code&gt; when LIFO operations is all we need.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;queuethttpmsdnmicrosoftcomen-uslibrary7977ey2cvvs110aspx&quot;&gt;&lt;a href=&quot;http://msdn.microsoft.com/en-us/library/7977ey2c(v=vs.110).aspx&quot;&gt;&lt;code&gt;Queue&amp;lt;T&amp;gt;&lt;/code&gt;&lt;/a&gt;&lt;/h4&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Represents a first-in, first-out collection of objects.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;code&gt;Queue&amp;lt;T&amp;gt;&lt;/code&gt; is also has the same implementation strategy as &lt;code&gt;List&amp;lt;T&amp;gt;&lt;/code&gt;. It records head and tail of queue by moving head and tail pointers. When the capacity of array is enought, tail pointer will be back to start position of array if it reaches the end position of array. &lt;code&gt;Queue&amp;lt;T&amp;gt;&lt;/code&gt; is also &lt;strong&gt;essentially the same as &lt;code&gt;List&amp;lt;T&amp;gt;&lt;/code&gt; except only process as FIFO&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;collectionthttpmsdnmicrosoftcomen-uslibraryms132397vvs110aspx&quot;&gt;&lt;a href=&quot;http://msdn.microsoft.com/en-us/library/ms132397(v=vs.110).aspx&quot;&gt;&lt;code&gt;Collection&amp;lt;T&amp;gt;&lt;/code&gt;&lt;/a&gt;&lt;/h4&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Provides the base class for a generic collection.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I wonder why &lt;code&gt;Collection&amp;lt;T&amp;gt;&lt;/code&gt; is in &lt;code&gt;System.Collections.ObjectModel&lt;/code&gt; namespace instead of &lt;code&gt;System.Collections.Generic&lt;/code&gt;, and &lt;a href=&quot;http://blogs.msdn.com/b/kcwalina/archive/2005/03/15/396086.aspx&quot;&gt;here&lt;/a&gt; I found the reason.&lt;/p&gt;
+
+&lt;p&gt;From the source, there is a &lt;code&gt;IList&amp;lt;T&amp;gt;&lt;/code&gt; store in &lt;code&gt;Collection&amp;lt;T&amp;gt;&lt;/code&gt;, and the default value is &lt;code&gt;List&amp;lt;T&amp;gt;&lt;/code&gt;. So it is &lt;strong&gt;contiguous storage&lt;/strong&gt; and allows &lt;strong&gt;direct access via index&lt;/strong&gt; under default situation.&lt;/p&gt;
+
+&lt;p&gt;Compared with &lt;code&gt;List&amp;lt;T&amp;gt;&lt;/code&gt;,&lt;code&gt;Collection&amp;lt;T&amp;gt;&lt;/code&gt; doesn’t provided methods like &lt;code&gt;Sort&lt;/code&gt;, &lt;code&gt;BinarySearch&lt;/code&gt; and so on. So it can be called a simplified version of &lt;code&gt;List&amp;lt;T&amp;gt;&lt;/code&gt;, or maybe its former name &lt;code&gt;CollectionBase&amp;lt;T&amp;gt;&lt;/code&gt; is better. It provides some virtual methods for developers to allow them custom collection as they want. &lt;code&gt;Collection&amp;lt;T&amp;gt;&lt;/code&gt; is &lt;strong&gt;best for custom collection with specific requirements by inherting&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;linkedlistthttpmsdnmicrosoftcomen-uslibraryhe2s3bh7vvs110aspx&quot;&gt;&lt;a href=&quot;http://msdn.microsoft.com/en-us/library/he2s3bh7(v=vs.110).aspx&quot;&gt;&lt;code&gt;LinkedList&amp;lt;T&amp;gt;&lt;/code&gt;&lt;/a&gt;&lt;/h4&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Represents a doubly linked list.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;A &lt;code&gt;LinkedList&amp;lt;T&amp;gt;&lt;/code&gt; is connected by various &lt;code&gt;LinkedListNode&amp;lt;T&amp;gt;&lt;/code&gt; as a cycle, whose head is the next node of tail.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;LinkedList&amp;lt;T&amp;gt;&lt;/code&gt; is not contiguous storage, and its elements cannot be directly accesses via index. But it provides &lt;code&gt;Find&lt;/code&gt; method that searches element via value from head node, which takes $O(n)$ time. The most advantage of &lt;code&gt;LinkedList&amp;lt;T&amp;gt;&lt;/code&gt; is that inserting and deleting operations are quite fast, with $O(1)$ time, owing to &lt;strong&gt;there is no move up or down in contiguous memory&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://stackoverflow.com/questions/169973/when-should-i-use-a-list-vs-a-linkedlist&quot;&gt;Here&lt;/a&gt; is some tests for &lt;code&gt;List&amp;lt;T&amp;gt;&lt;/code&gt; and &lt;code&gt;LinkedList&amp;lt;T&amp;gt;&lt;/code&gt; under different situation. It can be easily observed that &lt;code&gt;LinkedList&amp;lt;T&amp;gt;&lt;/code&gt; &lt;strong&gt;is best for lists where inserting/deleting in middle is usual and no direct access demanded&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;dictionarytkey-tvaluehttpmsdnmicrosoftcomen-uslibraryxfhwa508vvs110aspx&quot;&gt;&lt;a href=&quot;http://msdn.microsoft.com/en-us/library/xfhwa508(v=vs.110).aspx&quot;&gt;&lt;code&gt;Dictionary&amp;lt;TKey, TValue&amp;gt;&lt;/code&gt;&lt;/a&gt;&lt;/h4&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Represents a collection of keys and values.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;code&gt;Dictionary&amp;lt;TKey, TValue&amp;gt;&lt;/code&gt; is a classic &lt;a href=&quot;http://en.wikipedia.org/wiki/Associative_array&quot;&gt;associative collcetion&lt;/a&gt;, probably the most used associative collection container class. There is a struct &lt;code&gt;Entry&lt;/code&gt; inside, which contains the hashCode, next, key and value. And all key-value pair data is stored in an &lt;code&gt;Entry&lt;/code&gt; array, so it’s &lt;strong&gt;contiguous storage&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Dictionary&amp;lt;TKey, TValue&amp;gt;&lt;/code&gt; allows &lt;strong&gt;direct access via key&lt;/strong&gt;, which only takes $O(1)$ time. It’s also the &lt;strong&gt;fastest associative collection for lookups, insertion and deletion&lt;/strong&gt; because it uses a hash table under the cover.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;hashsetthttpmsdnmicrosoftcomen-uslibrarybb359438vvs110aspx&quot;&gt;&lt;a href=&quot;http://msdn.microsoft.com/en-us/library/bb359438(v=vs.110).aspx&quot;&gt;&lt;code&gt;HashSet&amp;lt;T&amp;gt;&lt;/code&gt;&lt;/a&gt;&lt;/h4&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Represents a set of values.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;As its name describes, &lt;code&gt;HashSet&amp;lt;T&amp;gt;&lt;/code&gt; is implemented by hash code. So it can be regarded as a &lt;code&gt;Dictionary&amp;lt;Tkey, TValue&amp;gt;&lt;/code&gt; whose keys are the same object as values. There is an array inside with struct &lt;code&gt;Slot&lt;/code&gt;, which is a simplified version of struct &lt;code&gt;Entry&lt;/code&gt; in &lt;code&gt;Dictionary&amp;lt;TKey, TValue&amp;gt;&lt;/code&gt; that only contains hasCode, next and value. So it’s &lt;strong&gt;contiguous storage&lt;/strong&gt; as well.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;HashSet&amp;lt;T&amp;gt;&lt;/code&gt; allows &lt;strong&gt;direct access via value&lt;/strong&gt;, and it takes $O(1)$ time. Compared with &lt;code&gt;Dictionary&amp;lt;TKey, TValue&amp;gt;&lt;/code&gt;, it’s the &lt;strong&gt;fastest unassociative collection for lookups, insertion and deletion&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;sortedlisttkey-tvaluehttpmsdnmicrosoftcomen-uslibraryms132319vvs110aspx&quot;&gt;&lt;a href=&quot;http://msdn.microsoft.com/en-us/library/ms132319(v=vs.110).aspx&quot;&gt;&lt;code&gt;SortedList&amp;lt;TKey, TValue&amp;gt;&lt;/code&gt;&lt;/a&gt;&lt;/h4&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Represents a collection of key/value pairs that are sorted by key based on the associated &lt;code&gt;IComparer&amp;lt;T&amp;gt;&lt;/code&gt; implementation.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;code&gt;SortedList&amp;lt;TKey, TValue&amp;gt;&lt;/code&gt; stores the keys and values as array inside, both keep sorted status during the manipulation, which is &lt;strong&gt;contiguous storage&lt;/strong&gt;. It provides methods for &lt;strong&gt;direct access via key&lt;/strong&gt; as well, but it takes $O(\log n)$ time owing to searching the key with binary search algorithm.&lt;/p&gt;
+
+&lt;p&gt;For manipulation, &lt;code&gt;SortedList&amp;lt;TKey, TValue&amp;gt;&lt;/code&gt; takes $O(n)$ time to operate, subject to moving of array after insertion or deletion.&lt;/p&gt;
+
+&lt;p&gt;Due to the time consumption during construction, &lt;code&gt;SortedList&amp;lt;TKey, TValue&amp;gt;&lt;/code&gt; is &lt;strong&gt;best for   sorting an almost sorted list without frequent inserting/deleting&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;sortedsetthttpmsdnmicrosoftcomen-uslibrarydd412070vvs110aspx&quot;&gt;&lt;a href=&quot;http://msdn.microsoft.com/en-us/library/dd412070(v=vs.110).aspx&quot;&gt;&lt;code&gt;SortedSet&amp;lt;T&amp;gt;&lt;/code&gt;&lt;/a&gt;&lt;/h4&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Represents a collection of objects that is maintained in sorted order.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;code&gt;SortedSet&amp;lt;T&amp;gt;&lt;/code&gt; maintains a red–black tree inside, whose elements are not allowed to duplicate. It’s not contiguous storage, but provides &lt;strong&gt;direct access via value&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Due to the structure of BST, $O(\log n)$ time for searching target is mandatory. The manipulation of inserting and deleting tree node needs $O(\log n)$ time as well.&lt;/p&gt;
+
+&lt;p&gt;All in all, &lt;code&gt;SortedSet&amp;lt;T&amp;gt;&lt;/code&gt; is an optimized set with sorting function. It’s &lt;strong&gt;best for a list without duplicate where inserting/delete is usual&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;sorteddictionarytkey-tvaluehttpmsdnmicrosoftcomen-uslibraryf7fta44cvvs110aspx&quot;&gt;&lt;a href=&quot;http://msdn.microsoft.com/en-us/library/f7fta44c(v=vs.110).aspx&quot;&gt;&lt;code&gt;SortedDictionary&amp;lt;TKey, TValue&amp;gt;&lt;/code&gt;&lt;/a&gt;&lt;/h4&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Represents a collection of key/value pairs that are sorted on the key.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The &lt;code&gt;SortedSet&amp;lt;T&amp;gt;&lt;/code&gt; is to &lt;code&gt;HashSet&amp;lt;T&amp;gt;&lt;/code&gt; what the &lt;code&gt;SortedDictionary&amp;lt;TKey, TValue&amp;gt;&lt;/code&gt; is to &lt;code&gt;Dictionary&amp;lt;TKey, TValue&amp;gt;&lt;/code&gt;. The structure of &lt;code&gt;SortedDictionary&amp;lt;TKey, TValue&amp;gt;&lt;/code&gt; is BST as well, whose nodes are struct &lt;code&gt;KeyValuePair&amp;lt;TKey, TValue&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;So it’s not contiguous storage, but &lt;strong&gt;directed access via key&lt;/strong&gt; is allowed, which takes $O(\log n)$ time to search the BST. Same as the &lt;code&gt;SortedSet&amp;lt;T&amp;gt;&lt;/code&gt;, &lt;code&gt;SortedDictionary&amp;lt;TKey, TValue&amp;gt;&lt;/code&gt; needs $O(\log n)$ time to insert and delete element.&lt;/p&gt;
+
+&lt;p&gt;Compared with &lt;code&gt;SortedList&amp;lt;TKey, TValue&amp;gt;&lt;/code&gt;, &lt;code&gt;SortedDictionary&amp;lt;TKey, TValue&amp;gt;&lt;/code&gt; has almost the same functions except the data structure is BST. Therefore, it consumes more memories, but has higher efficiency while constructing, inserting and deleting. Basically, &lt;code&gt;SortedDictionary&amp;lt;TKey, TValue&amp;gt;&lt;/code&gt; is &lt;strong&gt;best for sorting an original unsorted collection without duplicate keys with frequent inserting/deleting&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;summary&quot;&gt;Summary&lt;/h3&gt;
+
+&lt;p&gt;Here are some notes or remarks that how I use these collection with different context:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;I will always choosing the most restrictive type of collection. Not only for performance issue, but other developers will be inspired easily to understand what;s the meaning of these code.&lt;/li&gt;
+  &lt;li&gt;For one-to-many relation in domain models mapping from database, I will choose &lt;code&gt;HashSet&amp;lt;T&amp;gt;&lt;/code&gt; to reference the items. Normally, &lt;code&gt;ID&lt;/code&gt; will be the object that generates hash code. Due to the uniqueness of &lt;code&gt;ID&lt;/code&gt; for database, the hash code is determined. The benefit will be easily observed while the number of items exploding.&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;If I need to sort a associative collection, &lt;code&gt;SortedList&amp;lt;TKey, TValue&amp;gt;&lt;/code&gt; and &lt;code&gt;SortedDictionary&amp;lt;TKey, TValue&amp;gt;&lt;/code&gt; will be the candidates. It always hard to decide, but I will follow these two rules to determine which one I should use:&lt;/p&gt;
+
+    &lt;ol&gt;
+      &lt;li&gt;If frequent insertion/deletion are demanded after finishing construct the collection, &lt;code&gt;SortedDictionary&amp;lt;TKey, TValue&amp;gt;&lt;/code&gt; will be nominated;&lt;/li&gt;
+      &lt;li&gt;If frequent insertion/deletion is not mandatory, I will consider whether the collection to be sorted are almost ordered. If this condition is sastified, I will choose &lt;code&gt;SortedList&amp;lt;TKey, TValue&amp;gt;&lt;/code&gt; owing to the less memories occupation.&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Sat, 22 Nov 2014 19:50:50 +0100</pubDate>
+        <link>http://boylee.me/development/2014/11/22/.Net-Choose-A-Right-Generic-Collection/</link>
+        <guid isPermaLink="true">http://boylee.me/development/2014/11/22/.Net-Choose-A-Right-Generic-Collection/</guid>
+      </item>
+    
+      <item>
         <title>Tips For Sorting Tags In GitHub Page With Jekyll</title>
         <description>&lt;p&gt;While adding &lt;strong&gt;Tags&lt;/strong&gt; pages with jekyll, I was stuck owing to display order of tags. Here are two different approaching of how to sort tags:&lt;/p&gt;
 
@@ -549,54 +729,6 @@ Though the number of syntax and filters of liquid is limited under GitHub Page w
         <pubDate>Thu, 13 Nov 2014 04:40:16 +0100</pubDate>
         <link>http://boylee.me/development/2014/11/13/leetcode-partition-list/</link>
         <guid isPermaLink="true">http://boylee.me/development/2014/11/13/leetcode-partition-list/</guid>
-      </item>
-    
-      <item>
-        <title>[LeetCode] Rotate List</title>
-        <description>&lt;h2 id=&quot;rotate-listhttpsojleetcodecomproblemsrotate-list&quot;&gt;&lt;a href=&quot;https://oj.leetcode.com/problems/rotate-list/&quot;&gt;Rotate List&lt;/a&gt;&lt;/h2&gt;
-
-&lt;p&gt;右移给定链表k个位置。首先要找到移动的中枢，即移动为为头节点的位置。&lt;/p&gt;
-
-&lt;p&gt;可以通过两个指针fast和slow来找这个位置，让fast指针先走k步，然后同时移动fast和slow指针直到fast指针到达链表尾部。这个时候slow指针所指的位置即旋转后的新的头节点。&lt;/p&gt;
-
-&lt;p&gt;在实际寻找过程中还要考虑所给k值大于链表总长度，可以通过在第一次移动fast指针的同时计算链表长度解决。如果还未移动k步fast就到达尾部，说明k值是大于链表长度的。这时也计算出了链表长度，通过对k取模即可得到最少的移动步数。此时再通过同样的方法即可计算出旋转中枢点。&lt;/p&gt;
-
-&lt;p&gt;知道中枢点后直接将链表尾部和头部相连，并将中枢点设置为新的头节点即可。代码如下：&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;lineno&quot;&gt; 1&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Solution&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 2&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 3&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;ListNode&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rotateRight&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ListNode&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;head&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 4&lt;/span&gt;         &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;head&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;head&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 5&lt;/span&gt; 
-&lt;span class=&quot;lineno&quot;&gt; 6&lt;/span&gt;         &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;len&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 7&lt;/span&gt;         &lt;span class=&quot;n&quot;&gt;ListNode&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;slow&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;head&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fast&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;head&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 8&lt;/span&gt;         &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fast&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 9&lt;/span&gt;         &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;10&lt;/span&gt;             &lt;span class=&quot;n&quot;&gt;fast&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fast&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;11&lt;/span&gt;             &lt;span class=&quot;n&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;12&lt;/span&gt;         &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;13&lt;/span&gt;         &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;14&lt;/span&gt;         &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;15&lt;/span&gt;             &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;16&lt;/span&gt;             &lt;span class=&quot;n&quot;&gt;fast&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;head&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;17&lt;/span&gt;             &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fast&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fast&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;18&lt;/span&gt;         &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;19&lt;/span&gt;         &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fast&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;20&lt;/span&gt;         &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;21&lt;/span&gt;             &lt;span class=&quot;n&quot;&gt;fast&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fast&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;22&lt;/span&gt;             &lt;span class=&quot;n&quot;&gt;slow&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;slow&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;23&lt;/span&gt;         &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;24&lt;/span&gt;         &lt;span class=&quot;n&quot;&gt;fast&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;head&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;25&lt;/span&gt;         &lt;span class=&quot;n&quot;&gt;head&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;slow&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;26&lt;/span&gt;         &lt;span class=&quot;n&quot;&gt;slow&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;27&lt;/span&gt; 
-&lt;span class=&quot;lineno&quot;&gt;28&lt;/span&gt;         &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;head&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;29&lt;/span&gt;     &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;30&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-</description>
-        <pubDate>Thu, 13 Nov 2014 04:33:56 +0100</pubDate>
-        <link>http://boylee.me/development/2014/11/13/leetcode-rotate-list/</link>
-        <guid isPermaLink="true">http://boylee.me/development/2014/11/13/leetcode-rotate-list/</guid>
       </item>
     
   </channel>
