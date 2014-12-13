@@ -3,12 +3,12 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>[LeetCode] Reverse Integer &#8211; Boyi Li</title>
+    <title>[LeetCode] Add Binary &#8211; Boyi Li</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="之前做过，AC没什么难度。无非从最后一位取，取出来每次扩大十倍。">
+    <meta name="description" content="字符串形式的二进制数相加，非常简单的字符串处理。每次找到相同位次的数相加，然后纪录一个进位即可。">
     <meta name="author" content="John Otander">
     <meta name="keywords" content="development">
-    <link rel="canonical" href="http://boylee.me/development/2014/09/12/leetcode-reverse-integer/">
+    <link rel="canonical" href="http://boylee.me/development/2014/12/13/leetcode-add-binary/">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/pixyll.css" type="text/css">
@@ -43,9 +43,9 @@
     <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
     <meta property="og:locale" content="en_US">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="[LeetCode] Reverse Integer">
+    <meta property="og:title" content="[LeetCode] Add Binary">
     <meta property="og:description" content="A simple, beautiful theme for Jekyll that emphasizes content rather than aesthetic fluff.">
-    <meta property="og:url" content="http://boylee.me/development/2014/09/12/leetcode-reverse-integer/">
+    <meta property="og:url" content="http://boylee.me/development/2014/12/13/leetcode-add-binary/">
     <meta property="og:site_name" content="Boyi Li">
 </head>
 
@@ -108,12 +108,10 @@
         
 
 
-
-
 <div class="post-header mb2">
-  <h1>[LeetCode] Reverse Integer</h1>
+  <h1>[LeetCode] Add Binary</h1>
   <div>
-    <span class="post-meta">Sep 12, 2014</span><br>
+    <span class="post-meta">Dec 13, 2014</span><br>
     
     <span class="post-meta small">1 minute read</span>
   </div>
@@ -122,33 +120,36 @@
 <div class="bl-separator"></div>
 
 <article class="post-content">
-  <h2 id="reverse-integerhttpsojleetcodecomproblemsreverse-integer"><a href="https://oj.leetcode.com/problems/reverse-integer/">Reverse Integer</a></h2>
+  <h2 id="add-binaryhttpsojleetcodecomproblemsadd-binary"><a href="https://oj.leetcode.com/problems/add-binary/">Add Binary</a></h2>
 
-<p>之前做过，AC没什么难度。无非从最后一位取，取出来每次扩大十倍。</p>
+<p>字符串形式的二进制数相加，非常简单的字符串处理。每次找到相同位次的数相加，然后纪录一个进位即可。代码如下：</p>
 
 <div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="lineno"> 1</span> <span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
 <span class="lineno"> 2</span> <span class="k">public</span><span class="o">:</span>
-<span class="lineno"> 3</span>     <span class="kt">int</span> <span class="n">reverse</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
-<span class="lineno"> 4</span>         <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="lineno"> 5</span>         <span class="k">while</span> <span class="p">(</span><span class="n">x</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
-<span class="lineno"> 6</span>         <span class="p">{</span>
-<span class="lineno"> 7</span>             <span class="n">result</span> <span class="o">=</span> <span class="n">result</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">+</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">10</span><span class="p">;</span>
-<span class="lineno"> 8</span>             <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">/</span> <span class="mi">10</span><span class="p">;</span>
-<span class="lineno"> 9</span>         <span class="p">}</span>
-<span class="lineno">10</span>         <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
-<span class="lineno">11</span>     <span class="p">}</span>
-<span class="lineno">12</span> <span class="p">};</span></code></pre></div>
+<span class="lineno"> 3</span>     <span class="n">string</span> <span class="n">addBinary</span><span class="p">(</span><span class="n">string</span> <span class="n">a</span><span class="p">,</span> <span class="n">string</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno"> 4</span>         <span class="n">string</span> <span class="n">res</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
+<span class="lineno"> 5</span>         <span class="kt">int</span> <span class="n">carry</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="lineno"> 6</span>         <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">length</span><span class="p">(),</span> <span class="n">n</span> <span class="o">=</span> <span class="n">b</span><span class="p">.</span><span class="n">length</span><span class="p">();</span>
+<span class="lineno"> 7</span>         <span class="kt">int</span> <span class="n">length</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+<span class="lineno"> 8</span>         
+<span class="lineno"> 9</span>         <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">length</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+<span class="lineno">10</span>         <span class="p">{</span>
+<span class="lineno">11</span>             <span class="kt">char</span> <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">m</span> <span class="o">?</span> <span class="n">a</span><span class="p">[</span><span class="n">m</span> <span class="o">-</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">:</span> <span class="sc">&#39;0&#39;</span><span class="p">);</span>
+<span class="lineno">12</span>             <span class="kt">char</span> <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="o">?</span> <span class="n">b</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">:</span> <span class="sc">&#39;0&#39;</span><span class="p">);</span>
+<span class="lineno">13</span>             <span class="kt">char</span> <span class="n">num</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="o">+</span> <span class="n">carry</span> <span class="o">-</span> <span class="sc">&#39;0&#39;</span><span class="p">;</span>
+<span class="lineno">14</span>             <span class="n">carry</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="lineno">15</span>             <span class="k">if</span> <span class="p">(</span><span class="n">num</span> <span class="o">&gt;=</span> <span class="sc">&#39;2&#39;</span><span class="p">)</span>
+<span class="lineno">16</span>             <span class="p">{</span>
+<span class="lineno">17</span>                 <span class="n">carry</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="lineno">18</span>                 <span class="n">num</span> <span class="o">-=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="lineno">19</span>             <span class="p">}</span>
+<span class="lineno">20</span>             <span class="n">res</span> <span class="o">=</span> <span class="n">num</span> <span class="o">+</span> <span class="n">res</span><span class="p">;</span>
+<span class="lineno">21</span>         <span class="p">}</span>
+<span class="lineno">22</span>         <span class="k">if</span> <span class="p">(</span><span class="n">carry</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="n">res</span> <span class="o">=</span> <span class="s">&quot;1&quot;</span> <span class="o">+</span> <span class="n">res</span><span class="p">;</span>
+<span class="lineno">23</span>         <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+<span class="lineno">24</span>     <span class="p">}</span>
+<span class="lineno">25</span> <span class="p">};</span></code></pre></div>
 
-<p>同时原题还提了几个issue</p>
-
-<ul>
-  <li>如果整数的最后一位或几位为0，输出结果为什么？比如10，100这样的数。</li>
-  <li>逆序之后的整数可能溢出，如何解决这种情况？</li>
-</ul>
-
-<p>首先最后几位是0的情况想到了，介于提供的函数输入值为int，返回值也为int。那不就是意思最终只看数本身是否逆序了，如果100逆序非要是001的话不就是字符串的形式了，就似乎不符合题目提供的函数样板了。</p>
-
-<p>关于溢出的问题确实没想到，虽然平时做项目考虑的不少，但每次做解决算法问题时总是不喜欢考虑各种异常的情况，只找解决方案，这个以后要多注意注意。</p>
 
 </article>
 
@@ -158,11 +159,11 @@
 <div class="marT marB">
   <div class="bl-post-tags left">
     <div class="social-share">
-      <a class="social-share-element icon-twitter" href="https://twitter.com/intent/tweet?text=[LeetCode] Reverse Integer&url=&via=OviliaZhang&hashtags=" target="_blank" title="Share this post on Twitter"></a>
-      <a class="social-share-element" href="https://www.facebook.com/sharer/sharer.php?t=[LeetCode] Reverse Integer&u=" target="_blank" title="Share this post on Facebook"></a>
-      <a class="social-share-element" id="social-google" href="https://plus.google.com/share?url=http://boylee.me/development/2014/09/12/leetcode-reverse-integer/" target="_blank" title="Share this post on Google Plus"></a>
-      <a class="social-share-element" id="social-linkedin" href="http://www.linkedin.com/shareArticle?mini=true&title=[LeetCode] Reverse Integer&url=&source=http%3a%2f%2fzhangwenli.com" target="_blank" title="Share this post on LinkedIn"></a>
-      <a class="social-share-element" id="social-weibo" href="http://v.t.sina.com.cn/share/share.php?title=来看看+%40Ovilia允执厥中+的博文吧：[LeetCode] Reverse Integer&url=" target="_blank" title="Share this post on Sina Weibo"></a>
+      <a class="social-share-element icon-twitter" href="https://twitter.com/intent/tweet?text=[LeetCode] Add Binary&url=&via=OviliaZhang&hashtags=" target="_blank" title="Share this post on Twitter"></a>
+      <a class="social-share-element" href="https://www.facebook.com/sharer/sharer.php?t=[LeetCode] Add Binary&u=" target="_blank" title="Share this post on Facebook"></a>
+      <a class="social-share-element" id="social-google" href="https://plus.google.com/share?url=http://boylee.me/development/2014/12/13/leetcode-add-binary/" target="_blank" title="Share this post on Google Plus"></a>
+      <a class="social-share-element" id="social-linkedin" href="http://www.linkedin.com/shareArticle?mini=true&title=[LeetCode] Add Binary&url=&source=http%3a%2f%2fzhangwenli.com" target="_blank" title="Share this post on LinkedIn"></a>
+      <a class="social-share-element" id="social-weibo" href="http://v.t.sina.com.cn/share/share.php?title=来看看+%40Ovilia允执厥中+的博文吧：[LeetCode] Add Binary&url=" target="_blank" title="Share this post on Sina Weibo"></a>
     </div>
   </div>
   <div class="bl-post-tags right">
@@ -180,6 +181,9 @@
       
       
     
+      
+      
+    
   
     
       
@@ -187,9 +191,27 @@
     
       
       
-        <a href="/tags/#math" class="bl-tag">
-         math
+    
+      
+      
+        <a href="/tags/#Math" class="bl-tag">
+         Math
         </a>
+      
+    
+  
+    
+      
+      
+    
+      
+      
+        <a href="/tags/#string" class="bl-tag">
+         string
+        </a>
+      
+    
+      
       
     
   
@@ -222,13 +244,6 @@
       <a href="/development/2014/12/13/leetcode-add-two-numbers/" class="post-link">
         <h4 class="post-title">[LeetCode] Add Two Numbers</h4>
         <p class="post-summary">两个以链表形式存储的两个数相加，每一个结点代表一位，头结点为最低位，尾结点为最高位。</p>
-      </a>
-    </div>
-  
-    <div class="post ml2">
-      <a href="/development/2014/12/13/leetcode-add-binary/" class="post-link">
-        <h4 class="post-title">[LeetCode] Add Binary</h4>
-        <p class="post-summary">字符串形式的二进制数相加，非常简单的字符串处理。每次找到相同位次的数相加，然后纪录一个进位即可。</p>
       </a>
     </div>
   
@@ -285,6 +300,13 @@
       <a href="/development/2014/11/14/leetcode-reverse-linked-list-ii/" class="post-link">
         <h4 class="post-title">[LeetCode] Reverse Linked List II</h4>
         <p class="post-summary">Reverse a linked list in a range. There are two steps to achieve this goal ...</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/development/2014/11/14/leetcode-candy/" class="post-link">
+        <h4 class="post-title">[LeetCode] Candy</h4>
+        <p class="post-summary">分糖果问题，每个小孩有一个分数，要求对任意一个小孩，如果他的分数比相邻的小孩高，那么他必须分到比相邻小孩要多的糖果。并且每个小孩只要分到一个。</p>
       </a>
     </div>
   
