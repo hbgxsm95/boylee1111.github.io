@@ -3,12 +3,12 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>[LeetCode] Single Number &#8211; Boyi Li</title>
+    <title>[LeetCode] Count and Say &#8211; Boyi Li</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="起初看错题，以为是一个数组中有一个数重复出现两次，找出这个数，时间复杂度还要求是线性的，想了半天也不知道怎么搞。">
+    <meta name="description" content="To be honest, I took lots of time to understand the problem. Finally, I got it clear, just print how you read the string by “quantity + number”.">
     <meta name="author" content="John Otander">
     <meta name="keywords" content="development">
-    <link rel="canonical" href="http://boylee.me/development/2014/09/09/leetcode-single-number/">
+    <link rel="canonical" href="http://boylee.me/development/2014/12/19/leetcode-count-and-say/">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/pixyll.css" type="text/css">
@@ -43,9 +43,9 @@
     <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
     <meta property="og:locale" content="en_US">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="[LeetCode] Single Number">
+    <meta property="og:title" content="[LeetCode] Count and Say">
     <meta property="og:description" content="A simple, beautiful theme for Jekyll that emphasizes content rather than aesthetic fluff.">
-    <meta property="og:url" content="http://boylee.me/development/2014/09/09/leetcode-single-number/">
+    <meta property="og:url" content="http://boylee.me/development/2014/12/19/leetcode-count-and-say/">
     <meta property="og:site_name" content="Boyi Li">
 </head>
 
@@ -108,12 +108,10 @@
         
 
 
-
-
 <div class="post-header mb2">
-  <h1>[LeetCode] Single Number</h1>
+  <h1>[LeetCode] Count and Say</h1>
   <div>
-    <span class="post-meta">Sep 9, 2014</span><br>
+    <span class="post-meta">Dec 19, 2014</span><br>
     
     <span class="post-meta small">1 minute read</span>
   </div>
@@ -122,27 +120,52 @@
 <div class="bl-separator"></div>
 
 <article class="post-content">
-  <h2 id="single-numberhttpsojleetcodecomproblemssingle-number"><a href="https://oj.leetcode.com/problems/single-number/">Single Number</a></h2>
+  <h2 id="count-and-sayhttpsojleetcodecomproblemscount-and-say"><a href="https://oj.leetcode.com/problems/count-and-say/">Count and Say</a></h2>
 
-<p>起初看错题，以为是一个数组中有一个数重复出现两次，找出这个数，时间复杂度还要求是线性的，想了半天也不知道怎么搞。</p>
+<p>To be honest, I took lots of time to understand the problem. Finally, I got it clear, just print how you read the string by “quantity + number”. Like “1”, read off as “one 1”, namely “11”. Then “11” read off as “two 1”, namely “21”.</p>
 
-<p>仔细一看原来是说一个数组中除了一个数出现一次之外，其他的都出现了两次，找出只出现了一次的那个数。</p>
+<p>Here is the example of output:</p>
 
-<p>第一反应当然是遍历比较，或排序找出单个的数，这样时间复杂度就是O(n2)。因为要求是线性，就意味着只遍历一次。于是用异或的特性，相同的数字异或为0。那么异或所有数之后结果就是要找的元素。</p>
+<ul>
+  <li><code>1</code></li>
+  <li><code>11</code></li>
+  <li><code>21</code></li>
+  <li><code>1211</code></li>
+  <li><code>111221</code></li>
+  <li><code>312211</code></li>
+  <li><code>13112221</code></li>
+  <li><code>1113213211</code></li>
+  <li><code>31131211131221</code></li>
+  <li><code>13211311123113112211</code></li>
+</ul>
 
-<p>代码如下：</p>
+<p>Outter loop is the determined by $n$, inner loop generate next round digits string according to the current one. Here is the code with simulation approach:</p>
 
 <div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="lineno"> 1</span> <span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
 <span class="lineno"> 2</span> <span class="k">public</span><span class="o">:</span>
-<span class="lineno"> 3</span>     <span class="kt">int</span> <span class="n">singleNumber</span><span class="p">(</span><span class="kt">int</span> <span class="n">A</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
-<span class="lineno"> 4</span>         <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="lineno"> 5</span>         <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-<span class="lineno"> 6</span>             <span class="n">result</span> <span class="o">=</span> <span class="n">result</span> <span class="o">^</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-<span class="lineno"> 7</span>         <span class="p">}</span>
-<span class="lineno"> 8</span>         <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
-<span class="lineno"> 9</span>     <span class="p">}</span>
-<span class="lineno">10</span> <span class="p">};</span></code></pre></div>
-
+<span class="lineno"> 3</span>     <span class="n">string</span> <span class="n">countAndSay</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno"> 4</span>         <span class="n">string</span> <span class="n">res</span> <span class="o">=</span> <span class="s">&quot;1&quot;</span><span class="p">;</span>
+<span class="lineno"> 5</span>         
+<span class="lineno"> 6</span>         <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+<span class="lineno"> 7</span>         <span class="p">{</span>
+<span class="lineno"> 8</span>             <span class="n">string</span> <span class="n">temp</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
+<span class="lineno"> 9</span>             <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">res</span><span class="p">.</span><span class="n">length</span><span class="p">();)</span>
+<span class="lineno">10</span>             <span class="p">{</span>
+<span class="lineno">11</span>                 <span class="kt">char</span> <span class="n">x</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+<span class="lineno">12</span>                 <span class="kt">char</span> <span class="n">count</span> <span class="o">=</span> <span class="sc">&#39;0&#39;</span><span class="p">;</span>
+<span class="lineno">13</span>                 <span class="k">do</span>
+<span class="lineno">14</span>                 <span class="p">{</span>
+<span class="lineno">15</span>                     <span class="n">count</span><span class="o">++</span><span class="p">;</span>
+<span class="lineno">16</span>                     <span class="n">j</span><span class="o">++</span><span class="p">;</span>
+<span class="lineno">17</span>                 <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">res</span><span class="p">[</span><span class="n">j</span><span class="p">]);</span>
+<span class="lineno">18</span>                 <span class="n">temp</span> <span class="o">=</span> <span class="n">temp</span> <span class="o">+</span> <span class="n">count</span> <span class="o">+</span> <span class="n">x</span><span class="p">;</span>
+<span class="lineno">19</span>             <span class="p">}</span>
+<span class="lineno">20</span>             <span class="n">res</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+<span class="lineno">21</span>         <span class="p">}</span>
+<span class="lineno">22</span>         
+<span class="lineno">23</span>         <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+<span class="lineno">24</span>     <span class="p">}</span>
+<span class="lineno">25</span> <span class="p">};</span></code></pre></div>
 
 </article>
 
@@ -152,11 +175,11 @@
 <div class="marT marB">
   <div class="bl-post-tags left">
     <div class="social-share">
-      <a class="social-share-element icon-twitter" href="https://twitter.com/intent/tweet?text=[LeetCode] Single Number&url=&via=OviliaZhang&hashtags=" target="_blank" title="Share this post on Twitter"></a>
-      <a class="social-share-element" href="https://www.facebook.com/sharer/sharer.php?t=[LeetCode] Single Number&u=" target="_blank" title="Share this post on Facebook"></a>
-      <a class="social-share-element" id="social-google" href="https://plus.google.com/share?url=http://boylee.me/development/2014/09/09/leetcode-single-number/" target="_blank" title="Share this post on Google Plus"></a>
-      <a class="social-share-element" id="social-linkedin" href="http://www.linkedin.com/shareArticle?mini=true&title=[LeetCode] Single Number&url=&source=http%3a%2f%2fzhangwenli.com" target="_blank" title="Share this post on LinkedIn"></a>
-      <a class="social-share-element" id="social-weibo" href="http://v.t.sina.com.cn/share/share.php?title=来看看+%40Ovilia允执厥中+的博文吧：[LeetCode] Single Number&url=" target="_blank" title="Share this post on Sina Weibo"></a>
+      <a class="social-share-element icon-twitter" href="https://twitter.com/intent/tweet?text=[LeetCode] Count and Say&url=&via=OviliaZhang&hashtags=" target="_blank" title="Share this post on Twitter"></a>
+      <a class="social-share-element" href="https://www.facebook.com/sharer/sharer.php?t=[LeetCode] Count and Say&u=" target="_blank" title="Share this post on Facebook"></a>
+      <a class="social-share-element" id="social-google" href="https://plus.google.com/share?url=http://boylee.me/development/2014/12/19/leetcode-count-and-say/" target="_blank" title="Share this post on Google Plus"></a>
+      <a class="social-share-element" id="social-linkedin" href="http://www.linkedin.com/shareArticle?mini=true&title=[LeetCode] Count and Say&url=&source=http%3a%2f%2fzhangwenli.com" target="_blank" title="Share this post on LinkedIn"></a>
+      <a class="social-share-element" id="social-weibo" href="http://v.t.sina.com.cn/share/share.php?title=来看看+%40Ovilia允执厥中+的博文吧：[LeetCode] Count and Say&url=" target="_blank" title="Share this post on Sina Weibo"></a>
     </div>
   </div>
   <div class="bl-post-tags right">
@@ -166,8 +189,8 @@
     
       
       
-        <a href="/tags/#bit" class="bl-tag">
-         bit
+        <a href="/tags/#LeetCode" class="bl-tag">
+         LeetCode
         </a>
       
     
@@ -181,8 +204,8 @@
     
       
       
-        <a href="/tags/#LeetCode" class="bl-tag">
-         LeetCode
+        <a href="/tags/#string" class="bl-tag">
+         string
         </a>
       
     
@@ -211,13 +234,6 @@
 
 
   <h3 class="related-post-title">Related Posts</h3>
-  
-    <div class="post ml2">
-      <a href="/development/2014/12/19/leetcode-count-and-say/" class="post-link">
-        <h4 class="post-title">[LeetCode] Count and Say</h4>
-        <p class="post-summary">To be honest, I took lots of time to understand the problem. Finally, I got it clear, just print how you read the string by “quantity + number”.</p>
-      </a>
-    </div>
   
     <div class="post ml2">
       <a href="/development/2014/12/19/leetcode-container-with-most-water/" class="post-link">
@@ -279,6 +295,13 @@
       <a href="/miscellaneous/2014/11/16/%E4%BB%8EWordPress%E5%88%B0Github-Pages/" class="post-link">
         <h4 class="post-title">从WordPress到Github Pages</h4>
         <p class="post-summary">因为买的Web Hosting要到期了，这才想起来赶紧把Blog移过来。</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/development/2014/11/14/leetcode-reverse-nodes-in-k-group/" class="post-link">
+        <h4 class="post-title">[LeetCode] Reverse Nodes in k-Group</h4>
+        <p class="post-summary">Advance version of Reverse Linked List II.</p>
       </a>
     </div>
   
