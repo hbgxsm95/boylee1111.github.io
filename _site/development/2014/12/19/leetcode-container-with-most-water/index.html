@@ -3,12 +3,12 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>[LeetCode] Insertion Sort List &#8211; Boyi Li</title>
+    <title>[LeetCode] Container With Most Water &#8211; Boyi Li</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="使用插入排序方法对链表进行排序。">
+    <meta name="description" content="简述就是从平面坐标系一组点中找两点，使得其与x轴组成的水槽可以容纳最多的水。">
     <meta name="author" content="John Otander">
     <meta name="keywords" content="development">
-    <link rel="canonical" href="http://boylee.me/development/2014/11/08/leetcode-insertion-sort-list/">
+    <link rel="canonical" href="http://boylee.me/development/2014/12/19/leetcode-container-with-most-water/">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/pixyll.css" type="text/css">
@@ -43,9 +43,9 @@
     <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
     <meta property="og:locale" content="en_US">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="[LeetCode] Insertion Sort List">
+    <meta property="og:title" content="[LeetCode] Container With Most Water">
     <meta property="og:description" content="A simple, beautiful theme for Jekyll that emphasizes content rather than aesthetic fluff.">
-    <meta property="og:url" content="http://boylee.me/development/2014/11/08/leetcode-insertion-sort-list/">
+    <meta property="og:url" content="http://boylee.me/development/2014/12/19/leetcode-container-with-most-water/">
     <meta property="og:site_name" content="Boyi Li">
 </head>
 
@@ -108,10 +108,12 @@
         
 
 
+
+
 <div class="post-header mb2">
-  <h1>[LeetCode] Insertion Sort List</h1>
+  <h1>[LeetCode] Container With Most Water</h1>
   <div>
-    <span class="post-meta">Nov 8, 2014</span><br>
+    <span class="post-meta">Dec 19, 2014</span><br>
     
     <span class="post-meta small">1 minute read</span>
   </div>
@@ -120,41 +122,22 @@
 <div class="bl-separator"></div>
 
 <article class="post-content">
-  <h2 id="insertion-sort-listhttpsojleetcodecomproblemsinsertion-sort-list"><a href="https://oj.leetcode.com/problems/insertion-sort-list/">Insertion Sort List</a></h2>
+  <h2 id="container-with-most-waterhttpsojleetcodecomproblemscontainer-with-most-water"><a href="https://oj.leetcode.com/problems/container-with-most-water/">Container With Most Water</a></h2>
 
-<p>使用插入排序方法对链表进行排序。</p>
+<p>简述就是从平面坐标系一组点中找两点，使得其与x轴组成的水槽可以容纳最多的水。从两个各设置一个index开始扫描，由于每次向内容器的宽度减少了，则只有最短板的高度增加才有可能使得容器容积增大。所以每次从两个板中取最短的一个向内移动，并判断是否得到更大容积的容器，得到更大容积则记录最大值，否则继续查找知道两个点重合。代码如下：</p>
 
-<p>思路如下：dummyHead用于纪录排序后的链表，left表示剩余还未操作的元素。每次从left里面取出第一个节点插入到现有的已经有序的dummyHead节点中，直至left为空。代码如下：</p>
-
-<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="lineno"> 1</span> <span class="cm">/**</span>
-<span class="lineno"> 2</span> <span class="cm"> * Definition for singly-linked list.</span>
-<span class="lineno"> 3</span> <span class="cm"> * struct ListNode {</span>
-<span class="lineno"> 4</span> <span class="cm"> *     int val;</span>
-<span class="lineno"> 5</span> <span class="cm"> *     ListNode *next;</span>
-<span class="lineno"> 6</span> <span class="cm"> *     ListNode(int x) : val(x), next(NULL) {}</span>
-<span class="lineno"> 7</span> <span class="cm"> * };</span>
-<span class="lineno"> 8</span> <span class="cm"> */</span>
-<span class="lineno"> 9</span> <span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
-<span class="lineno">10</span> <span class="k">public</span><span class="o">:</span>
-<span class="lineno">11</span>     <span class="n">ListNode</span> <span class="o">*</span><span class="n">insertionSortList</span><span class="p">(</span><span class="n">ListNode</span> <span class="o">*</span><span class="n">head</span><span class="p">)</span> <span class="p">{</span>
-<span class="lineno">12</span>         <span class="n">ListNode</span> <span class="n">dummyHead</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-<span class="lineno">13</span>         <span class="n">dummyHead</span><span class="p">.</span><span class="n">next</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
-<span class="lineno">14</span> 
-<span class="lineno">15</span>         <span class="n">ListNode</span> <span class="o">*</span><span class="n">cur</span><span class="p">,</span> <span class="o">*</span><span class="n">left</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
-<span class="lineno">16</span>         <span class="k">while</span> <span class="p">(</span><span class="n">left</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
-<span class="lineno">17</span>         <span class="p">{</span>
-<span class="lineno">18</span>             <span class="n">cur</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">dummyHead</span><span class="p">;</span>
-<span class="lineno">19</span>             <span class="k">while</span> <span class="p">(</span><span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">!=</span> <span class="nb">NULL</span> <span class="o">&amp;&amp;</span> <span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">-&gt;</span><span class="n">val</span> <span class="o">&lt;</span> <span class="n">left</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">)</span>
-<span class="lineno">20</span>                 <span class="n">cur</span> <span class="o">=</span> <span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
-<span class="lineno">21</span>             <span class="n">ListNode</span> <span class="o">*</span><span class="n">tmp</span> <span class="o">=</span> <span class="n">left</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
-<span class="lineno">22</span>             <span class="n">left</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
-<span class="lineno">23</span>             <span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">left</span><span class="p">;</span>
-<span class="lineno">24</span>             <span class="n">left</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">;</span>
-<span class="lineno">25</span>         <span class="p">}</span>
-<span class="lineno">26</span> 
-<span class="lineno">27</span>         <span class="k">return</span> <span class="n">dummyHead</span><span class="p">.</span><span class="n">next</span><span class="p">;</span>
-<span class="lineno">28</span>     <span class="p">}</span>
-<span class="lineno">29</span> <span class="p">};</span></code></pre></div>
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="lineno"> 1</span> <span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="lineno"> 2</span> <span class="k">public</span><span class="o">:</span>
+<span class="lineno"> 3</span>     <span class="kt">int</span> <span class="n">maxArea</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">height</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno"> 4</span>         <span class="kt">int</span> <span class="n">left</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="n">height</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">res</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="lineno"> 5</span>         <span class="k">while</span> <span class="p">(</span><span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">)</span>
+<span class="lineno"> 6</span>         <span class="p">{</span>
+<span class="lineno"> 7</span>             <span class="n">res</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">min</span><span class="p">(</span><span class="n">height</span><span class="p">[</span><span class="n">left</span><span class="p">],</span> <span class="n">height</span><span class="p">[</span><span class="n">right</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">right</span> <span class="o">-</span> <span class="n">left</span><span class="p">));</span>
+<span class="lineno"> 8</span>             <span class="n">height</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">height</span><span class="p">[</span><span class="n">right</span><span class="p">]</span> <span class="o">?</span> <span class="n">right</span><span class="o">--</span> <span class="o">:</span> <span class="n">left</span><span class="o">++</span><span class="p">;</span>
+<span class="lineno"> 9</span>         <span class="p">}</span>
+<span class="lineno">10</span>         <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+<span class="lineno">11</span>     <span class="p">}</span>
+<span class="lineno">12</span> <span class="p">};</span></code></pre></div>
 
 </article>
 
@@ -164,16 +147,31 @@
 <div class="marT marB">
   <div class="bl-post-tags left">
     <div class="social-share">
-      <a class="social-share-element icon-twitter" href="https://twitter.com/intent/tweet?text=[LeetCode] Insertion Sort List&url=&via=OviliaZhang&hashtags=" target="_blank" title="Share this post on Twitter"></a>
-      <a class="social-share-element" href="https://www.facebook.com/sharer/sharer.php?t=[LeetCode] Insertion Sort List&u=" target="_blank" title="Share this post on Facebook"></a>
-      <a class="social-share-element" id="social-google" href="https://plus.google.com/share?url=http://boylee.me/development/2014/11/08/leetcode-insertion-sort-list/" target="_blank" title="Share this post on Google Plus"></a>
-      <a class="social-share-element" id="social-linkedin" href="http://www.linkedin.com/shareArticle?mini=true&title=[LeetCode] Insertion Sort List&url=&source=http%3a%2f%2fzhangwenli.com" target="_blank" title="Share this post on LinkedIn"></a>
-      <a class="social-share-element" id="social-weibo" href="http://v.t.sina.com.cn/share/share.php?title=来看看+%40Ovilia允执厥中+的博文吧：[LeetCode] Insertion Sort List&url=" target="_blank" title="Share this post on Sina Weibo"></a>
+      <a class="social-share-element icon-twitter" href="https://twitter.com/intent/tweet?text=[LeetCode] Container With Most Water&url=&via=OviliaZhang&hashtags=" target="_blank" title="Share this post on Twitter"></a>
+      <a class="social-share-element" href="https://www.facebook.com/sharer/sharer.php?t=[LeetCode] Container With Most Water&u=" target="_blank" title="Share this post on Facebook"></a>
+      <a class="social-share-element" id="social-google" href="https://plus.google.com/share?url=http://boylee.me/development/2014/12/19/leetcode-container-with-most-water/" target="_blank" title="Share this post on Google Plus"></a>
+      <a class="social-share-element" id="social-linkedin" href="http://www.linkedin.com/shareArticle?mini=true&title=[LeetCode] Container With Most Water&url=&source=http%3a%2f%2fzhangwenli.com" target="_blank" title="Share this post on LinkedIn"></a>
+      <a class="social-share-element" id="social-weibo" href="http://v.t.sina.com.cn/share/share.php?title=来看看+%40Ovilia允执厥中+的博文吧：[LeetCode] Container With Most Water&url=" target="_blank" title="Share this post on Sina Weibo"></a>
     </div>
   </div>
   <div class="bl-post-tags right">
   
   
+  
+    
+      
+      
+    
+      
+      
+        <a href="/tags/#array" class="bl-tag">
+         array
+        </a>
+      
+    
+      
+      
+    
   
     
       
@@ -196,26 +194,11 @@
     
       
       
-        <a href="/tags/#linked list" class="bl-tag">
-         linked list
-        </a>
-      
     
       
       
-    
-  
-    
-      
-      
-    
-      
-      
-    
-      
-      
-        <a href="/tags/#sort" class="bl-tag">
-         sort
+        <a href="/tags/#two point" class="bl-tag">
+         two point
         </a>
       
     
@@ -244,13 +227,6 @@
 
 
   <h3 class="related-post-title">Related Posts</h3>
-  
-    <div class="post ml2">
-      <a href="/development/2014/12/19/leetcode-container-with-most-water/" class="post-link">
-        <h4 class="post-title">[LeetCode] Container With Most Water</h4>
-        <p class="post-summary">简述就是从平面坐标系一组点中找两点，使得其与x轴组成的水槽可以容纳最多的水。</p>
-      </a>
-    </div>
   
     <div class="post ml2">
       <a href="/development/2014/12/17/leetcode-combinations/" class="post-link">
@@ -312,6 +288,13 @@
       <a href="/development/2014/11/14/leetcode-reverse-nodes-in-k-group/" class="post-link">
         <h4 class="post-title">[LeetCode] Reverse Nodes in k-Group</h4>
         <p class="post-summary">Advance version of Reverse Linked List II.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/development/2014/11/14/leetcode-reverse-linked-list-ii/" class="post-link">
+        <h4 class="post-title">[LeetCode] Reverse Linked List II</h4>
+        <p class="post-summary">Reverse a linked list in a range. There are two steps to achieve this goal ...</p>
       </a>
     </div>
   

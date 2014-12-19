@@ -3,12 +3,12 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>[LeetCode] Add Two Numbers &#8211; Boyi Li</title>
+    <title>[LeetCode] Combinations &#8211; Boyi Li</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="两个以链表形式存储的两个数相加，每一个结点代表一位，头结点为最低位，尾结点为最高位。">
+    <meta name="description" content="计算整数的组合...">
     <meta name="author" content="John Otander">
     <meta name="keywords" content="development">
-    <link rel="canonical" href="http://boylee.me/development/2014/12/13/leetcode-add-two-numbers/">
+    <link rel="canonical" href="http://boylee.me/development/2014/12/17/leetcode-combinations/">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/pixyll.css" type="text/css">
@@ -43,9 +43,9 @@
     <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
     <meta property="og:locale" content="en_US">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="[LeetCode] Add Two Numbers">
+    <meta property="og:title" content="[LeetCode] Combinations">
     <meta property="og:description" content="A simple, beautiful theme for Jekyll that emphasizes content rather than aesthetic fluff.">
-    <meta property="og:url" content="http://boylee.me/development/2014/12/13/leetcode-add-two-numbers/">
+    <meta property="og:url" content="http://boylee.me/development/2014/12/17/leetcode-combinations/">
     <meta property="og:site_name" content="Boyi Li">
 </head>
 
@@ -109,58 +109,53 @@
 
 
 <div class="post-header mb2">
-  <h1>[LeetCode] Add Two Numbers</h1>
+  <h1>[LeetCode] Combinations</h1>
   <div>
-    <span class="post-meta">Dec 13, 2014</span><br>
+    <span class="post-meta">Dec 17, 2014</span><br>
     
-    <span class="post-meta small">2 minute read</span>
+    <span class="post-meta small">1 minute read</span>
   </div>
 </div>
 
 <div class="bl-separator"></div>
 
 <article class="post-content">
-  <h2 id="add-two-numbershttpsojleetcodecomproblemsadd-two-numbers"><a href="https://oj.leetcode.com/problems/add-two-numbers/">Add Two Numbers</a></h2>
+  <h2 id="combinationshttpsojleetcodecomproblemscombinations"><a href="https://oj.leetcode.com/problems/combinations/">Combinations</a></h2>
 
-<p>两个以链表形式存储的两个数相加，每一个结点代表一位，头结点为最低位，尾结点为最高位。还是最基本的两数相加的思路，换种形式而已，最后如果有进位，在结尾新建一个结点即可。代码如下：</p>
+<p>计算整数的组合，即${n \choose k}$的所有结果。采用回溯的思路，solution为遍历出来的结果，当它的size等于k时即为一个有效结果。并同时用一个visited数组记录哪些结点被访问过，访问过继续，没有访问过则下一层递归。代码如下：</p>
 
-<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="lineno"> 1</span> <span class="cm">/**</span>
-<span class="lineno"> 2</span> <span class="cm"> * Definition for singly-linked list.</span>
-<span class="lineno"> 3</span> <span class="cm"> * struct ListNode {</span>
-<span class="lineno"> 4</span> <span class="cm"> *     int val;</span>
-<span class="lineno"> 5</span> <span class="cm"> *     ListNode *next;</span>
-<span class="lineno"> 6</span> <span class="cm"> *     ListNode(int x) : val(x), next(NULL) {}</span>
-<span class="lineno"> 7</span> <span class="cm"> * };</span>
-<span class="lineno"> 8</span> <span class="cm"> */</span>
-<span class="lineno"> 9</span> <span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
-<span class="lineno">10</span> <span class="k">public</span><span class="o">:</span>
-<span class="lineno">11</span>     <span class="n">ListNode</span> <span class="o">*</span><span class="n">addTwoNumbers</span><span class="p">(</span><span class="n">ListNode</span> <span class="o">*</span><span class="n">l1</span><span class="p">,</span> <span class="n">ListNode</span> <span class="o">*</span><span class="n">l2</span><span class="p">)</span> <span class="p">{</span>
-<span class="lineno">12</span>         <span class="k">if</span> <span class="p">(</span><span class="n">l1</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="k">return</span> <span class="n">l2</span><span class="p">;</span>
-<span class="lineno">13</span>         <span class="k">if</span> <span class="p">(</span><span class="n">l2</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="k">return</span> <span class="n">l1</span><span class="p">;</span>
-<span class="lineno">14</span>         <span class="kt">int</span> <span class="n">carry</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="lineno">15</span>         
-<span class="lineno">16</span>         <span class="n">ListNode</span> <span class="nf">res</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-<span class="lineno">17</span>         <span class="n">ListNode</span> <span class="o">*</span><span class="n">cur</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">res</span><span class="p">,</span> <span class="o">*</span><span class="n">p1</span> <span class="o">=</span> <span class="n">l1</span><span class="p">,</span> <span class="o">*</span><span class="n">p2</span> <span class="o">=</span> <span class="n">l2</span><span class="p">;</span>
-<span class="lineno">18</span>         <span class="kt">int</span> <span class="n">num1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">num2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="lineno">19</span>         
-<span class="lineno">20</span>         <span class="k">while</span> <span class="p">(</span><span class="n">p1</span> <span class="o">!=</span> <span class="nb">NULL</span> <span class="o">||</span> <span class="n">p2</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="lineno"> 1</span> <span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="lineno"> 2</span> <span class="k">public</span><span class="o">:</span>
+<span class="lineno"> 3</span>     <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">combine</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno"> 4</span>         <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">res</span><span class="p">;</span>
+<span class="lineno"> 5</span>         <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">solution</span><span class="p">;</span>
+<span class="lineno"> 6</span>         <span class="n">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span> <span class="n">visited</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">false</span><span class="p">);</span>
+<span class="lineno"> 7</span>         
+<span class="lineno"> 8</span>         <span class="n">generateCombination</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">visited</span><span class="p">,</span> <span class="n">solution</span><span class="p">,</span> <span class="n">res</span><span class="p">);</span>
+<span class="lineno"> 9</span>         
+<span class="lineno">10</span>         <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+<span class="lineno">11</span>     <span class="p">}</span>
+<span class="lineno">12</span>     
+<span class="lineno">13</span>     <span class="kt">void</span> <span class="n">generateCombination</span><span class="p">(</span><span class="kt">int</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="o">&amp;</span><span class="n">k</span><span class="p">,</span> <span class="kt">int</span> <span class="n">start</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span> <span class="n">visited</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">solution</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;&amp;</span> <span class="n">res</span><span class="p">)</span>
+<span class="lineno">14</span>     <span class="p">{</span>
+<span class="lineno">15</span>         <span class="k">if</span> <span class="p">(</span><span class="n">solution</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="n">k</span><span class="p">)</span>
+<span class="lineno">16</span>         <span class="p">{</span>
+<span class="lineno">17</span>             <span class="n">res</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">solution</span><span class="p">);</span>
+<span class="lineno">18</span>             <span class="k">return</span><span class="p">;</span>
+<span class="lineno">19</span>         <span class="p">}</span>
+<span class="lineno">20</span>         <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">start</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
 <span class="lineno">21</span>         <span class="p">{</span>
-<span class="lineno">22</span>             <span class="n">num1</span> <span class="o">=</span> <span class="n">p1</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="n">p1</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">;</span>
-<span class="lineno">23</span>             <span class="n">num2</span> <span class="o">=</span> <span class="n">p2</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="n">p2</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">;</span>
-<span class="lineno">24</span>             
-<span class="lineno">25</span>             <span class="kt">int</span> <span class="n">value</span> <span class="o">=</span> <span class="n">num1</span> <span class="o">+</span> <span class="n">num2</span> <span class="o">+</span> <span class="n">carry</span><span class="p">;</span>
-<span class="lineno">26</span>             <span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListNode</span><span class="p">(</span><span class="n">value</span> <span class="o">%</span> <span class="mi">10</span><span class="p">);</span>
-<span class="lineno">27</span>             <span class="n">cur</span> <span class="o">=</span> <span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
-<span class="lineno">28</span>             <span class="n">carry</span> <span class="o">=</span> <span class="n">value</span> <span class="o">/</span> <span class="mi">10</span><span class="p">;</span>
-<span class="lineno">29</span>             
-<span class="lineno">30</span>             <span class="n">p1</span> <span class="o">=</span> <span class="n">p1</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="o">?</span> <span class="nl">p1</span> <span class="p">:</span> <span class="n">p1</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
-<span class="lineno">31</span>             <span class="n">p2</span> <span class="o">=</span> <span class="n">p2</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="o">?</span> <span class="nl">p2</span> <span class="p">:</span> <span class="n">p2</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
-<span class="lineno">32</span>         <span class="p">}</span>
-<span class="lineno">33</span>         <span class="k">if</span> <span class="p">(</span><span class="n">carry</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListNode</span><span class="p">(</span><span class="n">carry</span><span class="p">);</span>
-<span class="lineno">34</span>         
-<span class="lineno">35</span>         <span class="k">return</span> <span class="n">res</span><span class="p">.</span><span class="n">next</span><span class="p">;</span>
-<span class="lineno">36</span>     <span class="p">}</span>
-<span class="lineno">37</span> <span class="p">};</span></code></pre></div>
+<span class="lineno">22</span>             <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">visited</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="lineno">23</span>             <span class="p">{</span>
+<span class="lineno">24</span>                 <span class="n">visited</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+<span class="lineno">25</span>                 <span class="n">solution</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="lineno">26</span>                 <span class="n">generateCombination</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">visited</span><span class="p">,</span> <span class="n">solution</span><span class="p">,</span> <span class="n">res</span><span class="p">);</span>
+<span class="lineno">27</span>                 <span class="n">solution</span><span class="p">.</span><span class="n">pop_back</span><span class="p">();</span>
+<span class="lineno">28</span>                 <span class="n">visited</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+<span class="lineno">29</span>             <span class="p">}</span>
+<span class="lineno">30</span>         <span class="p">}</span>
+<span class="lineno">31</span>     <span class="p">}</span>
+<span class="lineno">32</span> <span class="p">};</span></code></pre></div>
 
 
 </article>
@@ -171,11 +166,11 @@
 <div class="marT marB">
   <div class="bl-post-tags left">
     <div class="social-share">
-      <a class="social-share-element icon-twitter" href="https://twitter.com/intent/tweet?text=[LeetCode] Add Two Numbers&url=&via=OviliaZhang&hashtags=" target="_blank" title="Share this post on Twitter"></a>
-      <a class="social-share-element" href="https://www.facebook.com/sharer/sharer.php?t=[LeetCode] Add Two Numbers&u=" target="_blank" title="Share this post on Facebook"></a>
-      <a class="social-share-element" id="social-google" href="https://plus.google.com/share?url=http://boylee.me/development/2014/12/13/leetcode-add-two-numbers/" target="_blank" title="Share this post on Google Plus"></a>
-      <a class="social-share-element" id="social-linkedin" href="http://www.linkedin.com/shareArticle?mini=true&title=[LeetCode] Add Two Numbers&url=&source=http%3a%2f%2fzhangwenli.com" target="_blank" title="Share this post on LinkedIn"></a>
-      <a class="social-share-element" id="social-weibo" href="http://v.t.sina.com.cn/share/share.php?title=来看看+%40Ovilia允执厥中+的博文吧：[LeetCode] Add Two Numbers&url=" target="_blank" title="Share this post on Sina Weibo"></a>
+      <a class="social-share-element icon-twitter" href="https://twitter.com/intent/tweet?text=[LeetCode] Combinations&url=&via=OviliaZhang&hashtags=" target="_blank" title="Share this post on Twitter"></a>
+      <a class="social-share-element" href="https://www.facebook.com/sharer/sharer.php?t=[LeetCode] Combinations&u=" target="_blank" title="Share this post on Facebook"></a>
+      <a class="social-share-element" id="social-google" href="https://plus.google.com/share?url=http://boylee.me/development/2014/12/17/leetcode-combinations/" target="_blank" title="Share this post on Google Plus"></a>
+      <a class="social-share-element" id="social-linkedin" href="http://www.linkedin.com/shareArticle?mini=true&title=[LeetCode] Combinations&url=&source=http%3a%2f%2fzhangwenli.com" target="_blank" title="Share this post on LinkedIn"></a>
+      <a class="social-share-element" id="social-weibo" href="http://v.t.sina.com.cn/share/share.php?title=来看看+%40Ovilia允执厥中+的博文吧：[LeetCode] Combinations&url=" target="_blank" title="Share this post on Sina Weibo"></a>
     </div>
   </div>
   <div class="bl-post-tags right">
@@ -260,9 +255,9 @@
     </div>
   
     <div class="post ml2">
-      <a href="/development/2014/12/17/leetcode-combinations/" class="post-link">
-        <h4 class="post-title">[LeetCode] Combinations</h4>
-        <p class="post-summary">计算整数的组合...</p>
+      <a href="/development/2014/12/13/leetcode-add-two-numbers/" class="post-link">
+        <h4 class="post-title">[LeetCode] Add Two Numbers</h4>
+        <p class="post-summary">两个以链表形式存储的两个数相加，每一个结点代表一位，头结点为最低位，尾结点为最高位。</p>
       </a>
     </div>
   
