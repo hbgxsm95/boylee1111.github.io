@@ -17,6 +17,6 @@ In addition, I'm passionate to explore unknown things, and enjoyable from changi
 ###About This Blog###
 This blog is not just limited to development articles. I will keep posting anything about my life, my thoughts, etc.. And maybe these posts will keep me one day.
 
-<br/>
-
-**Note: this page is not complete, and it will keep updating, please check occasionally if you're interested in it.**
+<div class="bl-note">
+	This page is not complete, and it will keep updating, please check occasionally if you're interested in it.
+</div>

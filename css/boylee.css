@@ -19,6 +19,14 @@
 	margin: 0 0 20px 0;
 }
 
+.bl-note {
+	background-color: lightgray;
+	padding: 15px 20px;
+	margin: 30px 0px;
+	font-size: 18px;
+	font-weight: bold; 
+}
+
 .marT {
 	margin-top: 40px;
 }
@@ -59,4 +67,34 @@ h3:hover a {
 
 .bl-tags-tags .bl-tag {
 	margin: 0 0 5px 2px;
+}
+
+/* resume */
+
+.bl-section {
+	display: block;
+}
+
+.bl-section-name {
+	font-size: 22px;
+}
+
+.bl-location {
+	line-height: 12px;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	color: rgb(67, 70, 73);
+}
+
+.bl-descriptions {
+	font-size: 15px;
+	line-height: 20px;
+}
+
+.bl-dates {
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	line-height: 10px;
+	font-weight: normal;
+	color: rgb(102, 102, 102);
 }
