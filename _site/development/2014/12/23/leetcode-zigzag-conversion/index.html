@@ -3,12 +3,12 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>生生不息 &#8211; Boyi Li</title>
+    <title>[LeetCode] ZigZag Conversion &#8211; Boyi Li</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="不到24小时就要飞往德国了，心中的激动当然溢于言表。这个学期对我来说可以算是结束了，项目尽可能在走之前解决大部分，课程也没有什么繁忙，现在一身轻的感觉真是美妙。">
+    <meta name="description" content="题意要求给定一个ZigZag形式的字符串，然后以行的形式重新遍历一遍。">
     <meta name="author" content="John Otander">
-    <meta name="keywords" content="general">
-    <link rel="canonical" href="http://boylee.me/general/2014/05/07/%E7%94%9F%E7%94%9F%E4%B8%8D%E6%81%AF/">
+    <meta name="keywords" content="development">
+    <link rel="canonical" href="http://boylee.me/development/2014/12/23/leetcode-zigzag-conversion/">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/pixyll.css" type="text/css">
@@ -43,9 +43,9 @@
     <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
     <meta property="og:locale" content="en_US">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="生生不息">
+    <meta property="og:title" content="[LeetCode] ZigZag Conversion">
     <meta property="og:description" content="A simple, beautiful theme for Jekyll that emphasizes content rather than aesthetic fluff.">
-    <meta property="og:url" content="http://boylee.me/general/2014/05/07/%E7%94%9F%E7%94%9F%E4%B8%8D%E6%81%AF/">
+    <meta property="og:url" content="http://boylee.me/development/2014/12/23/leetcode-zigzag-conversion/">
     <meta property="og:site_name" content="Boyi Li">
 </head>
 
@@ -108,12 +108,10 @@
         
 
 
-
-
 <div class="post-header mb2">
-  <h1>生生不息</h1>
+  <h1>[LeetCode] ZigZag Conversion</h1>
   <div>
-    <span class="post-meta">May 7, 2014</span><br>
+    <span class="post-meta">Dec 23, 2014</span><br>
     
     <span class="post-meta small">1 minute read</span>
   </div>
@@ -122,15 +120,36 @@
 <div class="bl-separator"></div>
 
 <article class="post-content">
-  <p>不到24小时就要飞往德国了，心中的激动当然溢于言表。这个学期对我来说可以算是结束了，项目尽可能在走之前解决大部分，课程也没有什么繁忙，现在一身轻的感觉真是美妙。</p>
+  <h2 id="zigzag-conversionhttpsojleetcodecomproblemszigzag-conversion"><a href="https://oj.leetcode.com/problems/zigzag-conversion/">ZigZag Conversion</a></h2>
 
-<p>回想四月那阵真是一段难忘的时期，先是出去玩一趟来回各误一次飞机，心里有了极大的阴影。再是朋友们热情的欢送，不仅没有送走，自己还把自己搞的快成了残疾。接着到了签证又是被大使馆那边无视，足足拖了半个月，一切都没有按计划进行。说来也有意思，当初觉得一切没有按计划走真是要疯了，后果如何如何的，其实nothing serious，一切事情都有新的解决方案。</p>
+<p>题意要求给定一个ZigZag形式的字符串，然后以行的形式重新遍历一遍。整个看来主要就是找规律，str代表字串，row代表要求的行数：</p>
 
-<p>这就开始实习工作了，一切似乎都沿着正轨进行，联想起高中时候有位同学说，我们出生是为了活着，活着是要吃饭的，从出生开始我们受教育学习，学习的目的是为了后来有个好的工作，接着开始工作赚钱，赚钱的目的又是为了自己有饭吃，似乎一切都是定好的，那么我们活着的意义在哪？最近看《六尺之下》也有一些体会，或许生活本来就是很简单的，与身边的人一同经历——当我在时，与我同行；当我离时，不必留恋。想起来这部剧中最幸运的就是Clair了，虽说原本好好的一份工作却在她出发之际通知她他们不打算雇Clair了，但Clair听到已逝的Nate的声音告诉她，Just go, get out there，这一想法其实就是她内心所渴望的。于是她架车离去，独自面对一切的未知。而我最羡慕的就是这些能够勇敢的在生活的一个不确定选项上果断打钩的人。</p>
+<ul>
+  <li>第一行或最后一行：前一个数和后一个数之差为$(row - 1) * 2$</li>
+  <li>其他行，行数为$i$：除了满足上一条之外，在这两个数中间还有一个数，和前一个数的差为$(row - i) * 2 - 2$</li>
+</ul>
 
-<p>前几天的有位学长来这边，他gap了一年现今准备出国，和现在已经半只脚踏在美帝的朋友聊这些事情，都说没有考虑好将来自己如何发展，出国选择master还是PhD，工作还是科研。我当时想，这些东西有什么好考虑的，放开所有的利弊，选择一个自己想去做的就好，何必把六年后的自己框住。他们说是大的方向是一定的，如今我依旧不是很赞同。有数据说美国人平均一生更换职业六次，这个数字乍眼一看令我有些吃惊和不解，想想可能是一种新鲜感驱使他们不断尝试新的事物，有些事情虽说持之以恒固然好，但兴之所至才是更令人满意的吧。</p>
+<p>规律找出来的就是数学问题了，外层循环便利row边，内层循环直到到达字符串尾：代码如下：</p>
 
-<p>不论如何，大家都在踏出自己的轨迹，自己打造自己的未来。而我现今也期待着马上要面对的新的环境，新的未知；也期待着归来后大家的变化；更期待着遥不可及的未来。生生不息是一个哲学用语，但哲学总是源于生活。用生生不息描述我们这一群人，一代人我觉得是再适合不过了。</p>
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="lineno"> 1</span> <span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="lineno"> 2</span> <span class="k">public</span><span class="o">:</span>
+<span class="lineno"> 3</span>     <span class="n">string</span> <span class="n">convert</span><span class="p">(</span><span class="n">string</span> <span class="n">s</span><span class="p">,</span> <span class="kt">int</span> <span class="n">nRows</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno"> 4</span>         <span class="n">string</span> <span class="n">res</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
+<span class="lineno"> 5</span>         <span class="k">if</span> <span class="p">(</span><span class="n">nRows</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="n">s</span><span class="p">;</span>
+<span class="lineno"> 6</span>         <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nRows</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+<span class="lineno"> 7</span>         <span class="p">{</span>
+<span class="lineno"> 8</span>             <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+<span class="lineno"> 9</span>             <span class="k">while</span> <span class="p">(</span><span class="n">j</span> <span class="o">&lt;</span> <span class="n">s</span><span class="p">.</span><span class="n">length</span><span class="p">())</span>
+<span class="lineno">10</span>             <span class="p">{</span>
+<span class="lineno">11</span>                 <span class="n">res</span> <span class="o">+=</span> <span class="n">s</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+<span class="lineno">12</span>                 <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">!=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">nRows</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">j</span> <span class="o">+</span> <span class="p">(</span><span class="n">nRows</span> <span class="o">-</span> <span class="n">i</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">&lt;</span> <span class="n">s</span><span class="p">.</span><span class="n">length</span><span class="p">())</span>
+<span class="lineno">13</span>                     <span class="n">res</span> <span class="o">+=</span> <span class="n">s</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="p">(</span><span class="n">nRows</span> <span class="o">-</span> <span class="n">i</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">2</span><span class="p">];</span>
+<span class="lineno">14</span>                 <span class="n">j</span> <span class="o">+=</span> <span class="p">(</span><span class="n">nRows</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span>
+<span class="lineno">15</span>             <span class="p">}</span>
+<span class="lineno">16</span>         <span class="p">}</span>
+<span class="lineno">17</span>         <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+<span class="lineno">18</span>     <span class="p">}</span>
+<span class="lineno">19</span> <span class="p">};</span></code></pre></div>
 
 </article>
 
@@ -140,11 +159,11 @@
 <div class="marT marB">
   <div class="bl-post-tags left">
     <div class="social-share">
-      <a class="social-share-element icon-twitter" href="https://twitter.com/intent/tweet?text=生生不息&url=&via=OviliaZhang&hashtags=" target="_blank" title="Share this post on Twitter"></a>
-      <a class="social-share-element" href="https://www.facebook.com/sharer/sharer.php?t=生生不息&u=" target="_blank" title="Share this post on Facebook"></a>
-      <a class="social-share-element" id="social-google" href="https://plus.google.com/share?url=http://boylee.me/general/2014/05/07/%E7%94%9F%E7%94%9F%E4%B8%8D%E6%81%AF/" target="_blank" title="Share this post on Google Plus"></a>
-      <a class="social-share-element" id="social-linkedin" href="http://www.linkedin.com/shareArticle?mini=true&title=生生不息&url=&source=http%3a%2f%2fzhangwenli.com" target="_blank" title="Share this post on LinkedIn"></a>
-      <a class="social-share-element" id="social-weibo" href="http://v.t.sina.com.cn/share/share.php?title=来看看+%40Ovilia允执厥中+的博文吧：生生不息&url=" target="_blank" title="Share this post on Sina Weibo"></a>
+      <a class="social-share-element icon-twitter" href="https://twitter.com/intent/tweet?text=[LeetCode] ZigZag Conversion&url=&via=OviliaZhang&hashtags=" target="_blank" title="Share this post on Twitter"></a>
+      <a class="social-share-element" href="https://www.facebook.com/sharer/sharer.php?t=[LeetCode] ZigZag Conversion&u=" target="_blank" title="Share this post on Facebook"></a>
+      <a class="social-share-element" id="social-google" href="https://plus.google.com/share?url=http://boylee.me/development/2014/12/23/leetcode-zigzag-conversion/" target="_blank" title="Share this post on Google Plus"></a>
+      <a class="social-share-element" id="social-linkedin" href="http://www.linkedin.com/shareArticle?mini=true&title=[LeetCode] ZigZag Conversion&url=&source=http%3a%2f%2fzhangwenli.com" target="_blank" title="Share this post on LinkedIn"></a>
+      <a class="social-share-element" id="social-weibo" href="http://v.t.sina.com.cn/share/share.php?title=来看看+%40Ovilia允执厥中+的博文吧：[LeetCode] ZigZag Conversion&url=" target="_blank" title="Share this post on Sina Weibo"></a>
     </div>
   </div>
   <div class="bl-post-tags right">
@@ -154,8 +173,23 @@
     
       
       
-        <a href="/tags/#mis" class="bl-tag">
-         mis
+        <a href="/tags/#LeetCode" class="bl-tag">
+         LeetCode
+        </a>
+      
+    
+      
+      
+    
+  
+    
+      
+      
+    
+      
+      
+        <a href="/tags/#string" class="bl-tag">
+         string
         </a>
       
     
@@ -184,13 +218,6 @@
 
 
   <h3 class="related-post-title">Related Posts</h3>
-  
-    <div class="post ml2">
-      <a href="/development/2014/12/23/leetcode-zigzag-conversion/" class="post-link">
-        <h4 class="post-title">[LeetCode] ZigZag Conversion</h4>
-        <p class="post-summary">题意要求给定一个ZigZag形式的字符串，然后以行的形式重新遍历一遍。</p>
-      </a>
-    </div>
   
     <div class="post ml2">
       <a href="/development/2014/12/19/leetcode-count-and-say/" class="post-link">
@@ -252,6 +279,13 @@
       <a href="/development/2014/11/17/Custom-MathJax-to-Solve-LaTeX-Legacy-Tag-Problem/" class="post-link">
         <h4 class="post-title">Custom MathJax to Solve LaTeX Legacy Tag Problem</h4>
         <p class="post-summary">After I migrated my blog from WordPress to Github Page, I chooose MathJax as rendering engine.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/miscellaneous/2014/11/16/%E4%BB%8EWordPress%E5%88%B0Github-Pages/" class="post-link">
+        <h4 class="post-title">从WordPress到Github Pages</h4>
+        <p class="post-summary">因为买的Web Hosting要到期了，这才想起来赶紧把Blog移过来。</p>
       </a>
     </div>
   
