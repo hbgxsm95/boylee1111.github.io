@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Boyi Li</title>
-    <description>A simple, beautiful theme for Jekyll that emphasizes content rather than aesthetic fluff.</description>
+    <description>Blog of Boylee(Boyi Li), a software engineering. Here are some development articles and everything about me.</description>
     <link>http://boylee.me/</link>
     <atom:link href="http://boylee.me/feed.xml" rel="self" type="application/rss+xml" />
     
