@@ -17,7 +17,7 @@
   &lt;li&gt;其他行，行数为$i$：除了满足上一条之外，在这两个数中间还有一个数，和前一个数的差为$(row - i) * 2 - 2$&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;规律找出来的就是数学问题了，外层循环便利row边，内层循环直到到达字符串尾：代码如下：&lt;/p&gt;
+&lt;p&gt;规律找出来的就是逻辑实现了，外层循环便利row边，内层循环直到到达字符串尾：代码如下：&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;lineno&quot;&gt; 1&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Solution&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
 &lt;span class=&quot;lineno&quot;&gt; 2&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
