@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>WPF Interface —— INotifyPropertyChanged &#8211; Boyi Li</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="The most valuable and fancy thing WPF is <strong>Data Binding</strong>. There are two ways to create a binding object, implement <strong>INotifyPropertyChanged</strong> or create <strong>DependencyProperties</strong>.">
+    <meta name="author" content="John Otander">
+    <meta name="keywords" content="development">
+    <link rel="canonical" href="http://boylee.me/development/2014/06/15/wpf-interface-inotifypropertychanged/">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/pixyll.css" type="text/css">
+
+    <!-- Fonts -->
+    <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lato:900,300' rel='stylesheet' type='text/css'>
+    
+      <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    
+
+    <link rel="stylesheet" href="/css/boylee.css" type="text/css">
+
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: { inlineMath: [['$','$'], ['\\(','\\)'], ['[latex]','[/latex]']] },
+            menuSettings: {
+                zoom: "Double-Click",
+                zscale: "200%"
+            },
+            showProcessingMessages: false,
+            showMathMenu: false,
+            showMathMenuMSIE: false,
+            messageStyle: "none"
+        });
+    </script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript" src="/javascripts/main.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="WPF Interface —— INotifyPropertyChanged">
+    <meta property="og:description" content="Blog of Boylee(Boyi Li), a software engineering. Here are some development articles and everything about me.">
+    <meta property="og:url" content="http://boylee.me/development/2014/06/15/wpf-interface-inotifypropertychanged/">
+    <meta property="og:site_name" content="Boyi Li">
+</head>
+
+<body class="animated fade-in-down">
+  <div class="site-wrap">
+    <header class="site-header px2 px-responsive">
+  <div class="mt2 wrap">
+    <div class="measure">
+      <a href="http://boylee.me" class="site-title">Boyi Li</a>
+      <nav class="site-nav right">
+        <a href="/categories/">Categories</a>
+<a href="/archives/">Archives</a>
+<a href="/tags/">Tags</a>
+<a href="/about_this_guy/">About</a>
+
+      </nav>
+      <div class="clearfix"></div>
+      
+        <div class="social-icons">
+  <div class="left">
+    
+      <a class="fa fa-github-alt" href="https://github.com/boylee1111"></a>
+    
+    <a class="fa fa-rss" href="/feed.xml"></a>
+    
+      <a class="fa fa-envelope mailTo" href="#It's My Fucking Email!^_^"></a>
+    
+    
+      <a class="fa fa-linkedin-square" href="https://www.linkedin.com/in/boylee"></a>
+    
+  </div>
+  <div class="right">
+    
+      <a class="fa fa fa-weibo", href="http://www.weibo.com/boylee1111"></a>
+    
+    
+      <a class="fa fa-facebook-square", href="https://facebook.com/boylee1111"></a>
+    
+    
+      <a class="fa fa-twitter" href="https://twitter.com/boylee1111"></a>
+    
+    
+      <a class="fa fa-instagram" href="https://instagram.com/boylee1111"></a>
+    
+    
+    
+    
+    
+  </div>
+</div>
+<div class="clearfix"></div>
+
+      
+    </div>
+  </div>
+</header>
+
+
+    <div class="post p2 p-responsive wrap" role="main">
+      <div class="measure">
+        
+
+
+<div class="post-header mb2">
+  <h1>WPF Interface —— INotifyPropertyChanged</h1>
+  <div>
+    <span class="post-meta">Jun 15, 2014</span><br>
+    
+    <span class="post-meta small">5 minute read</span>
+  </div>
+</div>
+
+<div class="bl-separator"></div>
+
+<article class="post-content">
+  <p>The most valuable and fancy thing WPF is <strong>Data Binding</strong>. There are two ways to create a binding object, implement <strong>INotifyPropertyChanged</strong> or create <strong>DependencyProperties</strong>. <a href="http://msdn.microsoft.com/en-us/library/ms752914.aspx">Dependency Property Overview</a></p>
+
+<h3 id="what-is-inotifypropertychanged">What is INotifyPropertyChanged</h3>
+
+<blockquote>
+  <p>The INotifyPropertyChanged interface is used to notify clients, typically binding clients, that a property value has changed. </p>
+
+  <p>– MSDN</p>
+</blockquote>
+
+<p><code>INotifyPropertyChanged</code> interface contains an event <code>PropertyChanged</code> that will be triggered when property changed. Specifically, implement this interface means that if the value of a property is changed, other objects that bind this property will be updated automatically and synchronously, and the UI part as well. Generally, the majority of objects that do some data bindings need to implement this interface. And the objects implement this interface play a role as ViewModel in <a href="http://msdn.microsoft.com/en-us/library/hh848246.aspx">The MVVM Pattern</a>.</p>
+
+<h3 id="how-to-use-inotifypropertychanged">How to use INotifyPropertyChanged</h3>
+
+<h4 id="common-approach">Common Approach</h4>
+
+<p>This part is based on The MVVM Pattern. Most time I prefer implement a base ViewModel to implement  INotifyPropertyChanged interface, then other ViewModels inherit this base ViewModel will implement this interface as well:</p>
+
+<div class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="lineno"> 1</span> <span class="k">public</span> <span class="k">class</span> <span class="nc">ViewModelBase</span> <span class="p">:</span> <span class="n">INotifyPropertyChanged</span>
+<span class="lineno"> 2</span>     <span class="p">{</span>
+<span class="lineno"> 3</span>         <span class="k">public</span> <span class="k">event</span> <span class="n">PropertyChangedEventHandler</span> <span class="n">PropertyChanged</span><span class="p">;</span>
+<span class="lineno"> 4</span> 
+<span class="lineno"> 5</span>         <span class="k">virtual</span> <span class="k">internal</span> <span class="k">protected</span> <span class="k">void</span> <span class="nf">OnPropertyChanged</span><span class="p">(</span><span class="kt">string</span> <span class="n">propertyName</span><span class="p">)</span>
+<span class="lineno"> 6</span>         <span class="p">{</span>
+<span class="lineno"> 7</span>             <span class="k">if</span> <span class="p">(</span><span class="k">null</span> <span class="p">!=</span> <span class="k">this</span><span class="p">.</span><span class="n">PropertyChanged</span><span class="p">)</span>
+<span class="lineno"> 8</span>             <span class="p">{</span>
+<span class="lineno"> 9</span>                 <span class="k">this</span><span class="p">.</span><span class="n">PropertyChanged</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="k">new</span> <span class="n">PropertyChangedEventArgs</span><span class="p">(</span><span class="n">propertyName</span><span class="p">));</span>
+<span class="lineno">10</span>             <span class="p">}</span>
+<span class="lineno">11</span>         <span class="p">}</span>
+<span class="lineno">12</span>     <span class="p">}</span></code></pre></div>
+
+<p>For the properties that need to notify the object that binding them:</p>
+
+<div class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="lineno"> 1</span> <span class="k">public</span> <span class="k">class</span> <span class="nc">ViewModel</span> <span class="p">:</span> <span class="n">ViewModelBase</span>
+<span class="lineno"> 2</span>     <span class="p">{</span>
+<span class="lineno"> 3</span>         <span class="k">private</span> <span class="kt">int</span> <span class="n">_myField</span><span class="p">;</span>
+<span class="lineno"> 4</span>         <span class="k">public</span> <span class="kt">int</span> <span class="n">MyProperty</span>
+<span class="lineno"> 5</span>         <span class="p">{</span>
+<span class="lineno"> 6</span>             <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">_myField</span><span class="p">;</span> <span class="p">}</span>
+<span class="lineno"> 7</span>             <span class="k">set</span>
+<span class="lineno"> 8</span>             <span class="p">{</span>
+<span class="lineno"> 9</span>                 <span class="n">_myField</span> <span class="p">=</span> <span class="k">value</span><span class="p">;</span>
+<span class="lineno">10</span>                 <span class="n">OnPropertyChanged</span><span class="p">(</span><span class="s">&quot;MyProperty&quot;</span><span class="p">);</span>
+<span class="lineno">11</span>             <span class="p">}</span>
+<span class="lineno">12</span>         <span class="p">}</span>
+<span class="lineno">13</span>     <span class="p">}</span></code></pre></div>
+
+<p>This the most common approach. And the drawback is obvious, The name of property is the parameter of method OnPropertyChanged, then we hatch out the ‘magic string’.</p>
+
+<h4 id="lambda-expression-approach">Lambda Expression Approach</h4>
+
+<p>If we use Lambda Expression to implement it, we need to add a method in ViewModelBase:</p>
+
+<div class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="lineno"> 1</span> <span class="k">virtual</span> <span class="k">internal</span> <span class="k">protected</span> <span class="k">void</span> <span class="n">SetProperty</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="k">ref</span> <span class="n">T</span> <span class="n">propField</span><span class="p">,</span> <span class="n">T</span> <span class="k">value</span><span class="p">,</span> <span class="n">Expression</span><span class="p">&lt;</span><span class="n">Func</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;&gt;</span> <span class="n">expr</span><span class="p">)</span>
+<span class="lineno"> 2</span> <span class="p">{</span>
+<span class="lineno"> 3</span>     <span class="kt">var</span> <span class="n">bodyExpr</span> <span class="p">=</span> <span class="n">expr</span><span class="p">.</span><span class="n">Body</span> <span class="k">as</span> <span class="n">System</span><span class="p">.</span><span class="n">Linq</span><span class="p">.</span><span class="n">Expressions</span><span class="p">.</span><span class="n">MemberExpression</span><span class="p">;</span>
+<span class="lineno"> 4</span>     <span class="k">if</span> <span class="p">(</span><span class="k">null</span> <span class="p">==</span> <span class="n">bodyExpr</span><span class="p">)</span>
+<span class="lineno"> 5</span>     <span class="p">{</span>
+<span class="lineno"> 6</span>         <span class="k">throw</span> <span class="k">new</span> <span class="nf">ArgumentException</span><span class="p">(</span><span class="s">&quot;Expression must be a MemberExpression!&quot;</span><span class="p">,</span> <span class="s">&quot;expr&quot;</span><span class="p">);</span>
+<span class="lineno"> 7</span>     <span class="p">}</span>
+<span class="lineno"> 8</span>     <span class="kt">var</span> <span class="n">propInfo</span> <span class="p">=</span> <span class="n">bodyExpr</span><span class="p">.</span><span class="n">Member</span> <span class="k">as</span> <span class="n">PropertyInfo</span><span class="p">;</span>
+<span class="lineno"> 9</span>     <span class="k">if</span> <span class="p">(</span><span class="k">null</span> <span class="p">==</span> <span class="n">propInfo</span><span class="p">)</span>
+<span class="lineno">10</span>     <span class="p">{</span>
+<span class="lineno">11</span>         <span class="k">throw</span> <span class="k">new</span> <span class="nf">ArgumentException</span><span class="p">(</span><span class="s">&quot;Expression must be a PropertyExpression!&quot;</span><span class="p">,</span> <span class="s">&quot;expr&quot;</span><span class="p">);</span>
+<span class="lineno">12</span>     <span class="p">}</span>
+<span class="lineno">13</span>     <span class="kt">var</span> <span class="n">propName</span> <span class="p">=</span> <span class="n">propInfo</span><span class="p">.</span><span class="n">Name</span><span class="p">;</span>
+<span class="lineno">14</span>     <span class="n">propField</span> <span class="p">=</span> <span class="k">value</span><span class="p">;</span>
+<span class="lineno">15</span>     <span class="k">this</span><span class="p">.</span><span class="n">OnPropertyChanged</span><span class="p">(</span><span class="n">propName</span><span class="p">);</span>
+<span class="lineno">16</span> <span class="p">}</span></code></pre></div>
+
+<p>Then the setter of property can be modified like this:</p>
+
+<div class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="lineno">1</span> <span class="k">private</span> <span class="kt">int</span> <span class="n">_myField</span><span class="p">;</span>
+<span class="lineno">2</span> 
+<span class="lineno">3</span> <span class="k">public</span> <span class="kt">int</span> <span class="n">MyProperty</span>
+<span class="lineno">4</span> <span class="p">{</span>
+<span class="lineno">5</span>     <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">_myField</span><span class="p">;</span> <span class="p">}</span>
+<span class="lineno">6</span>     <span class="k">set</span> <span class="p">{</span> <span class="k">base</span><span class="p">.</span><span class="n">SetProperty</span><span class="p">(</span><span class="k">ref</span> <span class="n">_myField</span><span class="p">,</span> <span class="k">value</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="n">MyProperty</span><span class="p">);</span> <span class="p">}</span>
+<span class="lineno">7</span> <span class="p">}</span></code></pre></div>
+
+<p>Obviously, the most benefit is the magic string that same as the property name is eliminated. But is will bring some other problems. This approach adopts the reflection mechanism in .Net Framwork, which is a luxury consume for system performance. There are some testing In this article(<a href="http://blog.quantumbitdesigns.com/2010/01/26/mvvm-lambda-vs-inotifypropertychanged-vs-dependencyobject/">MVVM – Lambda vs INotifyPropertyChanged vs DependencyObject</a>). According to the result, The timing consuming of lambda expr. is 3 times than common approach, and the memory consuming is nearly 8 times.</p>
+
+<h3 id="summary">Summary</h3>
+
+<p>It’s obvious that using ViewModel to implement INotifyPropertyChanged demands more codes. Actually, every .xaml file contains a .cs as code behind. We could use Dependency Property in the code behind of .xaml and binding data to the view. It seems to be a easier and more acceptable way. So why using INotifyPropertyChanged?</p>
+
+<ul>
+  <li>
+    <p>If we binding data in the code behind, we can avoid to do some logic thing in this part. Neverthless, the .cs behind the .xaml of some view with complex functionalities will be larger and larger. For the function extend and maintenance will be difficult. So INotifyPropertyChanged interface is clearer to the relation of View and Model.</p>
+  </li>
+  <li>
+    <p>I have to say the code behind is a terrible design at most situation. Compared with ViewModel, the code behind will mix the user behaviors and business logic in one part. The worst result is that the unit testing will be difficult in this condition.(If using ViewModel, we can using function call to simulate the user behavior, but in the code behind, we have to create a view to when testing the business logic part).</p>
+  </li>
+  <li>
+    <p>About the second point, I don’t mean cast away the code behind thoroughly. Actually, I think it is acceptable if the code behind just do some thing related view.</p>
+  </li>
+</ul>
+
+</article>
+
+
+
+<!-- TODO: add shared -->
+<div class="marT marB">
+  <div class="bl-post-tags left">
+    <div class="social-share">
+      <a class="social-share-element icon-twitter" href="https://twitter.com/intent/tweet?text=WPF Interface —— INotifyPropertyChanged&url=&via=OviliaZhang&hashtags=" target="_blank" title="Share this post on Twitter"></a>
+      <a class="social-share-element" href="https://www.facebook.com/sharer/sharer.php?t=WPF Interface —— INotifyPropertyChanged&u=" target="_blank" title="Share this post on Facebook"></a>
+      <a class="social-share-element" id="social-google" href="https://plus.google.com/share?url=http://boylee.me/development/2014/06/15/wpf-interface-inotifypropertychanged/" target="_blank" title="Share this post on Google Plus"></a>
+      <a class="social-share-element" id="social-linkedin" href="http://www.linkedin.com/shareArticle?mini=true&title=WPF Interface —— INotifyPropertyChanged&url=&source=http%3a%2f%2fzhangwenli.com" target="_blank" title="Share this post on LinkedIn"></a>
+      <a class="social-share-element" id="social-weibo" href="http://v.t.sina.com.cn/share/share.php?title=来看看+%40Ovilia允执厥中+的博文吧：WPF Interface —— INotifyPropertyChanged&url=" target="_blank" title="Share this post on Sina Weibo"></a>
+    </div>
+  </div>
+  <div class="bl-post-tags right">
+  
+  
+  
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+        <a href="/tags/#.NET" class="bl-tag">
+         .NET
+        </a>
+      
+    
+  
+    
+      
+      
+        <a href="/tags/#c#" class="bl-tag">
+         c#
+        </a>
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+  
+    
+      
+      
+    
+      
+      
+        <a href="/tags/#mvvm" class="bl-tag">
+         mvvm
+        </a>
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+  
+    
+      
+      
+    
+      
+      
+    
+      
+      
+        <a href="/tags/#wpf" class="bl-tag">
+         wpf
+        </a>
+      
+    
+      
+      
+    
+      
+      
+    
+  
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+        <a href="/tags/#xaml" class="bl-tag">
+         xaml
+        </a>
+      
+    
+      
+      
+    
+  
+  </div>
+</div>
+<br>
+<div>
+  <h3 class="comments-title">Comments</h3>
+</div>
+<div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'boylee1111githubio'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+
+  <h3 class="related-post-title">Related Posts</h3>
+  
+    <div class="post ml2">
+      <a href="/development/2014/12/23/leetcode-zigzag-conversion/" class="post-link">
+        <h4 class="post-title">[LeetCode] ZigZag Conversion</h4>
+        <p class="post-summary">题意要求给定一个ZigZag形式的字符串，然后以行的形式重新遍历一遍。</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/miscellaneous/2014/12/23/%E7%8B%AC%E7%AB%8B%E4%BA%BA%E6%A0%BC/" class="post-link">
+        <h4 class="post-title">独立人格</h4>
+        <p class="post-summary">来到欧洲这段时间里，我最大的发现之一是这里有很多人都非常地独立，主动的选择自己的生活方式。不被外界所轻易影响，明白自己喜欢的生活并很简单的实践。</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/development/2014/12/20/leetcode-count-and-say/" class="post-link">
+        <h4 class="post-title">[LeetCode] Count and Say</h4>
+        <p class="post-summary">To be honest, I took lots of time to understand the problem. Finally, I got it clear, just print how you read the string by “quantity + number”.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/development/2014/12/19/leetcode-container-with-most-water/" class="post-link">
+        <h4 class="post-title">[LeetCode] Container With Most Water</h4>
+        <p class="post-summary">简述就是从平面坐标系一组点中找两点，使得其与x轴组成的水槽可以容纳最多的水。</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/development/2014/12/18/leetcode-combinations/" class="post-link">
+        <h4 class="post-title">[LeetCode] Combinations</h4>
+        <p class="post-summary">计算整数的组合...</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/development/2014/12/13/leetcode-add-two-numbers/" class="post-link">
+        <h4 class="post-title">[LeetCode] Add Two Numbers</h4>
+        <p class="post-summary">两个以链表形式存储的两个数相加，每一个结点代表一位，头结点为最低位，尾结点为最高位。</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/development/2014/12/13/leetcode-add-binary/" class="post-link">
+        <h4 class="post-title">[LeetCode] Add Binary</h4>
+        <p class="post-summary">字符串形式的二进制数相加，非常简单的字符串处理。每次找到相同位次的数相加，然后纪录一个进位即可。</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/general/2014/11/29/%E5%AE%9E%E4%B9%A0%E7%BB%93%E6%9D%9F/" class="post-link">
+        <h4 class="post-title">实习结束</h4>
+        <p class="post-summary">长达近七个月的实习终于是画上句号了，最后一天跟老板在会议室进行了一次畅谈。首先是关于实习的分数的问题，按照德国人严谨的态度不难想象不可能全部拿到最高的分数，不过各项都还好，交流上分数不是满分。</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/development/2014/11/23/.Net-Choose-A-Right-Generic-Collection/" class="post-link">
+        <h4 class="post-title">.NET -- Choose A Right Generic Collection</h4>
+        <p class="post-summary">Recently, we discussed some collections of .NET Framework in our Conding Convention meeting. Though some details are explained, there are still some questions stay in my mind.</p>
+      </a>
+    </div>
+  
+    <div class="post ml2">
+      <a href="/development/2014/11/21/Tips-For-Sorting-Tags-In-GitHub-Page-With-Jekyll/" class="post-link">
+        <h4 class="post-title">Tips For Sorting Tags In GitHub Page With Jekyll</h4>
+        <p class="post-summary">While adding <strong>Tags</strong> pages, I was stuck owing to the order of tags. Here are two different approaching of how to sort tags...</p>
+      </a>
+    </div>
+  
+
+        
+      </div>
+    </div>    
+  </div>
+  <footer class="footer">
+  <div class="p2 wrap">
+    <div class="measure mt1 center">
+      <small>Copyright &copy; 2014 Boyi Li.</small><br>
+      <small>
+        Thanks to <a href="http://johnotander.com" target="_blank">John Otander</a> (<a href="https://twitter.com/4lpine" target="_blank">@4lpine</a>) and <a href="http://jekyllrb.com" target="_blank">Jekyll</a>.
+      </small>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
+</body>
+</html>

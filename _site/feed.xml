@@ -39,7 +39,7 @@
 &lt;span class=&quot;lineno&quot;&gt;18&lt;/span&gt;     &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;lineno&quot;&gt;19&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 </description>
-        <pubDate>Tue, 23 Dec 2014 13:09:11 +0100</pubDate>
+        <pubDate>Tue, 23 Dec 2014 20:09:11 +0800</pubDate>
         <link>http://boylee.me/development/2014/12/23/leetcode-zigzag-conversion/</link>
         <guid isPermaLink="true">http://boylee.me/development/2014/12/23/leetcode-zigzag-conversion/</guid>
       </item>
@@ -64,9 +64,9 @@
 
 &lt;p&gt;不过不管怎么说，绝大多数应该都比较羡慕并愿意接触这些独立人格较强的人，包括我也是。和他们交往常常能够被激励，对个人也有很大的帮助。其实我觉得很多人都愿意有这样的生活，但毕竟欧洲和中国的经济背景，地域文化差异很多，在这个社会被广泛接受认可的事情却很可能在另外一个社会被摈弃。很多事情只有不同，没有对错。独立人格这一项我还是觉得人人都得多多少少存在，只不过在不同的情形下必须理智的控制独立的程度吧，毕竟人如果只认识自己不了解环境就太傲了。&lt;/p&gt;
 </description>
-        <pubDate>Mon, 22 Dec 2014 21:09:11 +0100</pubDate>
-        <link>http://boylee.me/development/2014/12/22/%E7%8B%AC%E7%AB%8B%E4%BA%BA%E6%A0%BC/</link>
-        <guid isPermaLink="true">http://boylee.me/development/2014/12/22/%E7%8B%AC%E7%AB%8B%E4%BA%BA%E6%A0%BC/</guid>
+        <pubDate>Tue, 23 Dec 2014 04:09:11 +0800</pubDate>
+        <link>http://boylee.me/miscellaneous/2014/12/23/%E7%8B%AC%E7%AB%8B%E4%BA%BA%E6%A0%BC/</link>
+        <guid isPermaLink="true">http://boylee.me/miscellaneous/2014/12/23/%E7%8B%AC%E7%AB%8B%E4%BA%BA%E6%A0%BC/</guid>
       </item>
     
       <item>
@@ -118,9 +118,9 @@
 &lt;span class=&quot;lineno&quot;&gt;24&lt;/span&gt;     &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;lineno&quot;&gt;25&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 </description>
-        <pubDate>Fri, 19 Dec 2014 18:44:11 +0100</pubDate>
-        <link>http://boylee.me/development/2014/12/19/leetcode-count-and-say/</link>
-        <guid isPermaLink="true">http://boylee.me/development/2014/12/19/leetcode-count-and-say/</guid>
+        <pubDate>Sat, 20 Dec 2014 01:44:11 +0800</pubDate>
+        <link>http://boylee.me/development/2014/12/20/leetcode-count-and-say/</link>
+        <guid isPermaLink="true">http://boylee.me/development/2014/12/20/leetcode-count-and-say/</guid>
       </item>
     
       <item>
@@ -142,7 +142,7 @@
 &lt;span class=&quot;lineno&quot;&gt;11&lt;/span&gt;     &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;lineno&quot;&gt;12&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 </description>
-        <pubDate>Fri, 19 Dec 2014 16:04:21 +0100</pubDate>
+        <pubDate>Fri, 19 Dec 2014 23:04:21 +0800</pubDate>
         <link>http://boylee.me/development/2014/12/19/leetcode-container-with-most-water/</link>
         <guid isPermaLink="true">http://boylee.me/development/2014/12/19/leetcode-container-with-most-water/</guid>
       </item>
@@ -187,9 +187,9 @@
 &lt;span class=&quot;lineno&quot;&gt;32&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 </description>
-        <pubDate>Wed, 17 Dec 2014 22:43:21 +0100</pubDate>
-        <link>http://boylee.me/development/2014/12/17/leetcode-combinations/</link>
-        <guid isPermaLink="true">http://boylee.me/development/2014/12/17/leetcode-combinations/</guid>
+        <pubDate>Thu, 18 Dec 2014 05:43:21 +0800</pubDate>
+        <link>http://boylee.me/development/2014/12/18/leetcode-combinations/</link>
+        <guid isPermaLink="true">http://boylee.me/development/2014/12/18/leetcode-combinations/</guid>
       </item>
     
       <item>
@@ -237,7 +237,7 @@
 &lt;span class=&quot;lineno&quot;&gt;37&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 </description>
-        <pubDate>Sat, 13 Dec 2014 10:21:21 +0100</pubDate>
+        <pubDate>Sat, 13 Dec 2014 17:21:21 +0800</pubDate>
         <link>http://boylee.me/development/2014/12/13/leetcode-add-two-numbers/</link>
         <guid isPermaLink="true">http://boylee.me/development/2014/12/13/leetcode-add-two-numbers/</guid>
       </item>
@@ -275,7 +275,7 @@
 &lt;span class=&quot;lineno&quot;&gt;25&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 </description>
-        <pubDate>Sat, 13 Dec 2014 10:20:21 +0100</pubDate>
+        <pubDate>Sat, 13 Dec 2014 17:20:21 +0800</pubDate>
         <link>http://boylee.me/development/2014/12/13/leetcode-add-binary/</link>
         <guid isPermaLink="true">http://boylee.me/development/2014/12/13/leetcode-add-binary/</guid>
       </item>
@@ -288,9 +288,9 @@
 
 &lt;p&gt;结束总归结束了，这下之后的一个月属于自己的时间，卖了一些不需要的东西，拿着房租押金以及最后一个月的工资准备给自己安排了一次长途旅行。当然也考虑到回去之后还要找工作，准备毕业等很多麻烦事情，当然是回国越早越好了。可是实在忍不住想到处走走，放松放松。现在看我做事总是太走心了，不顾后果没有紧张感，应该还是不够成熟懂事吧。不过这次并不是想纯粹的作为游客看看各地特色，只想多去不同的地方，随便待待，也没有做多少计划，并且一边准备着自己回国之后的事务。估计这个月是我未来十年甚至二十年内少有的轻松自在了吧。&lt;/p&gt;
 </description>
-        <pubDate>Fri, 28 Nov 2014 21:55:10 +0100</pubDate>
-        <link>http://boylee.me/general/2014/11/28/%E5%AE%9E%E4%B9%A0%E7%BB%93%E6%9D%9F/</link>
-        <guid isPermaLink="true">http://boylee.me/general/2014/11/28/%E5%AE%9E%E4%B9%A0%E7%BB%93%E6%9D%9F/</guid>
+        <pubDate>Sat, 29 Nov 2014 04:55:10 +0800</pubDate>
+        <link>http://boylee.me/general/2014/11/29/%E5%AE%9E%E4%B9%A0%E7%BB%93%E6%9D%9F/</link>
+        <guid isPermaLink="true">http://boylee.me/general/2014/11/29/%E5%AE%9E%E4%B9%A0%E7%BB%93%E6%9D%9F/</guid>
       </item>
     
       <item>
@@ -468,9 +468,9 @@
   &lt;/li&gt;
 &lt;/ul&gt;
 </description>
-        <pubDate>Sat, 22 Nov 2014 19:50:50 +0100</pubDate>
-        <link>http://boylee.me/development/2014/11/22/.Net-Choose-A-Right-Generic-Collection/</link>
-        <guid isPermaLink="true">http://boylee.me/development/2014/11/22/.Net-Choose-A-Right-Generic-Collection/</guid>
+        <pubDate>Sun, 23 Nov 2014 02:50:50 +0800</pubDate>
+        <link>http://boylee.me/development/2014/11/23/.Net-Choose-A-Right-Generic-Collection/</link>
+        <guid isPermaLink="true">http://boylee.me/development/2014/11/23/.Net-Choose-A-Right-Generic-Collection/</guid>
       </item>
     
       <item>
@@ -556,9 +556,9 @@
 &lt;p&gt;&lt;br /&gt;&lt;br /&gt;
 Though the number of syntax and filters of liquid is limited under GitHub Page with jekyll, it can implement plenty of fantastic staff. And &lt;a href=&quot;https://github.com/Shopify/liquid/wiki/Liquid-for-Designers&quot;&gt;here&lt;/a&gt; is official document of liquid for designers.&lt;/p&gt;
 </description>
-        <pubDate>Thu, 20 Nov 2014 21:18:18 +0100</pubDate>
-        <link>http://boylee.me/development/2014/11/20/Tips-For-Sorting-Tags-In-GitHub-Page-With-Jekyll/</link>
-        <guid isPermaLink="true">http://boylee.me/development/2014/11/20/Tips-For-Sorting-Tags-In-GitHub-Page-With-Jekyll/</guid>
+        <pubDate>Fri, 21 Nov 2014 04:18:18 +0800</pubDate>
+        <link>http://boylee.me/development/2014/11/21/Tips-For-Sorting-Tags-In-GitHub-Page-With-Jekyll/</link>
+        <guid isPermaLink="true">http://boylee.me/development/2014/11/21/Tips-For-Sorting-Tags-In-GitHub-Page-With-Jekyll/</guid>
       </item>
     
   </channel>
