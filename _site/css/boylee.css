@@ -82,15 +82,20 @@ h3:hover a {
 	color: rgb(67, 70, 73);
 }
 
-.bl-descriptions {
-	font-size: 15px;
-	line-height: 20px;
-}
-
 .bl-dates {
 	font-family: Helvetica, Arial, sans-serif;
 	font-size: 14px;
 	line-height: 10px;
 	font-weight: normal;
 	color: rgb(102, 102, 102);
+}
+
+.bl-details .bl-descriptions {
+	font-size: 15px;
+	line-height: 20px;
+}
+
+.bl-details li {
+	font-size: 14px;
+	line-height: 22px;
 }
