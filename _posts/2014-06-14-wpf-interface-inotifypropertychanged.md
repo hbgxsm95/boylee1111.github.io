@@ -117,8 +117,8 @@ Obviously, the most benefit is the magic string that same as the property name i
 
 It's obvious that using ViewModel to implement INotifyPropertyChanged demands more codes. Actually, every .xaml file contains a .cs as code behind. We could use Dependency Property in the code behind of .xaml and binding data to the view. It seems to be a easier and more acceptable way. So why using INotifyPropertyChanged?
 
-* If we binding data in the code behind, we can avoid to do some logic thing in this part. Neverthless, the .cs behind the .xaml of some view with complex functionalities will be larger and larger. For the function extend and maintenance will be difficult. So INotifyPropertyChanged interface is clearer to the relation of View and Model.
+* If we binding data in the code behind, we can avoid to do some logic thing in this part. Nevertheless, the .cs behind the .xaml of some view with complex functionalities will be larger and larger. For the function extend and maintenance will be difficult. So INotifyPropertyChanged interface is clearer to the relation of View and Model.
 
-* I have to say the code behind is a terrible design at most situation. Compared with ViewModel, the code behind will mix the user behaviors and business logic in one part. The worst result is that the unit testing will be difficult in this condition.(If using ViewModel, we can using function call to simulate the user behavior, but in the code behind, we have to create a view to when testing the business logic part).
+* I think the code behind is a terrible design at most situation. Compared with ViewModel, the code behind will mix the user behaviors and business logic in one part. The worst result is that the unit testing will be difficult in this situation.(If using ViewModel, we can using function call to simulate the user behavior, but in the code behind, we have to create a view when testing the business logic part).
 
 * About the second point, I don't mean cast away the code behind thoroughly. Actually, I think it is acceptable if the code behind just do some thing related view.
