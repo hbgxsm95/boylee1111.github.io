@@ -1,0 +1,90 @@
+---
+permalink: /
+---
+
+<!--A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Home – Boyi Li</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="./css/style.css" rel="stylesheet" type="text/css" media="all">
+    <link href="./css/slider.css" rel="stylesheet" type="text/css" media="all">
+    <script src="./javascripts/jquery.min.js" type="text/javascript"></script>
+    <script src="./javascripts/slidermodernizr.custom.js"></script>
+  </head>
+  <body>
+    <!-- Background slider -->
+    <div class="slider">
+      <ul id="cbp-bislideshow" class="cbp-bislideshow">
+        <li><img src="{{ site.baseurl }}/images/1.jpg" alt="image01"/></li>
+      </ul>
+      <div class="wrap">
+        <!-- Scroll image arrows -->
+        <!-- <div id="cbp-bicontrols" class="cbp-bicontrols">
+          <p><span class="cbp-biprev"></span></p>
+          <p><span class="cbp-binext"></span></p>
+        </div> -->
+      </div>
+      <script src="./javascripts/jquery.imagesloaded.min.js"></script>
+      <script src="./javascripts/cbpBGSlideshow.min.js"></script>
+      <script>
+      $(function() {
+      cbpBGSlideshow.init();
+      });
+      </script>
+    </div>
+    <!-- End Background slider -->
+    <div class="wrap">
+      <div class="header">
+        <div class="header_top">
+          <div class="logo">
+            <a href="{{ site.url }}"><img src="{{ site.baseurl }}/images/bl-logo.png" alt="" /></a>
+          </div>
+          <div class="menu">
+            <ul class = "nice-menu" >
+              <li><a href="{{ site.url }}">Home</a></li>
+              <li><a href="{{ site.baseurl }}/blog/">Blog</a></li>
+              <li><a href="{{ site.baseurl }}/about_this_guy/">About Me</a></li>
+              <li><a href="{{ site.baseurl }}/résumé"/>Résumé</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="introduction">
+        <div class="wrap">
+          <div class="section group">
+            <div class="cont introduction_desc">
+              <h1>Welcome to My Website!</h1>
+              <p></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <div class="wrap">
+        <div class="friend_left">
+          <h4>Link Exchange:</h4>
+          <h4>
+            <a href="http://giant.codinfox.me/" target="_blank">Codinfox</a> | 
+            <a href="http://albusshin.com/" target="_blank">Ablus Shin</a> |
+            <a href="http://h1994st.com/" target="_blank">Tom Hu</a>
+          </h4>
+        </div>
+        <div class="copy_right">
+          <h4>Copyright &copy; {{ site.time | date: '%Y' }} Boyi Li</h4>
+          <h4>Design by <a href="http://w3layouts.com"> W3Layouts </a></h4>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
