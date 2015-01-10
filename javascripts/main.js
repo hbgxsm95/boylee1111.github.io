@@ -6,5 +6,5 @@ $(function() {
 			window.open("mailto:" + username + "@" + mailServer);
 		};
 
-	$(".mailTo").click(sendEmail);
+	$(".bl-mailTo").click(sendEmail);
 })
