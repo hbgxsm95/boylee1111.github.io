@@ -12,6 +12,8 @@ As a fast-learning developer, I'd already involed in many different development 
 ####Hobbies####
 I'm an addicted runner. I was crushed on this clean, efficient and unlimited exercise way since the first time I ran on playground. And I have participated in several running activities, like Shanghai Marathon.
 
+I'm also interested in Chinese martial arts, exactly, Kungfu. I've been learning *Wing Chun* for several years. But I think I'm still on the way from novice to intermediate.
+
 In addition, I'm passionate to explore unknown things, and enjoyable from changing my lifestyle.
 
 ###About This Blog###
