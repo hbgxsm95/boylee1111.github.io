@@ -65,16 +65,23 @@ h3:hover a {
 .bl-section {
 	display: block;
 }
-.bl-section-name {
+.bl-section .bl-section-image {
+	display: inline-block;
+	margin: 0px;
+	float: right;
+	width: 100px;
+	height: auto;
+}
+.bl-section .bl-section-name {
 	font-size: 22px;
 }
-.bl-location {
+.bl-section .bl-location {
 	line-height: 12px;
 	font-family: Helvetica, Arial, sans-serif;
 	font-size: 14px;
 	color: rgb(67, 70, 73);
 }
-.bl-dates {
+.bl-section .bl-dates {
 	font-family: Helvetica, Arial, sans-serif;
 	font-size: 14px;
 	line-height: 10px;
