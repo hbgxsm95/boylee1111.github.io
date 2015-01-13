@@ -10,7 +10,7 @@ I'm Boyi Li (李博一), a senior student in [TONGJI University](http://www.tong
 As a fast-learning developer, I'd already involed into many different development skills. Among all programming languages, `Objective-C` and `C#` are my specialists. But I never limit myself to some specific skills or domains. The world is changing with an unprecedented speed, epscially the IT industry. So I take myself as a person who can meet the challenges positively and react to the changes rapidly. And [Here](/résumé) is more details about my career.
 
 ####Hobbies####
-As an addicted runner. I was crushed on this clean, efficient and unlimited exercise way since the first time I ran on playground. And I've participated in several running activities, like Shanghai Marathon, which I really enjoyed.
+As an addicted runner, I was crushed on this clean, efficient and unlimited exercise way since the first time I ran on playground. And I've participated in several running activities, like Shanghai Marathon, which I really enjoyed.
 
 And I'm also interested in Chinese martial arts, exactly, Kungfu. I've been learning *Wing Chun* for several years. I regard myself as a person who is still on the way from novice to intermediate.
 
