@@ -4,10 +4,10 @@ title: About Me
 permalink: /about_this_guy/
 ---
 
-I'm Boyi Li (李博一), a senior student in [TONGJI University](http://www.tongji.edu.cn/english/), China. My major is **Software Engineering**.
+I'm Boyi Li (李博一), a senior student in [TONGJI University](http://www.tongji.edu.cn/english/), Shanghai. My major is **Software Engineering**.
 
 ####Professional####
-As a fast-learning developer, I'd already involed into many different development skills. Among all programming languages, `Objective-C` and `C#` are my specialists. But I never limit myself to some specific skills or domains. The world is changing with an unprecedented speed, epscially the IT industry. So I take myself as a person who can meet the challenges positively and react to the changes rapidly. And [Here](/résumé) is more details about my career.
+As a fast-learning developer, I'd already involed into many different development skills. Among all programming languages, `Objective-C` and `C#` are my specialists. But I never limit myself to some specific skills or domains. The world is changing with an unprecedented speed, epscially the IT industry. So I take myself as a person who can meet the challenges positively and react to the changes rapidly. And [Here]({{ site.baseurl }}/résumé) is more details about my career.
 
 ####Hobbies####
 As an addicted runner, I was crushed on this clean, efficient and unlimited exercise way since the first time I ran on playground. And I've participated in several running activities, like Shanghai Marathon, which I really enjoyed.

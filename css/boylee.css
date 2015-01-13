@@ -71,9 +71,9 @@ h3:hover a {
 }
 .bl-section .bl-section-image {
 	display: inline-block;
-	margin: 0px;
+	margin: 10px 0px 5px 10px;
 	float: right;
-	width: 100px;
+	width: 130px;
 	height: auto;
 }
 .bl-section .bl-section-name {
