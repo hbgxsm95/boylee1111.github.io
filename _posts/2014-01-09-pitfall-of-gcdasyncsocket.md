@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Pitfall of GCDAsyncSokcet
+title: Pitfall of GCDAsyncSocket
 date: 2014-01-09 08:52:10.000000000 +01:00
 summary: "I use CocoaAsyncSocket, a 3rd lib that encapsulates the <code>CFNetwork</code> in iOS, to achieve data transmission via TCP/IP protocol."
 categories:
