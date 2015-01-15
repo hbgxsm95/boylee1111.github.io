@@ -7,7 +7,9 @@ categories:
 - Development
 tags: 
 - LeetCode
-- linked list
+- array
+- two point
+- sort
 status: publish
 type: post
 published: true
