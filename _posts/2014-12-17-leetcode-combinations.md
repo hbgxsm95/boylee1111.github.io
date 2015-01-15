@@ -7,8 +7,7 @@ categories:
 - Development
 tags:
 - LeetCode
-- linked list
-- Math
+- backtracking
 status: publish
 type: post
 published: true

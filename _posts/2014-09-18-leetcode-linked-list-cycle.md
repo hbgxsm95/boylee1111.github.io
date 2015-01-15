@@ -1,6 +1,6 @@
 ---
 layout: post
-title: '[LeetCode] Linked List Cycle'
+title: '[LeetCode] Linked List Cycle & Linked List Cycle II '
 date: 2014-09-18 01:57:30.000000000 +02:00
 summary: "检查链表是否有环的题，最基本的思路比较简单，遍历环直到下一个指针等于头指针即有环，否则无环。"
 categories:
@@ -46,3 +46,6 @@ public:
     }
 };
 {% endhighlight %}
+
+
+## [Linked List Cycle II](https://oj.leetcode.com/problems/linked-list-cycle-ii/)

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: '[LeetCode] Best Time to Buy and Sell Stock && Best Time to Buy and Sell Stock II'
+title: '[LeetCode] Best Time to Buy and Sell Stock & Best Time to Buy and Sell Stock II'
 date: 2014-10-12 17:57:16.000000000 +02:00
 summary: "买卖存货问题，因为是一次性获得最大利润，所以思路比较简单。"
 categories:
