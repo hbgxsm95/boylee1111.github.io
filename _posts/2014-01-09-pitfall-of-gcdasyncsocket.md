@@ -9,8 +9,8 @@ tags:
 - GCD
 - iOS
 - 3rd-lib
-- socket
 - objective-c
+- GCDAsyncSocket
 status: publish
 type: post
 published: true
