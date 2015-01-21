@@ -2,7 +2,7 @@
 layout: post
 title: '[LeetCode] Merge k Sorted Lists'
 date: 2014-09-25 12:51:30.000000000 +08:00
-summary: '检查链表是否有环的题，因为运气比较好，想到之前在哪里看到有一个"龟兔算法"，思路是两个指针同时从头指针出发，一个每次走一步，一个每次走两步，如果走得快先走到底则没有环，如果两个指针相遇说明存在环。'
+summary: '在基于Merge Two Sorted Lists上的扩展，合并多个有序数列。'
 categories:
 - Development
 tags:
