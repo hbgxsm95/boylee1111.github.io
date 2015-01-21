@@ -18,7 +18,7 @@ published: true
 
 ## [Merge k Sorted Lists](https://oj.leetcode.com/problems/merge-k-sorted-lists/)
 
-在基于[Merge Two Sorted Lists]({{ site.baseurl }}/development/2014/09/24/leetcode-merge-two-sorted-lists/)上的扩展，合并多个有序数列。
+在基于[Merge Two Sorted Lists]({{ site.baseurl }}/development/2014/09/23/leetcode-merge-two-sorted-lists/)上的扩展，合并多个有序数列。
 
 **思路一：分治法**
 
