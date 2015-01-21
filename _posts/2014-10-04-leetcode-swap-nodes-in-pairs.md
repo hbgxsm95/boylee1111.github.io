@@ -16,9 +16,8 @@ published: true
 
 ## [Swap Nodes in Pairs](https://oj.leetcode.com/submissions/detail/11797418/)
 
-交换相邻结点，用两个指针，交换逻辑如下图：[![Swap-Nodes-in-Pairs](assets/Swap-Nodes-in-Pairs.png)](http://blog.boylee.me/wp-content/uploads/2014/10/Swap-Nodes-in-Pairs.png)
-
-红色结点即2和3为要交换的结点，Pre和Cur为两个指针执行交换逻辑，三条指针更改逻辑顺序为红绿蓝。
+交换相邻结点，用两个指针，交换逻辑如下图：
+![swap_nodes_in_pairs]({{ site.baseurl }}/assets/2014-10-04-leetcode-swap-nodes-in-pairs/swap_nodes_in_pairs.png)
 
 实现过程可以先处理头结点特殊情况，也可以创建新的头结点消除原头结点的特殊情况，代码如下：
 
