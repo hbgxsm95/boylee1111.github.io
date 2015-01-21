@@ -2,7 +2,7 @@
 layout: post
 title: '[LeetCode] Copy List with Random Pointer'
 date: 2015-01-16 16:48:30.000000000 +08:00
-summary: '检查链表是否有环的题，因为运气比较好，想到之前在哪里看到有一个"龟兔算法"，思路是两个指针同时从头指针出发，一个每次走一步，一个每次走两步，如果走得快先走到底则没有环，如果两个指针相遇说明存在环。'
+summary: '深拷贝一个含有random指针的链表。唯一问题就是如何确定新的链表的random指针。'
 categories:
 - Development
 tags:
