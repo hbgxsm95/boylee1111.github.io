@@ -8,6 +8,7 @@ categories:
 tags:
 - LeetCode
 - string
+- math
 status: publish
 type: post
 published: true
