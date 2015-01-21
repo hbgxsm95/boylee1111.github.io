@@ -2,7 +2,7 @@
 layout: post
 title: '[LeetCode] Intersection of Two Linked Lists'
 date: 2015-01-14 20:20:11.000000000 +8:00
-summary: '给定一个数组和一个值，找出数组中两个数的和为给定值的索引。一看到第一反应就是暴力循环，但毋庸置疑有更优的解决方案。'
+summary: '找出两个链表的相交点。先上来是比较直接的思路，要想找到这个点，那么就需要两个指针同时跑并判断。因为要满足两个指针是同时出发且同时到达终点，即链表尾部，那么就需要找到指针的出发起点。'
 categories:
 - Development
 tags:
