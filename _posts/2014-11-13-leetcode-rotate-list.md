@@ -42,9 +42,10 @@ public:
         {
             k %= len;
             fast = head;
-            while (k--) fast = fast->next;
+            while (k--)
+                fast = fast->next;
         }
-        while (fast ->next != NULL)
+        while (fast->next != NULL)
         {
             fast = fast->next;
             slow = slow->next;
