@@ -17,7 +17,7 @@ published: true
 
 ---
 
-##[Maximum Subarray](https://oj.leetcode.com/problems/maximum-subarray/)
+##[Maximum Subarray](https://oj.leetcode.com/problems/maximum-subarray/)##
 
 
 最大子数组问题，给一个数组，求一个子数组保证相比其他子数组这个子数组内所有数之和最大。
