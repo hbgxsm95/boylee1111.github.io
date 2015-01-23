@@ -21,10 +21,10 @@ Calculate all the ways of decoding. This problem is similar to [Climbing Stairs]
 
 When the string is empty or the first digit is '0', the number of decoding is 0. Otherwise, the first digit only has 1 way of decoding.
 
-If length larger than 2, two steps for calculating the decode ways is mandatory:
+If length larger than 2, two steps for calculating the decode ways of previous $n$ digits are mandatory:
 
-1. If current digit can be decoded individually, the ways of decoding is equal to the previous number of decoding ways. [latex]Nn = Nn + N_{n - 2}[/latex].
-2. If current digit combined with previous digit, the ultimated number of decoding is current value plus the number before previous one. $N_n = N_n + N_{n - 2}$
+1. If current digit can be decoded individually, the ways of decoding is equal to the previous number of decoding ways. [latex]N_n = N_{n - 1}[/latex].
+2. If current digit could be combined with previous digit, the ultimated number of decoding is current value plus the number of previous one. Owing to the $N_n$ has already assigned as $N\_{n - 1}$ at previous step, then $N_n = N_n + N_{n - 2}$.
 
 
 The array used to save all the decoding ways can be simplified. The space complixity can be reduced via only recording the previous two number of decoding way.
