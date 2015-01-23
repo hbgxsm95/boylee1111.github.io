@@ -8,6 +8,7 @@ categories:
 tags: 
 - LeetCode
 - BFS
+- tree
 status: publish
 type: post
 published: true
@@ -58,7 +59,7 @@ public:
 {% endhighlight %}
 
 
-
+<br />
 
 
 ## [Binary Tree Level Order Traversal II](https://oj.leetcode.com/problems/binary-tree-level-order-traversal-ii/)
@@ -77,7 +78,7 @@ public:
  */
 class Solution {
 public:
-    vector<vector<int> > levelOrderBottom(TreeNode *root) {
+    vector<vector<int> > levelOrde    rBottom(TreeNode *root) {
         vector<vector<int> > res;
         if (root == NULL) return res;
 
