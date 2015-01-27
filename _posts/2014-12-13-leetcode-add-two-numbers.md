@@ -16,6 +16,11 @@ published: true
 ---
 ## [Add Two Numbers](https://oj.leetcode.com/problems/add-two-numbers/)
 
+> You are given two linked lists representing two non-negative numbers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.
+>
+> Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
+> Output: 7 -> 0 -> 8
+
 两个以链表形式存储的两个数相加，每一个结点代表一位，头结点为最低位，尾结点为最高位。还是最基本的两数相加的思路，换种形式而已，最后如果有进位，在结尾新建一个结点即可。代码如下：
 
 {% highlight c++ linenos %}
