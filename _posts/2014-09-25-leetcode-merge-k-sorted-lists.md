@@ -2,7 +2,7 @@
 layout: post
 title: '[LeetCode] Merge k Sorted Lists'
 date: 2014-09-25 12:51:30.000000000 +08:00
-summary: '在基于Merge Two Sorted Lists上的扩展，合并多个有序数列。'
+summary: 'Merge k sorted linked lists and return it as one sorted list. Analyze and describe its complexity.'
 categories:
 - Development
 tags:
@@ -17,6 +17,8 @@ published: true
 ---
 
 ## [Merge k Sorted Lists](https://oj.leetcode.com/problems/merge-k-sorted-lists/)
+
+> Merge k sorted linked lists and return it as one sorted list. Analyze and describe its complexity.
 
 在基于[Merge Two Sorted Lists]({{ site.baseurl }}/development/2014/09/23/leetcode-merge-two-sorted-lists/)上的扩展，合并多个有序数列。
 
@@ -81,6 +83,8 @@ public:
 {% endhighlight %}
 
 可以容易的看出，分的时间复杂度为$O(\log k)$，合并的时间复杂度为$n$，所以整个过程时间复杂度为$O(n \log k)$。
+
+<br />
 
 **思路二：堆排序**
 

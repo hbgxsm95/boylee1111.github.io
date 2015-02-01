@@ -2,7 +2,7 @@
 layout: post
 title: '[LeetCode] Intersection of Two Linked Lists'
 date: 2015-01-14 20:20:11.000000000 +8:00
-summary: '找出两个链表的相交点。先上来是比较直接的思路，要想找到这个点，那么就需要两个指针同时跑并判断。因为要满足两个指针是同时出发且同时到达终点，即链表尾部，那么就需要找到指针的出发起点。'
+summary: 'Write a program to find the node at which the intersection of two singly linked lists begins.'
 categories:
 - Development
 tags:
@@ -15,6 +15,15 @@ published: true
 
 ---
 ## [Intersection of Two Linked Lists](https://oj.leetcode.com/problems/intersection-of-two-linked-lists/)
+
+> Write a program to find the node at which the intersection of two singly linked lists begins.
+>
+> **Notes:**
+> 
+> - If the two linked lists have no intersection at all, return `null`.
+> - The linked lists must retain their original structure after the function returns.
+> - You may assume there are no cycles anywhere in the entire linked structure.
+> - Your code should preferably run in O(n) time and use only O(1) memory.
 
 找出两个链表的相交点。先上来是比较直接的思路，要想找到这个点，那么就需要两个指针同时跑并判断。因为要满足两个指针是同时出发且同时到达终点，即链表尾部，那么就需要找到指针的出发起点。对于较短的链表容易知道就是头部，而较长的链表则需要先截掉头部一部分直到和较短链表同样长度。那么就需要计算出两个链表的长度差，通过遍历一遍可以得到结果。接着较长的链表先跑这个差值的距离，然后两个一起跑，直到两者相遇，否则就是没有相交点。代码如下：
 

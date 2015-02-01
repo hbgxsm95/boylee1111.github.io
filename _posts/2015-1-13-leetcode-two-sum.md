@@ -2,7 +2,7 @@
 layout: post
 title: '[LeetCode] Two Sum'
 date: 2015-01-13 13:03:11.000000000 +08:00
-summary: '给定一个数组和一个值，找出数组中两个数的和为给定值的索引。一看到第一反应就是暴力循环，但毋庸置疑有更优的解决方案。'
+summary: 'Given an array of integers, find two numbers such that they add up to a specific target number.'
 categories:
 - Development
 tags:
@@ -24,7 +24,7 @@ published: true
 > 
 > **Input**: numbers = { 2, 7, 11, 15 }, target = 9
 > 
-> **Output**: index1=1, index2=2
+> **Output**: index1 = 1, index2 = 2
 
 给定一个数组和一个值，找出数组中两个数的和为给定值的索引。一看到第一反应就是暴力循环，但毋庸置疑有更优的解决方案。看了讨论才想到用map来做。
 

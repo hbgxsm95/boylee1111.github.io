@@ -2,7 +2,7 @@
 layout: post
 title: '[LeetCode] Reorder List'
 date: 2014-11-08 05:36:40.000000000 +01:00
-summary: "思路分三步：Split->Reverse->Merge"
+summary: Given a singly linked list L&#58; $L_0 \to L_1 \to \ldots \to L\_{n-1} \to L_n$, reorder it to&#58; $L_0 \to L_n \to L_1 \to L\_{n-1} \to L_2 \to L_{n-2} \to \ldots$
 categories:
 - Development
 tags:
@@ -15,6 +15,12 @@ published: true
 ---
 
 ## [Reorder List](https://oj.leetcode.com/problems/reorder-list/)
+> Given a singly linked list L: $L_0 \to L_1 \to \ldots \to L\_{n-1} \to L_n$, reorder it to: $L_0 \to L_n \to L_1 \to L\_{n-1} \to L_2 \to L_{n-2} \to \ldots$
+>
+> You must do this in-place without altering the nodes' values.
+>
+> For example,
+> Given `{1,2,3,4}`, reorder it to `{1,4,2,3}`.
 
 思路分三步：Split->Reverse->Merge
 

@@ -17,6 +17,14 @@ published: true
 
 ## [Partition List](https://oj.leetcode.com/problems/partition-list/)
 
+> Given a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x.
+>
+> You should preserve the original relative order of the nodes in each of the two partitions.
+>
+> For example,
+> Given `1->4->3->2->5->2` and x = `3`,
+> return `1->2->2->4->3->5`.
+
 分割链表，将比指定值小的都移动到链表前部分，大的移动到后部分。
 
 通过两个指针完成寻找和移动过程。首先一直向前找，直到找到比指定值大的第一个数停止。此时fast指针继续向前，slow指针停留在原地，当fast指针找到比指定值小的之后的时候，将其追加到slow指针的后面，slow指针前进一步；fast继续向前找直到尾部，这样所有值比指定值小的节点就移动到了链表的前端。通过添加dummyHead就可以简化对头部节点的处理。代码如下：

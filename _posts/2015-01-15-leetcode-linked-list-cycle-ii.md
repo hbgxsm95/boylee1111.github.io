@@ -1,8 +1,8 @@
 ---
 layout: post
-title: '[LeetCode] Linked List Cycle & Linked List Cycle II'
-date: 2015-01-15 22:48:30.000000000 +08:00
-summary: '检查链表是否有环的题，因为运气比较好，想到之前在哪里看到有一个"龟兔算法"，思路是两个指针同时从头指针出发，一个每次走一步，一个每次走两步，如果走得快先走到底则没有环，如果两个指针相遇说明存在环。'
+title: '[LeetCode] Linked List Cycle II'
+date: 2015-01-15 23:01:30.000000000 +08:00
+summary: 'Given a linked list, return the node where the cycle begins. If there is no cycle, return <code>null</code>.'
 categories:
 - Development
 tags:
@@ -15,43 +15,16 @@ published: true
 
 ---
 
-## [Linked List Cycle](https://oj.leetcode.com/problems/linked-list-cycle/)
-
-检查链表是否有环的题，因为运气比较好，想到之前在哪里看到有一个"龟兔算法"，思路是两个指针同时从头指针出发，一个每次走一步，一个每次走两步，如果走得快先走到底则没有环，如果两个指针相遇说明存在环。顺着这个思路尝试果然AC了。进一步了解之后才知道这个算法是Floyd发明的，想想看人家研究了10年出来的结果现在我们就可以直接使用也是蛮有趣的。
-
-{% highlight c++ linenos %}
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode(int x) : val(x), next(NULL) {}
- * };
- */
-class Solution {
-public:
-    bool hasCycle(ListNode *head) {
-        ListNode *p1 = head;
-        ListNode *p2 = head;
-        while (p2 != NULL && p2->next != NULL)
-        {
-            p1 = p1->next;
-            p2 = p2->next->next;
-            if (p1 == p2)
-                return true;
-        }
-        return false;
-    }
-};
-{% endhighlight %}
-
-<br/>
-
 ## [Linked List Cycle II](https://oj.leetcode.com/problems/linked-list-cycle-ii/)
 
-这个问题是基于上一个确定是否存在环的情况下寻找环的起始点。当第一次两点相遇时，令其中一指针从链表头重新开始跑，当两者再次相遇时即有相遇点为环起点，推理如下：
+> Given a linked list, return the node where the cycle begins. If there is no cycle, return `null`.
+>
+> Follow up:
+> Can you solve it without using extra space?
 
-![linked_list_cycle_ii]({{ site.baseurl }}/assets/2015-01-15-leetcode-linked-list-cycle-and-linked-list-cycle-ii/linked_list_cycle_ii.png){: .center-image }
+这个问题是基于上一个问题[Linked List Cycle]({{ site.baseurl }}/development/2015/01/15/leetcode-linked-list-cycle/)在链表有环的情况下寻找环的起始点。当第一次两点相遇时，令其中一指针从链表头重新开始跑，当两者再次相遇时即有相遇点为环起点，推理如下：
+
+![linked_list_cycle_ii]({{ site.baseurl }}/assets/2015-01-15-leetcode-linked-list-cycle-ii/linked_list_cycle_ii.png){: .center-image }
 
 设$O$为链表起点，$P$为环的起点，$Q$为第一次相遇点。$a$为链表起点到环起点的距离，$b$为从环起点出发到相遇点的距离，$c$为从相遇点出发再次回到环起点的位置。
 

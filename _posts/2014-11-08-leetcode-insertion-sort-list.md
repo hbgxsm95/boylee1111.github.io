@@ -2,7 +2,7 @@
 layout: post
 title: '[LeetCode] Insertion Sort List'
 date: 2014-11-08 05:32:42.000000000 +01:00
-summary: "使用插入排序方法对链表进行排序。"
+summary: "Sort a linked list using insertion sort."
 categories:
 - Development
 tags:
@@ -16,6 +16,8 @@ published: true
 ---
 
 ## [Insertion Sort List](https://oj.leetcode.com/problems/insertion-sort-list/)
+
+> Sort a linked list using insertion sort.
 
 使用插入排序方法对链表进行排序。
 

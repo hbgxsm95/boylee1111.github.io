@@ -2,7 +2,7 @@
 layout: post
 title: '[LeetCode] Rotate List'
 date: 2014-11-13 04:33:56.000000000 +01:00
-summary: "右移给定链表k个位置。首先要找到移动的中枢，即移动为为头节点的位置。"
+summary: "Given a list, rotate the list to the right by k places, where k is non-negative."
 categories:
 - Development
 tags:
@@ -16,6 +16,13 @@ published: true
 ---
 
 ## [Rotate List](https://oj.leetcode.com/problems/rotate-list/)
+
+> Given a list, rotate the list to the right by k places, where k is non-negative.
+>
+> For example:
+> Given `1->2->3->4->5->NULL` and k = `2`,
+> return `4->5->1->2->3->NULL`.
+
 
 右移给定链表k个位置。首先要找到移动的中枢，即移动为为头节点的位置。
 

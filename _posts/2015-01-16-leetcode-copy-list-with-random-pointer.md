@@ -2,7 +2,7 @@
 layout: post
 title: '[LeetCode] Copy List with Random Pointer'
 date: 2015-01-16 16:48:30.000000000 +08:00
-summary: '深拷贝一个含有random指针的链表。唯一问题就是如何确定新的链表的random指针。'
+summary: "A linked list is given such that each node contains an additional random pointer which could point to any node in the list or null."
 categories:
 - Development
 tags:
@@ -16,6 +16,10 @@ published: true
 ---
 
 ## [Copy List with Random Pointer](https://oj.leetcode.com/problems/copy-list-with-random-pointer/)
+
+> A linked list is given such that each node contains an additional random pointer which could point to any node in the list or null.
+>
+> Return a deep copy of the list.
 
 深拷贝一个含有random指针的链表。唯一问题就是如何确定新的链表的random指针。
 
@@ -101,7 +105,7 @@ $$
 (node_n \; copy)
 $$
 
-再遍历一遍现在两倍长度的链表，对每一个旧结点，它的next即copy的新结点，而这个新结点的random指针指向的就是旧结点random志向的结点的下一个结点。遍历完之后整个链表已经复制完成，最后再进行复原即可。代码如下：
+再遍历一遍现在两倍长度的链表，对每一个旧结点，它的next即copy的新结点，而这个新结点的random指针指向的就是旧结点random指向的结点的下一个结点。遍历完之后整个链表已经复制完成，最后再进行复原即可。代码如下：
 
 {% highlight c++ linenos %}
 /**
