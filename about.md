@@ -18,10 +18,6 @@ And I'm also interested in Chinese martial arts, exactly, Kungfu. I've been lear
 
 In addition, I'm passionate to explore unknown things, and enjoyable from changing my lifestyle.
 
-<h4>Organizations</h4>
-
-**Tongji Apple Club**
-I'm a key member of Tongji Apple Club, which is an extraordinary student organization that concentrates on design and development based on the most modern techonologies provided by Apple Inc.. It's the lukiest and the most excite thing ever that I could be the fellow and work together with these brilliant guy who share the same hobby with me.
 
 <h3>About This Blog</h3>
 
