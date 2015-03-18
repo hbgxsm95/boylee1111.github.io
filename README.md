@@ -3,7 +3,6 @@
 ### Page Quick Nav
 
 - [Home](http://boylee.me)
-- [Blog Home](http://boylee.me/blog/)
 - [Categories](http://boylee.me/blog/categories/)
 - [Archives](http://boylee.me/blog/archives/)
 - [Tags](http://boylee.me/blog/tags/)
