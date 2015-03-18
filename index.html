@@ -1,104 +1,40 @@
 ---
-permalink: /
+layout: default
+title: Blog
 ---
-<!--A Design by W3layouts
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
-<!DOCTYPE HTML>
-<html>
-  <head>
-    <title>Home – Boyi Li</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="description" content="{{ site.description }}">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href="{{ "./css/style.css" | prepend: site.baseurl }}" rel="stylesheet" type="text/css" media="all">
-    <link href="{{ "./css/slider.css" | prepend: site.baseurl }}" rel="stylesheet" type="text/css" media="all">
-    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script type="text/javascript" src="{{ "./javascripts/slidermodernizr.custom.js" | prepend: site.baseurl }}"></script>
-    <script type="text/javascript" src="{{ "/javascripts/main.js" | prepend: site.baseurl }}"></script>
-  </head>
-  <body>
-    <!-- Background slider -->
-    <div class="slider">
-      <ul id="cbp-bislideshow" class="cbp-bislideshow">
-        <li><img src="{{ site.baseurl }}/images/1.jpg" alt="image01"/></li>
-      </ul>
-      <div class="wrap">
-        <!-- Scroll image arrows -->
-        <!-- <div id="cbp-bicontrols" class="cbp-bicontrols">
-          <p><span class="cbp-biprev"></span></p>
-          <p><span class="cbp-binext"></span></p>
-        </div> -->
-      </div>
-      <script src="{{ "./javascripts/jquery.imagesloaded.min.js" | prepend: site.baseurl }}"></script>
-      <script src="{{ "./javascripts/cbpBGSlideshow.min.js" | prepend: site.baseurl }}"></script>
-      <script>
-      $(function() {
-      cbpBGSlideshow.init();
-      });
-      </script>
-    </div>
-    <!-- End Background slider -->
-    <div class="wrap">
-      <div class="header">
-        <div class="header_top">
-          <div class="logo">
-            <a href="{{ site.url }}"><img src="{{ site.baseurl }}/images/bl-logo.png" alt="" /></a>
-          </div>
-          <div class="menu">
-            <ul class = "nice-menu" >
-              <li><a href="{{ site.url }}">Home</a></li>
-              <li><a href="{{ site.baseurl }}/blog/">Blog</a></li>
-              <li><a href="{{ site.baseurl }}/about_this_guy/">About</a></li>
-              <li><a href="{{ site.baseurl }}/résumé"/>Résumé</a></li>
-              <li><a class="bl-mailTo" href="#{{ site.email }}">Contact</a></li>
-            </ul>
-          </div>
+
+<div class="home">
+
+  <div class="posts">
+    {% for post in paginator.posts %}
+      <div class="post">
+        <a href="{{ post.url | prepend: site.baseurl }}" class="post-link">
+          <p class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</p>
+          <h3 class="h2 post-title">{{ post.title }}</h3>
+        </a>
+        <div>
+          {% capture tags %}
+            {% for tag in post.tags %}
+              {{ tag | downcase | replace:' ','*' }}
+            {% endfor %}
+          {% endcapture %}
+          {% assign sorted_post_tags = tags | split:' ' | sort %}
+          {% for sorted_tag in sorted_post_tags %}
+            {% for tag in post.tags %}
+              {% assign downcase_tag = tag | downcase | replace:' ','*' %}
+              {% if downcase_tag == sorted_tag %}
+              <a href="{{ site.baseurl }}/blog/tags/#{{ tag }}" class="bl-tag">
+               {{ tag }}
+              </a>
+              {% endif %}
+            {% endfor %}
+          {% endfor %}
         </div>
+        <p class="post-summary">{{ post.summary }}</p>
+        <a href="{{ post.url | prepend: site.baseurl }}"><small>Read More...</small></a>
       </div>
-    </div>
-    <div class="content">
-      <div class="introduction">
-        <div class="wrap">
-          <div class="section group">
-            <div class="cont introduction_desc">
-              <h1>Welcome to <span>Boyi</span>'s Website!</h1>
-              <p></p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="footer">
-      <div class="wrap">
-        <div class="friend_left">
-          <h4>Link Exchange:</h4>
-          <h4>
-          <a href="http://giant.codinfox.me/" target="_blank">Codinfox</a> |
-          <a href="http://blog.albusshin.com/" target="_blank">Ablus Shin</a> |
-          <a href="http://h1994st.com/" target="_blank">Tom Hu</a>
-          </h4>
-        </div>
-        <div class="copy_right">
-          <h4>Copyright &copy; {{ site.time | date: '%Y' }} Boyi Li</h4>
-          <h4>Design by <a href="http://w3layouts.com"> W3Layouts </a></h4>
-        </div>
-      </div>
-    </div>
-    
-    {% if site.google_analytics %}
-      <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-      
-      ga('create', '{{ site.google_analytics }}', 'auto');
-      ga('send', 'pageview');
-      </script>
-    {% endif %}
-  </body>
-</html>
+    {% endfor %}
+  </div>
+
+  {% include pagination.html %}
+</div>
