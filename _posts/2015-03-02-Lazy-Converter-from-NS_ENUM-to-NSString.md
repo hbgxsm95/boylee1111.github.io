@@ -8,7 +8,7 @@ categories:
 tags:
 - iOS
 - objective-c
-status: publish
+status: draft
 type: post
 published: true
 
