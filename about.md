@@ -16,14 +16,14 @@ But I never limit myself to some specific skills or domains. The world is changi
 
 <h4>Hobbies</h4>
 
-I'm a longboard skater, and mostly concentrate my skill on freestyle. Currently I'm on the way of learning downhill. Longboard help me feel the limit sometime.
+I'm a longboarder & skateboarder, and mostly concentrate my skill on freestyle. Currently I'm on the way of learning downhill.
 
-As an EDMer, I enjoy the energy from this kind of music. My favorite DJs are Avicii and Kygo. In addition, I like Tiesto, David Guetta, Zedd and so on.
+As an EDMer, I enjoy the energy from this kind of music. My favorite DJs are Avicii and Kygo.
 
 
 <h3>About This Blog</h3>
 
-This blog is not just limited to technical articles. I will keep posting anything about my life, my thoughts, etc.. And maybe these posts will keep me one day.
+This blog is not just limited to technical articles. I will keep posting anything about my life, my thoughts, etc.. And I hope these posts will keep me one day.
 
 <div class="bl-note">
 	This page is not complete, and it will keep updating, please check occasionally if you're interested in it.
