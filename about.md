@@ -12,7 +12,7 @@ At my students period, I'd already involed into many different development skill
 
 Currently as support engineer, I assit on delivering solution to customer located in Southeast Asia, Austrilian and New Zealan related to Exchange and Outlook product. My daily work is for resolve customer issue on Exchange, Outlook and O365. And meanwhile, debugging is needed to find out some product issue and provide modification suggestion to Product Team.
 
-Meanwhile, I'm pursuing higher education in Artificial Intelligence and Machine Learning, which already widely spread in our daily life and still have great potential to develop. I've also involved several related projects, which gain knowledge in these discipline.
+Meanwhile, I'm pursuing higher education in Artificial Intelligence and Machine Learning, which already widely spread in our daily life and still have great potential to develop. I've also involved several related projects, and gained knowledge in these discipline.
 
 [Here]({{ site.baseurl }}/résumé) is my resume.
 
