@@ -8,17 +8,19 @@ I'm Boyi Li (李博一), gradute from [TONGJI University](http://www.tongji.edu.
 
 <h4>Professional</h4>
 
-As a developer at student period, I'd already involed into many different development skills. Among all programming languages, `Objective-C` and `C#` are my specialists.
+At my students period, I'd already involed into many different development skills. I regarded myself as an application-driven researcher, who greatly eager to convert what I've learned into application. Among all programming languages, `Objective-C` and `C#` are my best specialists.
 
-Currently as support engineer, I assit on delivering solution to customer located in Southeast Asia, Austrilian and New Zealan related to Exchange and Outlook product.
+Currently as support engineer, I assit on delivering solution to customer located in Southeast Asia, Austrilian and New Zealan related to Exchange and Outlook product. My daily work is for resolve customer issue on Exchange, Outlook and O365. And meanwhile, debugging is needed to find out some product issue and provide modification suggestion to Product Team.
 
-But I never limit myself to some specific skills or domains. The world is changing with an unprecedented speed, epscially the IT industry. So I take myself as a person who can meet the challenges positively and react to the changes rapidly. And [Here]({{ site.baseurl }}/résumé) is more details about my career.
+Meanwhile, I'm pursuing higher education in Artificial Intelligence and Machine Learning, which already widely spread in our daily life and still have great potential to develop. I've also involved several related projects, which gain knowledge in these discipline.
+
+[Here]({{ site.baseurl }}/résumé) is my resume.
 
 <h4>Hobbies</h4>
 
 I'm a longboarder & skateboarder, and mostly concentrate my skill on freestyle. Currently I'm on the way of learning downhill.
 
-As an EDMer, I enjoy the energy from this kind of music. My favorite DJs are Avicii and Kygo.
+Also, I'm nuts to electornic music. Progressive House, Tropical House, Trap, and Dubstep are the genres meet my taste. Among all Music Producers and DJs, Avicii and Kygo are my favorites.
 
 
 <h3>About This Blog</h3>
