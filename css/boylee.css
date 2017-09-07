@@ -5,13 +5,13 @@
 /* global */
 
 #bl-resume-pdf {
-	font-size: 18px;
-	float: right;
-	top: 10px;
+	
 }
 
 .bl-resume-pdf-href {
-
+	font-size: 18px;
+	float: right;
+	top: 10px;
 }
 
 .bl-separator {
