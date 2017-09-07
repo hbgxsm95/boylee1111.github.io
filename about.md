@@ -18,9 +18,9 @@ Currently I'm doing my Master Degree study in Carnegie Mellon University with so
 
 <h4>Hobbies</h4>
 
-I'm a X Games Fans, playing longboarder & skateboarder, and mostly concentrate my skill on freestyle.
+I'm a [X Games](http://xgames.espn.com/xgames/) Fans, playing longboarder & skateboarder, and mostly concentrate my skill on freestyle.
 
-Also, I'm nuts to electornic music. Progressive House, Tropical House, Trap, and Dubstep are the genres meet my taste. Among all Music Producers and DJs, Avicii and Kygo are my favorites.
+Also, I'm nuts to electornic music. Progressive House, Tropical House, Trap, and Dubstep are the genres meet my taste. Among all Music Producers and DJs, [Avicii](http://avicii.com/) and [Kygo](https://www.kygomusic.com/) are my favorites.
 
 
 <h3>About This Blog</h3>
