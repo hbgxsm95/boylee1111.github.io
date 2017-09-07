@@ -4,6 +4,16 @@
 
 /* global */
 
+#bl-resume-pdf {
+	font-size: 18px;
+	float: right;
+	top: 10px;
+}
+
+.bl-resume-pdf-href {
+
+}
+
 .bl-separator {
 	margin: 20px 0 20px 0;
 	border-bottom: thin solid #f3f3f3;
@@ -104,3 +114,4 @@ h3:hover a {
 	font-size: 14px;
 	line-height: 22px;
 }
+

@@ -1,7 +1,7 @@
 ---
 layout: page
 title: About Me
-permalink: /about_this_guy/
+permalink: /about_me/
 ---
 
 I'm Boyi Li (李博一), gradute from [TONGJI University](http://www.tongji.edu.cn/english/), Shanghai. My major is **Software Engineering**. Currently I'm **Support Engineer** working at Microsoft Corporation, Shanghai.
