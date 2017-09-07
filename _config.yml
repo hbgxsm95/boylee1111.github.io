@@ -38,3 +38,6 @@ sass:
   compressed: true
 
 highlighter: rouge
+
+# Gem
+plugins: [jekyll-paginate]
