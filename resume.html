@@ -5,6 +5,58 @@ permalink: /résumé/
 ---
 
 <div class="bl-cv-wrapper">
+	<div id="bl-resume-pdf"><a class="bl-resume-pdf-href" style="font-size: 18px; float: right; top: 10px;" href="{{ site.baseurl }}/assets/resume/resume.pdf">[PDF Version]</a></div>
+	<div id="bl-education">
+		<h3>Education</h3>
+		<div class="bl-section">
+			<header>
+				<h5 class="bl-section-image">
+					<img src="{{ site.baseurl }}/assets/resume/cmu_logo.png"/>
+				</h5>
+				<h4 class="bl-section-name">Carnegie Mellon University<span style="font-weight: normal;"> - Information Network Institute</span></h4>
+				<div class="bl-section-meta">
+					<h5 class="bl-location">M.S. in Information Technology. GPA: N/A</h5>
+					<p class="bl-dates"><time>Aug. 2017</time> - <time>May. 2019 (Expected)</time></p>
+				</div>
+			</header>
+			<div class="bl-details">
+				<p class="bl-descriptions"><b>Onoging Courses:</b></p>
+				<ul>
+					<li>Introduction to Computer System (15-513)</li>
+					<li>Distributed System (15-640)</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="bl-section">
+			<header>
+				<h5 class="bl-section-image">
+					<img src="{{ site.baseurl }}/assets/resume/tongji_logo.png"/>
+				</h5>
+				<h4 class="bl-section-name">Tongji University</h4>
+				<div class="bl-section-meta">
+					<h5 class="bl-location">B.Eng in Software Engineering. GPA: 90.17 / 100</h5>
+					<p class="bl-dates"><time>Sep. 2011</time> - <time>Jun. 2015</time> (4 years)</p>
+				</div>
+			</header>
+			<div class="bl-details">
+				<p class="bl-descriptions"><b>Core Courses:</b></p>
+				<ul>
+					<li>Object-Oriented Programming</li>
+					<li>Data Structre</li>
+					<li>Operating System</li>
+					<li>Compile Principle</li>
+					<li>Computer Network</li>
+					<li>Algorithm Analysis and Design</li>
+					<li>System Analysis and Design</li>
+					<li>Software Engineering</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="bl-separator"></div>
+
 	<div id="bl-experiences">
 		<h3>Experiences</h3>
 		<div class="bl-section">
@@ -15,7 +67,7 @@ permalink: /résumé/
 				<h4 class="bl-section-name">Support Engineer (Microsoft Academic College Hire)</h4>
 				<div class="bl-section-meta">
 					<h5 class="bl-location">Microsoft Corporation, Shanghai, China</h5>
-					<p class="bl-dates"><time>July. 2015</time> - <time>Current</time> </p>
+					<p class="bl-dates"><time>July. 2015</time> - <time>July. 2017</time> (2 years) </p>
 				</div>
 			</header>
 			<div class="bl-details">
@@ -71,37 +123,6 @@ permalink: /résumé/
 
 	<div class="bl-separator"></div>
 
-	<div id="bl-education">
-		<h3>Education</h3>
-		<div class="bl-section">
-			<header>
-				<h5 class="bl-section-image">
-					<img src="{{ site.baseurl }}/assets/resume/tongji_logo.png"/>
-				</h5>
-				<h4 class="bl-section-name">Tongji University</h4>
-				<div class="bl-section-meta">
-					<h5 class="bl-location">B.Eng in Software Engineering. GPA: 90.17 / 100</h5>
-					<p class="bl-dates"><time>Sep. 2011</time> - <time>Jun. 2015</time> (4 years)</p>
-				</div>
-			</header>
-			<div class="bl-details">
-				<p class="bl-descriptions"><b>Core Courses:</b></p>
-				<ul>
-					<li>Object-Oriented Programming</li>
-					<li>Data Structre</li>
-					<li>Operating System</li>
-					<li>Compile Principle</li>
-					<li>Computer Network</li>
-					<li>Algorithm Analysis and Design</li>
-					<li>System Analysis and Design</li>
-					<li>Software Engineering</li>
-				</ul>
-			</div>
-		</div>
-	</div>
-
-	<div class="bl-separator"></div>
-
 	<div id="bl-projects">
 		<h3>Projects</h3>
 		<div class="bl-section">
@@ -116,7 +137,12 @@ permalink: /résumé/
 				</div>
 			</header>
 			<div class="bl-details">
-				<p class="bl-descriptions"><b>ASP.NET Developer &amp; Researcher.</b> Develop and maintain a customer's facial recognition system, which could recognize customers via camera and retrieve their purchase preference to specifically recommend selling products. Based on OpenCV to implement face recognition feature, reduce dimensionality via PCA and train SVM classifier.</p>
+				<p class="bl-descriptions"><b>ASP.NET Developer</b> A customer's facial recognition system, which could recognize customers via camera and retrieve their purchase preference to specifically recommend selling products. Based on OpenCV to implement face recognition feature, reduce dimensionality via PCA and train SVM classifier.</p>
+				<ul>
+					<li>Developed front-end website to detect customers from photo and retrieve their information with HTML, JavaScript and CSS.</li>
+					<li>Implemented face recognition features using OpenCV library, apply PCA and train SVM classifiers.</li>
+					<li>Encapsulated face recognition functions as REST API and deploy it on Microsoft Azure for public use.</li>
+				</ul>
 			</div>
 		</div>
 		<div class="bl-section">
@@ -131,7 +157,7 @@ permalink: /résumé/
 				</div>
 			</header>
 			<div class="bl-details">
-				<p class="bl-descriptions"><b>Presentation &amp; Business Logic Layer Architect.</b> Develop and maintain an onboard crew processing and finacial enterprise management system base on WPF and Microsoft SQL Server Compact.</p>
+				<p class="bl-descriptions"><b>.Net Developer.</b> Develop and maintain an onboard crew processing and finacial enterprise management system base on WPF and Microsoft SQL Server Compact.</p>
 			</div>
 		</div>
 		<div class="bl-section">
@@ -158,7 +184,7 @@ permalink: /résumé/
 				</div>
 			</header>
 			<div class="bl-details">
-				<p class="bl-descriptions"><b>iOS Client Developer.</b> Develop a flight ticket reservation application with real-time price push notification according to the subscriptions of users. It's founded on iOS platform with the server supported by PHP.</p>
+				<p class="bl-descriptions"><b>iOS Developer.</b> Develop a flight ticket reservation application with real-time price push notification according to the subscriptions of users. It's founded on iOS platform with the server supported by PHP.</p>
 			</div>
 		</div>
 		<div class="bl-section">
@@ -189,6 +215,10 @@ permalink: /résumé/
 			</header>
 			<div class="bl-details">
 				<p class="bl-descriptions"><b>Presentation &amp; Business Logic Layer Architect.</b> Develop a C/S online education system based on .NET platform. The user part concentrates on knowledge sharing, which is a Window Store App. Implement Content-based filtering to establish recommendation system by using kNN algorithm to train profile. The management part is responsible for resources management and examination with the support of ASP.NET.</p>
+				<ul>
+					<li>Implemented Content-Based Recommendation using kNN (k-Nearest Neighbor) to learn the profile.</li>
+					<li>Developed Windows Store client of an online study sharing and communicating educational platform.</li>
+				</ul>
 			</div>
 		</div>
 		<div class="bl-section">
@@ -203,7 +233,11 @@ permalink: /résumé/
 				</div>
 			</header>
 			<div class="bl-details">
-				<p class="bl-descriptions"><b>Business Logic Developer.</b> Develop an English words memorizing-helper application based on iOS platform, which could intelligently generate the plan to help users memorize and understand English words.</p>
+				<p class="bl-descriptions"><b>Business Logic Developer.</b> Develop an English words memorizing-helper application based on iOS, which intelligently generate the plan to help users memorize and understand English words.</p>
+				<ul>
+					<li>Implemented scientific words memorizing algorithm with Objective-C.</li>
+					<li>Developed business logic layer for storing data, manage word list, and expose API to presentation layer.</li>
+				</ul>
 			</div>
 		</div>
 		<div class="bl-section">
@@ -224,6 +258,21 @@ permalink: /résumé/
 
 	<div id="bl-awards">
 		<h3>Awards</h3>
+		<div class="bl-section">
+			<header>
+				<h5 class="bl-section-image">
+					<img src="{{ site.baseurl }}/assets/resume/ms_logo.png"/>
+				</h5>
+				<h4 class="bl-section-name">Champion Award of Rocket Program, Innovation for Business Impact</h4>
+				<div class="bl-section-meta">
+					<h5 class="bl-location">Microsoft CSS Department</h5>
+					<p class="bl-dates">June, 2017</p>
+				</div>
+			</header>
+			<div class="bl-details">
+				<p class="bl-descriptions">Top 2 team among all teams.</p>
+			</div>
+		</div>
 		<div class="bl-section">
 			<header>
 				<h5 class="bl-section-image">

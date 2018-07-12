@@ -1,6 +1,6 @@
 $(function() {
 	var username = "boylee1111",
-		mailServer = "163.com",
+		mailServer = "gmail.com",
 		sendEmail = function(event) {
 			event.preventDefault();
 			window.open("mailto:" + username + "@" + mailServer);
