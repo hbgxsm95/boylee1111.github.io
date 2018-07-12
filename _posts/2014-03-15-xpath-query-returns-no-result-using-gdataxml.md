@@ -2,7 +2,7 @@
 layout: post
 title: XPath Query Returns No Result Using GDataXML
 date: 2014-03-15 14:47:22.000000000 +01:00
-summary: "Recently I\'m on a project covered SOAP, knows as \"Simple Object Access Protocol\". SOAP is a simple, light protocol specification based on XML to exchange structured information in the implement of WebService."
+summary: "Recently I'm on a project covered SOAP, knows as 'Simple Object Access Protocol'. SOAP is a simple, light protocol specification based on XML to exchange structured information in the implement of WebService."
 categories:
 - Development
 tags:
