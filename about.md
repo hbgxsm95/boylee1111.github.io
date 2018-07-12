@@ -8,7 +8,7 @@ I'm Boyi Li (李博一), gradute from [TONGJI University](http://www.tongji.edu.
 
 <h4>Professional</h4>
 
-At my students period, I'd already involed into many different development skills. I regarded myself as an application-driven researcher, who greatly eager to convert what I've learned into application. Among all programming languages, `Objective-C` and `C#` are my best specialists.
+At my students period, I'd already involed into many different development skills. I regarded myself as an application-driven researcher, who greatly eager to convert what I've learned into application.
 
 Currently as support engineer, I assit on delivering solution to customer located in Southeast Asia, Austrilian and New Zealan related to Exchange and Outlook product. My daily work is for resolve customer issue on Exchange, Outlook and O365. And meanwhile, debugging is needed to find out some product issue and provide modification suggestion to Product Team.
 
