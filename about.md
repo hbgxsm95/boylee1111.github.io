@@ -18,6 +18,7 @@ Currently, I'm interning in PayPal and working for a home-grow cloud orchestrati
 
 [Here]({{ site.baseurl }}/cv) is my resume if you're insterested.
 
+<img style="float: right;height:280px;" src="{{ site.baseurl }}/assets/about_me/skate.png">
 <h4>Hobbies</h4>
 
 I'm a [X Games](http://xgames.espn.com/xgames/) Fans, playing longboarder & skateboarder. Also, I'm nuts to electornic music. Progressive House, Tropical House, Trap, and Dubstep are the genres meet my taste. Among all Music Producers and DJs, [Avicii](http://avicii.com/) and [Kygo](https://www.kygomusic.com/) are my favorites.
