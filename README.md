@@ -2,12 +2,12 @@
 
 ### Page Quick Nav
 
-- [Home](http://boylee.me)
+- [Blog](http://boylee.me/)
 - [Categories](http://boylee.me/blog/categories/)
 - [Archives](http://boylee.me/blog/archives/)
 - [Tags](http://boylee.me/blog/tags/)
-- [Résumé](http://boylee.me/r%C3%A9sum%C3%A9/)
-- [About](http://boylee.me/about_this_guy/)
+- [Résumé](http://boylee.me/cv/)
+- [About](http://boylee.me/about_me/)
 
 ## Thanks to the following:
 

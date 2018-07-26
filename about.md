@@ -6,9 +6,10 @@ permalink: /about_me/
 
 
 
-I'm Boyi Li (李博一), a CS graduate student from [Carnegie Mellon University](https://www.cmu.edu/). Before that, I've been worked in Microsoft as **Technical Support Engineer** for two years. I've also obtained bachelors's degree of **Software Engineering** from [TONGJI University](http://www.tongji.edu.cn/english/), Shanghai.
+I'm Boyi Li (李博一), a CS graduate student from [Carnegie Mellon University](https://www.cmu.edu/). Before that, I've been worked in Microsoft as **Technical Support Engineer** for two years. I've also obtained bachelors's degree of **Software Engineering** from [TONGJI University](http://en.tongji.edu.cn/), Shanghai.
 
 ![Me]({{ site.baseurl }}/assets/about_me/me.png)
+<p style="margin-top:-20px;font-size:0.75rem;text-align:right;">Credit: Yuhao Lei (雷雨豪)</p>
 
 <h4>Professional</h4>
 
