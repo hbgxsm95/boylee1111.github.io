@@ -6,7 +6,7 @@ permalink: /about_me/
 
 
 
-I'm Boyi Li (李博一), a CS graduate student from [Carnegie Mellon University](https://www.cmu.edu/). Before that, I've been worked in Microsoft as **Technical Support Engineer** for two years. I've also obtained bachelors's degree of **Software Engineering** from [TONGJI University](http://en.tongji.edu.cn/), Shanghai.
+I'm Boyi Li (李博一), graduate student at [Information Networking Institute](https://www.cmu.edu/ini/) from [Carnegie Mellon University](https://www.cmu.edu/). Before that, I've been worked in Microsoft as **Technical Support Engineer** for two years. And I've also obtained bachelors's degree of **Software Engineering** from [TONGJI University](http://en.tongji.edu.cn/), Shanghai.
 
 ![Me]({{ site.baseurl }}/assets/about_me/me.png)
 <p style="margin-top:-20px;font-size:0.75rem;text-align:right;">Credit: Yuhao Lei (雷雨豪)</p>
@@ -15,7 +15,7 @@ I'm Boyi Li (李博一), a CS graduate student from [Carnegie Mellon University]
 
 I am a passionate practitioner and developer, whose interest lies on cloud computing, distributed system, and mobile development. I'm greatly eager to convert what I've learned into application. I contributed container storage orchestration open source project [REX-Ray](https://github.com/rexray/rexray) and attended WWDC 15 before.
 
-Currently, I'm interning in PayPal and working for a home-grow cloud orchestration solution. And during my working as technical support engineer, I worked on delivering solutions based on Microsft Azure distributed directory to customer. These experiences gave solid basis and insights regarding modern cloud platform.
+Currently, I'm interning at PayPal and working for a homegrown cloud orchestration solution. And during my working as technical support engineer, I worked on delivering solutions based on Microsft Azure distributed directory to customer. These experiences gave solid basis and insights regarding modern cloud platform.
 
 [Here]({{ site.baseurl }}/cv) is my resume if you're insterested.
 
